@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2023-10-31
+
+#### Fixed
+
+- Build: Removed artifact file with duplicates.
+
 ## [1.3.0] - 2023-10-30
 
 #### Added
