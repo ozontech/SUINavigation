@@ -13,7 +13,7 @@ struct FirstView: View {
     var string: String
 
     @State
-    var numberForSecond: Int? = nil
+    private var numberForSecond: Int? = nil
 
     @State
     private var isBoolShowed: Bool = false

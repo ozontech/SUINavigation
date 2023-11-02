@@ -11,13 +11,13 @@ import SUINavigation
 struct BoolView: View {
 
     @State
-    var stringForFirst: String? = nil
+    private var stringForFirst: String? = nil
 
     @State
-    var isMainShowing: Bool = false
+    private var isMainShowing: Bool = false
 
     @OptionalEnvironmentObject
-    var navigationStorage: NavigationStorage?
+    private var navigationStorage: NavigationStorage?
 
     @Environment(\.isChange)
     private var isChange
@@ -26,13 +26,13 @@ struct BoolView: View {
     private var presentationMode
 
     @State
-    var popToViewName: String = ""
+    private var popToViewName: String = ""
 
     @State
-    var skipViewName: String = ""
+    private var skipViewName: String = ""
 
     @State
-    var actionUrl: String = ""
+    private var actionUrl: String = ""
 
     var body: some View {
         VStack {

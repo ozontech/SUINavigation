@@ -34,7 +34,7 @@ struct MainView: View {
     private var viewModel = MainViewModel()
 
     @OptionalEnvironmentObject
-    var navigationStorage: NavigationStorage?
+    private var navigationStorage: NavigationStorage?
 
     @State
     private var isRoot: Bool = true

@@ -16,7 +16,7 @@ struct SecondView: View {
     private var isBoolShowed: Bool = false
 
     @OptionalEnvironmentObject
-    var navigationStorage: NavigationStorage?
+    private var navigationStorage: NavigationStorage?
 
     @Environment(\.isChange)
     private var isChange

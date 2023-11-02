@@ -33,7 +33,7 @@ dependencies: [
 
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate `SUINavigation` into your project manually.
+If you prefer not to use either of the aforementioned dependency managers, you can integrate `BxInputController` into your project manually.
 
 ## Build & test
 
@@ -46,7 +46,7 @@ Just open `Example/NavigationExample/NavigationExample.xcodeproj` from Xcode and
 import SwiftUI
 import SUINavigation
 
-class RootView: View {
+struct RootView: View {
     var body: some View {
         NavigationViewStorage{
             FirstView
@@ -54,12 +54,12 @@ class RootView: View {
     }
 }
 
-class FirstView: View {
+struct FirstView: View {
 
     // It's View Model of Navigation.
     // You can return to your View Model to manage of navigation state.
     @OptionalEnvironmentObject
-    var navigationStorage: NavigationStorage?
+    private var navigationStorage: NavigationStorage?
 
     // Standart feature of a dissmiss works too.
     @Environment(\.presentationMode)
@@ -67,7 +67,7 @@ class FirstView: View {
     
     // Not null value trigger navigation transition to SecondView, nill value to dissmiss to this View.
     @State
-    var numberForSecond: Int? = nil
+    private var numberForSecond: Int? = nil
     
     var body: some View {
         Button("to Root") {
@@ -84,7 +84,7 @@ class FirstView: View {
 ```
 
  Use `NavigationViewStorage` instead of `NavigationView`.
- In parent view use modifiers `.navigation(..)` with string `id` param or without (for using class name):
+ In parent view use modifiers `.navigation(..)` with string `id` param or without (for using struct name):
 
 ```swift
 
@@ -114,7 +114,7 @@ class FirstView: View {
 
         // This optional everywhere, because in a test can use NavigationView without navigationStorage object
         @OptionalEnvironmentObject
-        var navigationStorage: NavigationStorage?
+        private var navigationStorage: NavigationStorage?
 
         var body: some View {
             Button("Go to SecondView") {
