@@ -47,7 +47,8 @@ struct NavigationLinkWrapperView<Destination: View>: View {
         ) {
             EmptyView()
         }
-        // bug from Apple: when change screen - dismiss to First View https://developer.apple.com/forums/thread/667460
+        // bug from Apple: when change screen - dismiss to First View
+        // https://developer.apple.com/forums/thread/667460
         .isDetailLink(false)
         .onChange(of: isActive.wrappedValue) { newValue in
             if let navigationStorage = navigationStorage {

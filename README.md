@@ -41,95 +41,96 @@ Just open `Example/NavigationExample/NavigationExample.xcodeproj` from Xcode and
 
 ## Using
 
+ Use `NavigationViewStorage` instead of `NavigationView` or `NavigationStack`.
+ In parent view use modifiers `.navigation(..)` with string `id` param or without (for using struct name) in addition features:
+
 ```swift
 
 import SwiftUI
 import SUINavigation
 
 struct RootView: View {
+    // True value trigger navigation transition to FirstView
+    @State
+    private var isShowingFirst: Bool = false
+
     var body: some View {
         NavigationViewStorage{
-            FirstView
+            VStack {
+                Text("Root")
+                Button("to First"){
+                    isShowingFirst = true
+                }
+            }.navigation(isActive: $isShowingFirst){
+                FirstView()
+            }
         }
     }
 }
 
 struct FirstView: View {
-
-    // It's View Model of Navigation.
-    // You can return to your View Model to manage of navigation state.
-    @OptionalEnvironmentObject
-    private var navigationStorage: NavigationStorage?
-
-    // Standart feature of a dissmiss works too.
-    @Environment(\.presentationMode)
-    private var presentationMode
-    
-    // Not null value trigger navigation transition to SecondView, nill value to dissmiss to this View.
+    // Not null value trigger navigation transition to SecondView with this value, nil value to dissmiss to this View.
     @State
-    private var numberForSecond: Int? = nil
-    
+    private var optionalValue: Int? = nil
+
     var body: some View {
-        Button("to Root") {
-            // managing of navigation transition
-            navigationStorage?.popToRoot()
-        }
-        // declare of navigation transition
-        .navigation(item: $numberForSecond) { numberValue in
-            SecondView(number: numberValue)
+        VStack(spacing: 0) {
+            Text("First")
+            Button("to Second"){
+                optionalValue = 777
+            }
+        }.navigation(item: $optionalValue, id: "second"){ item in
+            // item is unwrapped optionalValue where can used by SecondView
+            SecondView()
         }
     }
 }
 
-```
+struct SecondView: View {
+    @State
+    private var isShowingLast: Bool = false
 
- Use `NavigationViewStorage` instead of `NavigationView`.
- In parent view use modifiers `.navigation(..)` with string `id` param or without (for using struct name):
-
-```swift
-
-     struct FirstView: View {
-
-       var body: some View {
-         VStack(spacing: 0) {
-           //...
-         }.navigation(id: "second", isActive: $isShowingSecond){
-           SecondView()
-         }
-       }
-     }
-
-    struct SecondView: View {
-
-       var body: some View {
-         VStack(spacing: 0) {
-           //...
-         }.navigation(item: $optionalValue){ item in
-           ThirdView()
-         }
-       }
-    }
-
-    struct SomeView: View {
-
-        // This optional everywhere, because in a test can use NavigationView without navigationStorage object
-        @OptionalEnvironmentObject
-        private var navigationStorage: NavigationStorage?
-
-        var body: some View {
-            Button("Go to SecondView") {
-                // You should use id for navigate to SecondView, because it determinate as id
-                navigationStorage?.popTo("second")
+    var body: some View {
+        VStack(spacing: 0) {
+            Text("Second")
+            Button("to Last"){
+                isShowingLast = true
             }
-            Button("Go to ThirdView") {
-                // You should use struct for navigate, because it determinate without id
-                navigationStorage?.popTo(ThirdView.self)
-            }
-            Button("Go to Root") {
-                navigationStorage.popToRoot()
-            }
+        }.navigation(isActive: $isShowingLast, id: "last"){
+            SomeView()
         }
     }
+}
+
+struct SomeView: View {
+    // This optional everywhere, because in a test can use NavigationView without navigationStorage object
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
+    // Standart feature of a dissmiss works too. Swipe to right works too.
+    @Environment(\.presentationMode)
+    private var presentationMode
+
+    var body: some View {
+        Button("Go to First") {
+            // You should use struct for navigate, because it determinate without id
+            navigationStorage?.popTo(FirstView.self)
+        }
+        Button("Go to SecondView") {
+            // You should use id for navigate to SecondView, because it determinate as id
+            navigationStorage?.popTo("second")
+        }
+        Button("Go to Root") {
+            navigationStorage?.popToRoot()
+        }
+        Button("Skip First") {
+            navigationStorage?.skip(FirstView.self)
+        }
+        Button("Skip Second") {
+            navigationStorage?.skip("second")
+        }
+    }
+}
 
 ```
 
@@ -222,7 +223,10 @@ View modifier for declare navigation to `destination` View from trigger bool `is
 
 
 ```swift
-    func navigateUrlParams<Destination: View>(_ urlComponent: String, action: @escaping NavigateUrlParamsHandler)
+    func navigateUrlParams<Destination: View>(
+        _ urlComponent: String,
+        action: @escaping NavigateUrlParamsHandler
+    )
 ```
 This view modifier need to customise navigationAction if you want custome handle url for a deep link.
 
