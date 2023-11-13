@@ -157,13 +157,28 @@ public struct NavigationViewStorage<Content: View>: View {
     }
 
     public var body: some View {
-        NavigationView {
-            content
+        navigation
+            .optionalEnvironmentObject(navigationStorage)
+    }
+
+    @ViewBuilder
+    private var navigation: some View {
+        if #available(iOS 16.0, *) {
+            // We can't use it from iOS 16 because
+            // The NavigationStack have an issue with dismiss many screens
+            // In the stack rest artefact empty screen by this case
+            // This issue fixed from iOS 17
+            NavigationStack {
+                content
+            }
+        } else {
+            NavigationView {
+                content
+            }
+            // bug from Apple: when change screen
+            // - dismiss to First View
+            // https://developer.apple.com/forums/thread/691242
+            .navigationViewStyle(.stack)
         }
-        // bug from Apple: when change screen
-        // - dismiss to First View
-        // https://developer.apple.com/forums/thread/691242
-        .navigationViewStyle(.stack)
-        .optionalEnvironmentObject(navigationStorage)
     }
 }

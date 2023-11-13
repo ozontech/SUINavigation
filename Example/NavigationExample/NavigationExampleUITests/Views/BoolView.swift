@@ -15,7 +15,7 @@ struct BoolView: View {
     @discardableResult
     func checkThis() -> Self {
         let text = app.staticTexts["This is Bool"]
-        _ = text.waitForExistence(timeout: 2)
+        text.waitForExistingAndAssert(timeout: 2)
         return self
     }
 
@@ -45,6 +45,14 @@ struct BoolView: View {
     @discardableResult
     func tapMain() -> Self {
         let button = app.buttons["to Main"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
+    func tapTab() -> Self {
+        let button = app.buttons["to Tab"]
         _ = button.waitForExistence(timeout: 2)
         button.tap()
         return self

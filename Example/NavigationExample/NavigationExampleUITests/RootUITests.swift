@@ -91,7 +91,7 @@ final class RootUITests: XCTestCase {
             .checkRootMessage(tapOK: true)
     }
 
-    func testManyManyScreens() throws {
+    func testDoubleNavigation() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()

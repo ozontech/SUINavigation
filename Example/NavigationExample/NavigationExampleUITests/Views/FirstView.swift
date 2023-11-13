@@ -15,9 +15,9 @@ struct FirstView: View {
     @discardableResult
     func checkThis(string: String) -> Self {
         var text = app.staticTexts["This is First"]
-        _ = text.waitForExistence(timeout: 2)
+        text.waitForExistingAndAssert(timeout: 2)
         text = app.staticTexts["with: \(string)"]
-        _ = text.waitForExistence(timeout: 2)
+        text.waitForExistingAndAssert(timeout: 2)
         return self
     }
 

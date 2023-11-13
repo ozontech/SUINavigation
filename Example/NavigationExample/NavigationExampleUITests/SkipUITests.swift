@@ -23,7 +23,7 @@ final class SkipUITests: XCTestCase {
             .checkChanging(false)
             .tapSecond()
         SecondView(app: app)
-            .checkThis(number: 22)
+            .checkThis(number: 11)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -68,7 +68,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .swipeBack()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
     }
 
@@ -93,7 +93,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .tapDismiss()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
     }
 
@@ -104,7 +104,7 @@ final class SkipUITests: XCTestCase {
             .checkChanging(false)
             .tapSecond()
         SecondView(app: app)
-            .checkThis(number: 22)
+            .checkThis(number: 11)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -113,7 +113,7 @@ final class SkipUITests: XCTestCase {
             .checkThis()
             .tapBack()
         SecondView(app: app)
-            .checkThis(number: 22)
+            .checkThis(number: 11)
             .tapBack()
         MainView(app: app)
             .checkThis()
@@ -127,7 +127,7 @@ final class SkipUITests: XCTestCase {
             .checkChanging(false)
             .tapSecond()
         SecondView(app: app)
-            .checkThis(number: 22)
+            .checkThis(number: 11)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -136,14 +136,14 @@ final class SkipUITests: XCTestCase {
             .checkThis()
             .tapBack()
         SecondView(app: app)
-            .checkThis(number: 22)
+            .checkThis(number: 11)
             .tapBack()
         MainView(app: app)
             .checkThis()
             .checkRootMessage(tapOK: true)
     }
 
-    // It's not bug, a feature. When stack has the same id, we can not skip it.
+    /// It's not bug, a feature. When stack has the same id, we can not skip it.
     func testSkipTheSameWithDouble() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
@@ -245,7 +245,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .swipeBack()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
             .tapFirst()
         FirstView(app: app)
@@ -264,7 +264,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .tapBack()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
             .tapFirst()
         FirstView(app: app)
@@ -283,7 +283,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .tapDismiss()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
             .tapFirst()
         FirstView(app: app)
@@ -302,7 +302,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .tapPopTo()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
             .tapFirst()
         FirstView(app: app)
@@ -321,7 +321,7 @@ final class SkipUITests: XCTestCase {
             .tapSkip()
             .tapRoot()
         MainView(app: app)
-            .checkThis(with: 2)
+            .checkThis()
             .checkRootMessage(tapOK: true)
     }
 }

@@ -8,52 +8,51 @@
 import SwiftUI
 
 struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier {
-    var item: Binding<Item?>
+    let item: Binding<Item?>
+    let id: NavigationID?
+    let paramName: String?
 
-    @ViewBuilder var destination: (Item) -> Destination
+    @ViewBuilder
+    private var destination: (Item) -> Destination
 
-    @State var isActive: Bool = false
+    @State
+    private var isActive: Bool = false
 
-    var id: NavigationID?
-    var name: String?
-
-    @OptionalEnvironmentObject var navigationStorage: NavigationStorage?
-
-    init(id: NavigationID?, name: String?, item: Binding<Item?>, @ViewBuilder destination: @escaping (Item) -> Destination) {
-        self.id = id
-        self.name = name
+    init(item: Binding<Item?>, id: NavigationID?, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
         self.item = item
+        self.id = id
+        self.paramName = paramName
         self.destination = destination
     }
 
     func body(content: Content) -> some View {
         ZStack {
-            content
-            NavigationLinkWrapperView(
-                id: id,
-                destination: navigationDestination,
-                isActive: $isActive,
-                param: param,
-                navigationStorage: navigationStorage
-            )
-            .onChange(of: item.wrappedValue) { newValue in
-                if let newValue {
-                    isActive = true
-                } else {
-                    isActive = false
-                }
+            if #available(iOS 16.0, *) {
+                content
+                    .navigationDestination(isPresented: $isActive, destination: {if let item = item.wrappedValue {destination(item)}})
+            } else {
+                content
+                NavigationLinkWrapperView(isActive: $isActive, destination: navigationDestination)
             }
-            .onChange(of: isActive) { newValue in
-                if newValue == false {
-                    item.wrappedValue = nil
+            NavigationStorgeActionItemView<Destination>(isActive: $isActive, id: id, param: param)
+                .onChange(of: item.wrappedValue) { newValue in
+                    if let newValue {
+                        isActive = true
+                    } else {
+                        isActive = false
+                    }
                 }
-            }
+                .onChange(of: isActive) { newValue in
+                    if newValue == false {
+                        item.wrappedValue = nil
+                    }
+                }
         }
     }
 
-    var param: NavigationParameter? {
+    private var param: NavigationParameter? {
         if let value = item.wrappedValue {
-            let name = name ?? id?.stringValue ?? Destination.navigationID.stringValue
+            let name = paramName ?? id?.stringValue ?? Destination.navigationID.stringValue
             return NavigationParameter(name: name, value: "\(value)")
         } else {
             return nil
@@ -76,6 +75,6 @@ public extension View {
         paramName: String? = nil,
         @ViewBuilder destination: @escaping (Item) -> Destination
     ) -> some View {
-        modifier(NavigationItemModifier(id: id, name: paramName, item: item, destination: destination))
+        modifier(NavigationItemModifier(item: item, id: id, paramName: paramName, destination: destination))
     }
 }

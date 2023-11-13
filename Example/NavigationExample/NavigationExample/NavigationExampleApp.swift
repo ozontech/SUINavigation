@@ -11,7 +11,11 @@ import SwiftUI
 struct NavigationExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if ProcessInfo.processInfo.arguments.contains("-Tab") {
+                MainTabView()
+            } else {
+                MainView()
+            }
         }
     }
 }

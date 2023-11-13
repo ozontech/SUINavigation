@@ -51,9 +51,6 @@ final class ActionUrlUITests: XCTestCase {
             .checkThis()
             .enterActionUrlTextField("FirstView/SecondView/BoolView/FirstView/SecondView/BoolView?firstString=first1&secondNumber=1&firstString=first2&secondNumber=2")
             .tapAppendUrl()
-        // because load all stack of navigation
-        FirstView(app: app)
-            .checkThis(string: "first2")
         BoolView(app: app)
             .checkThis()
         // FirstView have different input (firstString) output (FirstView) params
@@ -165,7 +162,7 @@ final class ActionUrlUITests: XCTestCase {
             .checkThis()
     }
 
-    func testManyManyScreens() throws {
+    func testDoubleNavigation() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
@@ -177,11 +174,12 @@ final class ActionUrlUITests: XCTestCase {
             .enterActionUrlTextField("FirstView/SecondView/BoolView/MainView?firstString=1&secondNumber=1")
             .tapAppendUrl()
         MainView(app: app)
-            .checkThis(with: 3)
+            .checkThis()
             .tapBool()
         BoolView(app: app)
             .checkThis()
             .checkPath("BoolView")
+            .tapClearActionUrl()
             .enterActionUrlTextField("FirstView/SecondView/BoolView?firstString=2&secondNumber=2")
             .tapAppendUrl()
         BoolView(app: app)

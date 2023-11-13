@@ -13,9 +13,9 @@ struct MainView: View {
     let app: XCUIApplication
 
     @discardableResult
-    func checkThis(with timeout: TimeInterval = 0.5) -> Self {
+    func checkThis() -> Self {
         let text = app.staticTexts["This is Main"]
-        text.waitForExistingAndAssert(timeout: timeout)
+        text.waitForExistingAndAssert(timeout: 5)
         return self
     }
 

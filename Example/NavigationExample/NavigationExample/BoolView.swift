@@ -16,6 +16,9 @@ struct BoolView: View {
     @State
     private var isMainShowing: Bool = false
 
+    @State
+    var isTabShowing: Bool = false
+
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
@@ -53,6 +56,9 @@ struct BoolView: View {
             }
             Button("to Main") {
                 isMainShowing = true
+            }
+            Button("to Tab") {
+                isTabShowing = true
             }
             Button("to change") {
                 isChange.wrappedValue.toggle()
@@ -103,6 +109,9 @@ struct BoolView: View {
             if let stringForFirst = path.popStringParam("firstString") {
                 self.stringForFirst = stringForFirst
             }
+        }
+        .navigation(isActive: $isTabShowing) {
+            MainTabView()
         }
     }
 

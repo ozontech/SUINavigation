@@ -29,6 +29,7 @@
 		C3966A812ACFDC0600F12FEA /* BugUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3966A802ACFDC0600F12FEA /* BugUITests.swift */; };
 		C3B23C662AD97B28006C653F /* SkipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B23C652AD97B28006C653F /* SkipUITests.swift */; };
 		C3D4FFE82AE08248003306E8 /* AppendUrlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FFE72AE08248003306E8 /* AppendUrlUITests.swift */; };
+		C3F5E0262AF24306003540E4 /* TabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F5E0252AF24306003540E4 /* TabUITests.swift */; };
 		C3FCC1D92AE7A87D003E0754 /* ReplaceUrlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FCC1D82AE7A87D003E0754 /* ReplaceUrlUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		C3966A802ACFDC0600F12FEA /* BugUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugUITests.swift; sourceTree = "<group>"; };
 		C3B23C652AD97B28006C653F /* SkipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipUITests.swift; sourceTree = "<group>"; };
 		C3D4FFE72AE08248003306E8 /* AppendUrlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendUrlUITests.swift; sourceTree = "<group>"; };
+		C3F5E0252AF24306003540E4 /* TabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabUITests.swift; sourceTree = "<group>"; };
 		C3FCC1D82AE7A87D003E0754 /* ReplaceUrlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceUrlUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				C3B23C652AD97B28006C653F /* SkipUITests.swift */,
 				C3D4FFE72AE08248003306E8 /* AppendUrlUITests.swift */,
 				C3FCC1D82AE7A87D003E0754 /* ReplaceUrlUITests.swift */,
+				C3F5E0252AF24306003540E4 /* TabUITests.swift */,
 				C3966A752ACF4FB900F12FEA /* Base */,
 				C3966A702ACF37E700F12FEA /* Views */,
 			);
@@ -358,6 +361,7 @@
 				C3966A792ACF50D200F12FEA /* XCUIApplication.swift in Sources */,
 				C30E34752AC5787500D3DA51 /* SimpleBoolUITests.swift in Sources */,
 				C3966A772ACF4FC300F12FEA /* XCUIElement.swift in Sources */,
+				C3F5E0262AF24306003540E4 /* TabUITests.swift in Sources */,
 				C3966A722ACF3BAE00F12FEA /* MainView.swift in Sources */,
 				C30E34772AC5787500D3DA51 /* SimpleFirstUITests.swift in Sources */,
 			);

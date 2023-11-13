@@ -9,21 +9,15 @@ import SwiftUI
 
 
 struct NavigationLinkWrapperView<Destination: View>: View {
-    let destination: Destination?
     let isActive: Binding<Bool>
-    let navigationStorage: NavigationStorage?
-    let identifier: String
-    let param: NavigationParameter?
+    let destination: Destination?
 
     @State
     private var uid: String? = nil
 
-    init(id: NavigationID? = nil, destination: Destination?, isActive: Binding<Bool>, param: NavigationParameter? = nil, navigationStorage: NavigationStorage?) {
-        self.destination = destination
+    init(isActive: Binding<Bool>, destination: Destination?) {
         self.isActive = isActive
-        self.navigationStorage = navigationStorage
-        self.identifier = id?.stringValue ?? Destination.navigationID.stringValue
-        self.param = param
+        self.destination = destination
     }
 
     @ViewBuilder
@@ -50,15 +44,6 @@ struct NavigationLinkWrapperView<Destination: View>: View {
         // bug from Apple: when change screen - dismiss to First View
         // https://developer.apple.com/forums/thread/667460
         .isDetailLink(false)
-        .onChange(of: isActive.wrappedValue) { newValue in
-            if let navigationStorage = navigationStorage {
-                if newValue {
-                    uid = navigationStorage.addItem(isPresented: isActive, id: identifier, param: param)
-                } else {
-                    navigationStorage.removeItem(isPresented: isActive, id: identifier, uid: uid)
-                }
-            }
-        }
         .hidden()
         breakView
     }

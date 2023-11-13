@@ -3,6 +3,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2023-11-13
+
+#### Added
+
+- Using NavigationStack from iOS 16.
+- Many examples for deep links using.
+
+#### Fixed
+
+- Tests changed: Strong test case checking.
+- Tests changed: Added tests with TabView at the root screen.
+- Updated examples in code and descriptions.
+- Internal interfaces of NavigationLinkWrapperView, NavigationItemModifier, NavigationModifier.
+
 ## [1.3.1] - 2023-10-31
 
 #### Fixed

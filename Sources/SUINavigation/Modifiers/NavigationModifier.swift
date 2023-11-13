@@ -8,28 +8,26 @@
 import SwiftUI
 
 struct NavigationModifier<Destination: View>: ViewModifier {
-    let destination: Destination?
     let isActive: Binding<Bool>
+    let id: NavigationID?
+    let destination: Destination?
 
-    var id: NavigationID?
-
-    @OptionalEnvironmentObject var navigationStorage: NavigationStorage?
-
-    init(id: NavigationID?, destination: Destination?, isActive: Binding<Bool>) {
+    init(isActive: Binding<Bool>, id: NavigationID?, destination: Destination?) {
+        self.isActive = isActive
         self.id = id
         self.destination = destination
-        self.isActive = isActive
     }
 
     func body(content: Content) -> some View {
         ZStack {
-            content
-            NavigationLinkWrapperView(
-                id: id,
-                destination: isActive.wrappedValue ? destination : nil,
-                isActive: isActive,
-                navigationStorage: navigationStorage
-            )
+            if #available(iOS 16.0, *) {
+                content
+                    .navigationDestination(isPresented: isActive, destination: {destination})
+            } else {
+                content
+                NavigationLinkWrapperView(isActive: isActive, destination: destination)
+            }
+            NavigationStorgeActionItemView<Destination>(isActive: isActive, id: id)
         }
     }
 }
@@ -40,6 +38,6 @@ public extension View {
         id: NavigationID? = nil,
         @ViewBuilder destination: () -> Destination
     ) -> some View {
-        modifier(NavigationModifier(id: id, destination: isActive.wrappedValue ? destination() : nil, isActive: isActive))
+        modifier(NavigationModifier(isActive: isActive, id: id, destination: isActive.wrappedValue ? destination() : nil))
     }
 }
