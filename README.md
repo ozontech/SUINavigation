@@ -134,6 +134,13 @@ struct SomeView: View {
 
 ```
 
+## Deeplinks supporting
+
+`SUINavigation` has functions of getting and applying the URL which allows you to organize deep links without special costs. Modifier `.navigationAction` identical `.navigation`, but support navigate by `append` or `replace` from URL (URI). If you want custom navigate or use presentation type of navigation (alert, botomsheet, fullScreenCover, TabBar, etc) you can use part of `.navigationAction` as `.navigateParams`. Modifiers `.navigationAction` as `.navigateParams` have addition sets of params for customisation an URL representation.
+
+![Deeplinks1](/Docs/Deeplinks1.svg "Deeplinks1")
+![Deeplinks2](/Docs/Deeplinks2.svg "Deeplinks2")
+
 ## Common Functions
 
 ### NavigationStorage
