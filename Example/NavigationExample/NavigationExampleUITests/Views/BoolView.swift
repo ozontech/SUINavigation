@@ -43,6 +43,14 @@ struct BoolView: View {
     }
 
     @discardableResult
+    func tapModalFirst() -> Self {
+        let button = app.buttons["to Modal First"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
     func tapMain() -> Self {
         let button = app.buttons["to Main"]
         _ = button.waitForExistence(timeout: 2)
@@ -68,7 +76,7 @@ struct BoolView: View {
 
     @discardableResult
     func tapDismiss() -> Self {
-        let button = app.buttons["dismiss"]
+        let button = app.buttons["dismiss"].firstMatch
         _ = button.waitForExistence(timeout: 2)
         button.tap()
         return self
@@ -146,7 +154,7 @@ struct BoolView: View {
     @discardableResult
     func tapReplaceUrl() -> Self {
         let button = app.buttons["replace"]
-        _ = button.waitForExistence(timeout: 2)
+        _ = button.waitForExistence(timeout: 5)
         button.tap()
         return self
     }

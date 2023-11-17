@@ -3,11 +3,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2023-11-17
+
+#### Added
+
+- Many examples and tests for deep links using at custom Navigation.
+
+#### Fixed
+
+- Supporting deeplink for other custom navigation.
+
 ## [1.4.0] - 2023-11-13
 
 #### Added
 
-- Using NavigationStack from iOS 16.
+- Using the NavigationStack from iOS 16.
 - Many examples for deep links using.
 
 #### Fixed

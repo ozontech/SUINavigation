@@ -53,7 +53,8 @@ public final class NavigationStorage: ObservableObject {
         let item = Item(isPresented: isPresented, id: id, param: param)
         pathItems.append(item)
         print("addItem \(id) pathItems.count = \(pathItems.count)")
-        checkSubAction(id: id)
+        // This now called from actionReactor, now it don't needs
+        //checkSubAction(id: id)
         if hasTheSameId {
             item.uid = UUID().uuidString
             return item.uid

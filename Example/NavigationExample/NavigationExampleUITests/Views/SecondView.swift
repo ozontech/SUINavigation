@@ -31,7 +31,7 @@ struct SecondView: View {
 
     @discardableResult
     func tapDismiss() -> Self {
-        let button = app.buttons["dismiss"]
+        let button = app.buttons["dismiss"].firstMatch
         _ = button.waitForExistence(timeout: 2)
         button.tap()
         return self

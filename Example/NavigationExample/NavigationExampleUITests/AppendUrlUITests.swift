@@ -162,6 +162,7 @@ final class ActionUrlUITests: XCTestCase {
             .checkThis()
     }
 
+    /// DoubleNavigation is not working from iOS 16 because NavigationStack on NavigationStack is broken
     func testDoubleNavigation() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)

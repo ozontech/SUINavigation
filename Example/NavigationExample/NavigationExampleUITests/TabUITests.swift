@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import NavigationExample
 
 final class TabUITests: XCTestCase {
 
@@ -20,6 +21,7 @@ final class TabUITests: XCTestCase {
     /// When on Navigation has TabView and a User go to next View on Navigation, change screen or show system top panel he show how get to the root View
     /// Apple bug: when NavigationViewStorge content the NavigationView instead of the NavigationStack.
     /// Can't reproduce on iOS 16 and earlier.
+    /// DoubleNavigation is not working from iOS 16 because NavigationStack on NavigationStack is broken
     func testTabBarInDoubleNavigation() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
@@ -63,6 +65,97 @@ final class TabUITests: XCTestCase {
         MainView(app: app)
             .checkThis()
             .checkChanging(true)
+    }
+
+    func testTabSelectionFromUrl() throws {
+        let app = XCUIApplication.app(isTab: true)
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapTab("Bool Tab")
+        BoolView(app: app)
+            .checkThis()
+            .enterActionUrlTextField("TabView/FirstView/SecondView?firstString=first&secondNumber=1&tab=Main Tab")
+            .tapReplaceUrl()
+        SecondView(app: app)
+            .checkThis(number: 1)
+            .tapBack()
+        FirstView(app: app)
+            .checkThis(string: "first")
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+    }
+
+    func testTabSelectionAndModalFirstFromUrl() throws {
+        let app = XCUIApplication.app(isTab: true)
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterActionUrlTextField("TabView/SecondView/BoolView/ModalFirstView?modalFirst=modal&secondNumber=1&tab=Second Tab")
+            .tapReplaceUrl()
+        FirstView(app: app)
+            .checkThis(string: "modal")
+            .tapDismiss()
+        BoolView(app: app)
+            .checkThis()
+            .tapBack()
+        SecondView(app: app)
+            .checkThis(number: 120)
+        MainView(app: app)
+            .tapTab("Main Tab")
+            .checkThis()
+    }
+
+    func testTabSelectionAndAppendUrlError() throws {
+        let app = XCUIApplication.app(isTab: true)
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterActionUrlTextField("TabView/SecondView/BoolView?secondNumber=1&tab=Second Tab")
+            .tapAppendUrl()
+            .checkThis()
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+    }
+
+    func testTabSelectionAndCorrectAppendUrl() throws {
+        let app = XCUIApplication.app(isTab: true)
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapTab("First Tab")
+        FirstView(app: app)
+            .checkThis(string: "TabBar")
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterActionUrlTextField("FirstView/SecondView/BoolView?firstString=first&secondNumber=3")
+            .tapAppendUrl()
+        BoolView(app: app)
+            .checkThis()
+            .tapBack()
+        SecondView(app: app)
+            .checkThis(number: 3)
+            .tapBack()
+        FirstView(app: app)
+            .checkThis(string: "first")
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .tapBack()
+        FirstView(app: app)
+            .checkThis(string: "TabBar")
     }
 
 }

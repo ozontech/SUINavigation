@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+@testable import NavigationExample
 
 struct MainView: View {
 
@@ -65,6 +66,14 @@ struct MainView: View {
     @discardableResult
     func tapRoot() -> Self {
         let button = app.buttons["to Root"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
+    func tapTab(_ tab: String) -> Self {
+        let button = app.buttons[tab]
         _ = button.waitForExistence(timeout: 2)
         button.tap()
         return self

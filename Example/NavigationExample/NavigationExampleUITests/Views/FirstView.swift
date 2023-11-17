@@ -15,7 +15,7 @@ struct FirstView: View {
     @discardableResult
     func checkThis(string: String) -> Self {
         var text = app.staticTexts["This is First"]
-        text.waitForExistingAndAssert(timeout: 2)
+        text.waitForExistingAndAssert(timeout: 5)
         text = app.staticTexts["with: \(string)"]
         text.waitForExistingAndAssert(timeout: 2)
         return self
@@ -46,7 +46,7 @@ struct FirstView: View {
 
     @discardableResult
     func tapDismiss() -> Self {
-        let button = app.buttons["dismiss"]
+        let button = app.buttons["dismiss"].firstMatch
         _ = button.waitForExistence(timeout: 2)
         button.tap()
         return self

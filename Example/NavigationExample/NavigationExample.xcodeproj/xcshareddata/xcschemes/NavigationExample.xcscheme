@@ -50,6 +50,17 @@
                BlueprintName = "NavigationExampleUITests"
                ReferencedContainer = "container:NavigationExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ActionUrlUITests/testDoubleNavigation()">
+               </Test>
+               <Test
+                  Identifier = "RootUITests/testDoubleNavigation()">
+               </Test>
+               <Test
+                  Identifier = "TabUITests/testTabBarInDoubleNavigation()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

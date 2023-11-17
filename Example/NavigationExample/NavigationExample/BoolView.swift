@@ -8,10 +8,21 @@
 import SwiftUI
 import SUINavigation
 
+struct FirstModalData: Identifiable {
+    var string: String
+
+    public var id: String {
+        string
+    }
+}
+
 struct BoolView: View {
 
     @State
     private var stringForFirst: String? = nil
+
+    @State
+    private var firstModalData: FirstModalData? = nil
 
     @State
     private var isMainShowing: Bool = false
@@ -48,24 +59,6 @@ struct BoolView: View {
             } else {
                 Text("Waitting changes")
             }
-            Button("to Root") {
-                navigationStorage?.popToRoot()
-            }
-            Button("to First with Bool") {
-                stringForFirst = "Bool"
-            }
-            Button("to Main") {
-                isMainShowing = true
-            }
-            Button("to Tab") {
-                isTabShowing = true
-            }
-            Button("to change") {
-                isChange.wrappedValue.toggle()
-            }
-            Button("dismiss") {
-                presentationMode.wrappedValue.dismiss()
-            }
             HStack {
                 Button("popTo:") {
                     if popToViewName == "" {
@@ -97,6 +90,27 @@ struct BoolView: View {
                     actionUrl = ""
                 }
             }
+            Button("to Root") {
+                navigationStorage?.popToRoot()
+            }
+            Button("to First with Bool") {
+                stringForFirst = "Bool"
+            }
+            Button("to Modal First") {
+                firstModalData = FirstModalData(string: "Modal")
+            }
+            Button("to Main") {
+                isMainShowing = true
+            }
+            Button("to Tab") {
+                isTabShowing = true
+            }
+            Button("to change") {
+                isChange.wrappedValue.toggle()
+            }
+            Button("dismiss") {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
         .padding()
         .navigation(item: $stringForFirst) { stringValue in
@@ -112,6 +126,14 @@ struct BoolView: View {
         }
         .navigation(isActive: $isTabShowing) {
             MainTabView()
+        }
+        .fullScreenCover(item: $firstModalData) { value in
+            FirstView(string: value.string)
+        }
+        .navigateUrlParams("ModalFirstView") { params in
+            if let modalFirst = params.popStringParam("modalFirst") {
+                firstModalData = FirstModalData(string: modalFirst)
+            }
         }
     }
 

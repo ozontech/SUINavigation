@@ -80,6 +80,8 @@ extension NavigationStorage {
 
         if let action = children[actionName] {
             action(actionPath)
+            // need check for call custom navigation or remove it from 
+            checkSubAction(id: actionName)
             return
         }
         self.actionPath = nil
