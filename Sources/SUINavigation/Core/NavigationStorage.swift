@@ -36,18 +36,25 @@ public final class NavigationStorage: ObservableObject {
         }
     }
 
+    // Stack of navigation without root
     @Published
     private(set) var pathItems: [Item] = []
 
+    // We don't have root from pathItems, so children of this item used by activate some navigation.
     var rootChildren: [String: NavigateUrlParamsHandler] = [:]
 
+    // `childStorge` and `parentStorge` need for support nested NavigationStorage.
+    weak var childStorge: NavigationStorage? = nil
+    weak var parentStorge: NavigationStorage? = nil
+
+    // It activate navigation from path
     var actionPath: NavigationActionPath? = nil {
         didSet {
             actionReactor()
         }
     }
 
-    // return uid if has duplicated
+    // To add View Info to Stack at navigation transition. It return id if has duplicates.
     func addItem(isPresented: Binding<Bool>, id: String, param: NavigationParameter?) -> String? {
         let hasTheSameId = pathItems.first(where: { $0.id == id }) != nil
         let item = Item(isPresented: isPresented, id: id, param: param)
@@ -63,6 +70,7 @@ public final class NavigationStorage: ObservableObject {
         }
     }
 
+    // To remove View Info at navigation transition. Uid needs for double id
     func removeItem(isPresented: Binding<Bool>, id: String, uid: String?) {
         guard let foundIndex = pathItems.lastIndex(where: { $0.id == id &&  $0.uid == uid }) else {
             return
@@ -147,39 +155,3 @@ public final class NavigationStorage: ObservableObject {
     }
 }
 
-public struct NavigationViewStorage<Content: View>: View {
-    let content: Content
-
-    @StateObject
-    var navigationStorage = NavigationStorage()
-
-    public init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public var body: some View {
-        navigation
-            .optionalEnvironmentObject(navigationStorage)
-    }
-
-    @ViewBuilder
-    private var navigation: some View {
-        if #available(iOS 16.0, *) {
-            // We can't use it from iOS 16 because
-            // The NavigationStack have an issue with dismiss many screens
-            // In the stack rest artefact empty screen by this case
-            // This issue fixed from iOS 17
-            NavigationStack {
-                content
-            }
-        } else {
-            NavigationView {
-                content
-            }
-            // bug from Apple: when change screen
-            // - dismiss to First View
-            // https://developer.apple.com/forums/thread/691242
-            .navigationViewStyle(.stack)
-        }
-    }
-}

@@ -128,7 +128,9 @@ struct BoolView: View {
             MainTabView()
         }
         .fullScreenCover(item: $firstModalData) { value in
-            FirstView(string: value.string)
+            NavigationViewStorage{
+                FirstView(string: value.string)
+            }
         }
         .navigateUrlParams("ModalFirstView") { params in
             if let modalFirst = params.popStringParam("modalFirst") {

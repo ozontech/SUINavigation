@@ -31,13 +31,15 @@ extension NavigationStorage {
     }
 
     public func replace(with url: String) {
+        if let parentStorge = self.parentStorge {
+            parentStorge.replace(with: url)
+            return
+        }
         popToRoot()
-        Task {
+        Task { @MainActor in
             // wait 0.7 sec (animation of navigation)
             try await Task.sleep(nanoseconds: 7_00_000_000)
-            await MainActor.run {
-                self.actionPath = NavigationActionPath(url: url)
-            }
+            actionPath = NavigationActionPath(url: url)
         }
     }
 
@@ -58,12 +60,10 @@ extension NavigationStorage {
     }
 
     func checkSubAction(id: String) {
-        Task {
+        Task { @MainActor in
             // wait 0.7 sec (animation of navigation)
             try await Task.sleep(nanoseconds: 7_00_000_000)
-            await MainActor.run {
-                removeSubAction(id: id)
-            }
+            removeSubAction(id: id)
         }
     }
 
@@ -73,6 +73,13 @@ extension NavigationStorage {
         }
         guard let actionName = actionPath.path.first else {
             self.actionPath = nil
+            return
+        }
+
+        // If childStorge not nil We founed in anotner navigation storage. We should switch actionPath respond to
+        if let childStorage = childStorge {
+            self.actionPath = nil
+            childStorage.actionPath = actionPath
             return
         }
 

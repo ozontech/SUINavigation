@@ -13,11 +13,11 @@ struct SecondView: View {
     let app: XCUIApplication
 
     @discardableResult
-    func checkThis(number: Int) -> Self {
+    func checkThis(number: Int, timeout: TimeInterval = 5) -> Self {
         var text = app.staticTexts["This is Second"]
         text.waitForExistingAndAssert(timeout: 5)
         text = app.staticTexts["with: \(number)"]
-        text.waitForExistingAndAssert(timeout: 5)
+        text.waitForExistingAndAssert(timeout: timeout)
         return self
     }
 

@@ -28,6 +28,7 @@ struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier 
     func body(content: Content) -> some View {
         ZStack {
             if #available(iOS 16.0, *) {
+                // We can't use from iOS 17 .navigationDestination with item param because that has an issue with navigation
                 content
                     .navigationDestination(isPresented: $isActive, destination: {if let item = item.wrappedValue {destination(item)}})
             } else {

@@ -10,13 +10,13 @@ Now Developers have standard framework SwiftUI. Correct navigation features were
 
 ## Features
 
-- [x] Full support SwiftUI, has declarative style
-- [x] Supporting iOS 14,  iOS 15,  iOS 16,  iOS 17
-- [x] Target switching between NavigationView and NavigationStack
-- [x] Fixing known Apple bugs
-- [x] Has popTo, skip, isRoot and each other functions
-- [x] Works with URL: simple supporting the deep links
-- [x] UI tests coverage
+- [x] Full support SwiftUI, has declarative style.
+- [x] Supporting iOS 14, iOS 15, iOS 16, iOS 17.
+- [x] Target switching between NavigationView and NavigationStack.
+- [x] Fixing known Apple bugs.
+- [x] Has popTo, skip, isRoot and each other functions.
+- [x] Works with URL: simple supporting the deep links.
+- [x] UI tests full coverage.
 
 ## Installation
 
@@ -203,6 +203,12 @@ struct MyTabView: View {
 }
 
 ```
+
+## Features of Nested Navigation
+
+Since `NavigationStack` don't support nested `NavigationStack` it affected to `NavigationViewStorge` too. But it reproduced on iOS 16 and leter. On iOS 15.x and lower it work fine because `NavigationView` haven't this problem.
+
+You can also seporate nested `NavigationViewStorge` with help another navigation for example .fullScreenCover or TabBar then you can use fearlessly nested `NavigationViewStorge` even with iOS 16 and leter. For this case, we even provided support for deep links of nested navigation.
 
 ## Common Functions
 

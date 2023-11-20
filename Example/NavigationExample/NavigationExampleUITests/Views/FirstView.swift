@@ -17,7 +17,7 @@ struct FirstView: View {
         var text = app.staticTexts["This is First"]
         text.waitForExistingAndAssert(timeout: 5)
         text = app.staticTexts["with: \(string)"]
-        text.waitForExistingAndAssert(timeout: 2)
+        text.waitForExistingAndAssert(timeout: 5)
         return self
     }
 
@@ -46,9 +46,15 @@ struct FirstView: View {
 
     @discardableResult
     func tapDismiss() -> Self {
-        let button = app.buttons["dismiss"].firstMatch
-        _ = button.waitForExistence(timeout: 2)
-        button.tap()
+        let buttons = app.buttons.matching(identifier: "dismiss")
+        for i in 0..<buttons.count{
+            let button = buttons.element(boundBy: i)
+            _ = button.waitForExistence(timeout: 2)
+            if button.isHittable {
+                button.tap()
+                return self
+            }
+        }
         return self
     }
 

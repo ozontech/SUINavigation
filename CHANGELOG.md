@@ -3,6 +3,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.2] - 2023-11-20
+
+#### Added
+
+- Deep links support for nested NavigationStorages.
+- Updated docs, tests and code comments.
+
+#### Fixed
+
+- Issue with async call in MainActor from deeplink methods `checkSubAction` and `replace`. This was reproduced only from iOS 16 (iOS 15, 17 don't).
+
 ## [1.4.1] - 2023-11-17
 
 #### Added
@@ -11,7 +22,7 @@ All notable changes to this project will be documented in this file.
 
 #### Fixed
 
-- Supporting deeplink for other custom navigation.
+- Deep links support for other custom navigation.
 
 ## [1.4.0] - 2023-11-13
 
