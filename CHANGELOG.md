@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2023-11-30
+
+#### Added
+
+- Added SUINavigationTest framework for UnitTests coverage.
+
 ## [1.4.2] - 2023-11-20
 
 #### Added

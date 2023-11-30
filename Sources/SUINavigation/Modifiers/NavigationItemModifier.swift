@@ -25,12 +25,37 @@ struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier 
         self.destination = destination
     }
 
+#if DEBUG
+
+    @Environment(\.catchView)
+    private var catchViewDestination: (_ view: any View) -> Void
+
+    var viewDestination : (_ view: Destination) -> Destination {
+        return { view in
+            catchViewDestination(view)
+            return view
+        }
+    }
+
+#else
+
+    @inlinable
+    func viewDestination(_ view: Destination) -> Destination {
+        return view
+    }
+
+#endif
+
     func body(content: Content) -> some View {
         ZStack {
             if #available(iOS 16.0, *) {
                 // We can't use from iOS 17 .navigationDestination with item param because that has an issue with navigation
                 content
-                    .navigationDestination(isPresented: $isActive, destination: {if let item = item.wrappedValue {destination(item)}})
+                    .navigationDestination(isPresented: $isActive, destination: {
+                        if let item = item.wrappedValue {
+                            viewDestination(destination(item))
+                        }
+                    })
             } else {
                 content
                 NavigationLinkWrapperView(isActive: $isActive, destination: navigationDestination)
@@ -65,7 +90,7 @@ struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier 
             return nil
         }
 
-        return destination(item)
+        return viewDestination(destination(item))
     }
 }
 

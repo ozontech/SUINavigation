@@ -12,6 +12,27 @@ struct NavigationModifier<Destination: View>: ViewModifier {
     let id: NavigationID?
     let destination: Destination?
 
+#if DEBUG
+
+    @Environment(\.catchView)
+    private var catchViewDestination: (_ view: any View) -> Void
+
+    func viewDestination(_ view: Destination?) -> Destination? {
+        if let view = view {
+            catchViewDestination(view)
+        }
+        return view
+    }
+
+#else
+
+    @inlinable
+    func viewDestination(_ view: Destination?) -> Destination? {
+        return view
+    }
+
+#endif
+
     init(isActive: Binding<Bool>, id: NavigationID?, destination: Destination?) {
         self.isActive = isActive
         self.id = id
@@ -22,10 +43,10 @@ struct NavigationModifier<Destination: View>: ViewModifier {
         ZStack {
             if #available(iOS 16.0, *) {
                 content
-                    .navigationDestination(isPresented: isActive, destination: {destination})
+                    .navigationDestination(isPresented: isActive, destination: {viewDestination(destination)})
             } else {
                 content
-                NavigationLinkWrapperView(isActive: isActive, destination: destination)
+                NavigationLinkWrapperView(isActive: isActive, destination: viewDestination(destination))
             }
             NavigationStorgeActionItemView<Destination>(isActive: isActive, id: id)
         }

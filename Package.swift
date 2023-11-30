@@ -12,7 +12,10 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "SUINavigation",
-            targets: ["SUINavigation"])
+            targets: ["SUINavigation"]),
+        .library(
+            name: "SUINavigationTest",
+            targets: ["SUINavigationTest"])
     ],
     dependencies: [
     ],
@@ -21,6 +24,11 @@ let package = Package(
             name: "SUINavigation",
             dependencies: [],
             path: "Sources/SUINavigation"
+        ),
+        .target(
+            name: "SUINavigationTest",
+            dependencies: ["SUINavigation"],
+            path: "Sources/SUINavigationTest"
         ),
 //        .testTarget(
 //            name: "SUINavigationTests",

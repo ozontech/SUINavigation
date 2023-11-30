@@ -16,6 +16,7 @@ Now Developers have standard framework SwiftUI. Correct navigation features were
 - [x] Fixing known Apple bugs.
 - [x] Has popTo, skip, isRoot and each other functions.
 - [x] Works with URL: simple supporting the deep links.
+- [x] UnitTest available
 - [x] UI tests full coverage.
 
 ## Installation
@@ -130,6 +131,39 @@ struct SomeView: View {
         Button("Skip Second") {
             navigationStorage?.skip("second")
         }
+    }
+}
+
+```
+
+## UnitTests supporting
+
+`SUINavigation` includes `SUINavigationTest` framework whith you can covare your Views with UnitTests.
+The Best solution who you have ViewModel whith manage navigation. In next example I show you how test navigation push and deeplinks with `SUINavigationTest`.
+
+```swift
+
+import SUINavigationTest
+
+final class NavigationExampleTests: XCTestCase {
+
+    func testMainToFirst() throws {
+        let viewModel = MainViewModelMock()
+        let mainContentView = MainContentView(viewModel: viewModel)
+        test(sourceView: mainContentView, destinationView: FirstView.self) {
+            viewModel.stringForFirst = "New"
+        } destination: { view in
+            XCTAssertEqual(view.string, "New")
+        }
+    }
+
+    func testMainToSecondDeepLink() throws {
+        let viewModel = MainViewModelMock()
+        let mainContentView = MainContentView(viewModel: viewModel)
+        let navStorage = test(view: mainContentView) {
+            viewModel.numberForSecond = 11
+        }
+        XCTAssertEqual(navStorage.currentUrl, "SecondView?SecondView=11")
     }
 }
 

@@ -64,3 +64,20 @@ struct FirstView: View {
 #Preview {
     FirstView(string: "test string")
 }
+
+#if DEBUG
+
+extension FirstView {
+
+    init(string: String, numberForSecond: State<Int?>) {
+        self.string = string
+        _numberForSecond = numberForSecond
+    }
+
+    init(string: String, isBoolShowed: State<Bool>) {
+        self.string = string
+        _isBoolShowed = isBoolShowed
+    }
+}
+
+#endif

@@ -19,7 +19,12 @@ extension EnvironmentValues {
     }
 }
 
-class MainViewModel: ObservableObject {
+protocol MainViewModelProtocol: ObservableObject {
+    var stringForFirst: String? {set get}
+    var numberForSecond: Int? {set get}
+}
+
+final class MainViewModel: MainViewModelProtocol {
 
     @Published
     var stringForFirst: String? = nil
@@ -28,12 +33,16 @@ class MainViewModel: ObservableObject {
     var numberForSecond: Int? = nil
 }
 
-struct MainContentView: View {
+struct MainContentView<ViewModel: MainViewModelProtocol>: View {
     @StateObject
-    private var viewModel = MainViewModel()
+    private var viewModel: ViewModel
 
     @State
     private var isBoolShowed: Bool = false
+
+    init() where ViewModel == MainViewModel {
+        _viewModel = StateObject(wrappedValue: MainViewModel())
+    }
 
     var body: some View {
         ZStack{
@@ -62,3 +71,26 @@ struct MainContentView: View {
         }
     }
 }
+
+#if DEBUG
+
+final class MainViewModelMock: MainViewModelProtocol {
+    @Published
+    var stringForFirst: String?
+
+    @Published
+    var numberForSecond: Int?
+}
+
+extension MainContentView {
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
+    init(isBoolShowed: State<Bool>) where ViewModel == MainViewModel {
+        _viewModel = StateObject(wrappedValue: MainViewModel())
+        _isBoolShowed = isBoolShowed
+    }
+}
+
+#endif
