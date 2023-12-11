@@ -10,7 +10,7 @@ import SUINavigation
 
 struct FirstView: View {
 
-    var string: String
+    let string: String
 
     @State
     private var numberForSecond: Int? = nil
@@ -43,7 +43,6 @@ struct FirstView: View {
                 Button("dismiss") {
                     presentationMode.wrappedValue.dismiss()
                 }
-                
                 if isChange.wrappedValue {
                     Text("This screen is changed")
                 } else {

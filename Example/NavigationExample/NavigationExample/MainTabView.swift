@@ -38,7 +38,7 @@ struct MainTabView: View {
         NavigationViewStorage{
             ZStack(alignment: .bottom) {
                 TabView(selection: $selectedTab) {
-                    MainContentView()
+                    RootView()
                         .navigationStorage(isRoot: $isRoot)
                         .tabItem{
                             Text(MainTab.main.title)

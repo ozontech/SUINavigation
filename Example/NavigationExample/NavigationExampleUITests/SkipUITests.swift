@@ -69,7 +69,6 @@ final class SkipUITests: XCTestCase {
             .swipeBack()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: true)
     }
 
     func testSkipToRoot() throws {
@@ -220,7 +219,6 @@ final class SkipUITests: XCTestCase {
             .tapBack()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: false)
     }
 
     func testRepeat() throws {
@@ -246,7 +244,6 @@ final class SkipUITests: XCTestCase {
             .swipeBack()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: true)
             .tapFirst()
         FirstView(app: app)
             .checkThis(string: "Hi")
@@ -284,7 +281,6 @@ final class SkipUITests: XCTestCase {
             .tapDismiss()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: true)
             .tapFirst()
         FirstView(app: app)
             .checkThis(string: "Hi")
@@ -322,6 +318,5 @@ final class SkipUITests: XCTestCase {
             .tapRoot()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: true)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MainContentView.swift
+//  RootView.swift
 //  NavigationExample
 //
 //  Created by Sergey Balalaev on 16.11.2023.
@@ -8,23 +8,23 @@
 import SwiftUI
 import SUINavigation
 
-private struct MainViewIsChangeShowedKey: EnvironmentKey {
+private struct RootViewIsChangeShowedKey: EnvironmentKey {
     static let defaultValue: Binding<Bool> = .constant(false)
 }
 
 extension EnvironmentValues {
     var isChange: Binding<Bool> {
-        get { self[MainViewIsChangeShowedKey.self] }
-        set { self[MainViewIsChangeShowedKey.self] = newValue }
+        get { self[RootViewIsChangeShowedKey.self] }
+        set { self[RootViewIsChangeShowedKey.self] = newValue }
     }
 }
 
-protocol MainViewModelProtocol: ObservableObject {
+protocol RootViewModelProtocol: ObservableObject {
     var stringForFirst: String? {set get}
     var numberForSecond: Int? {set get}
 }
 
-final class MainViewModel: MainViewModelProtocol {
+final class RootViewModel: RootViewModelProtocol {
 
     @Published
     var stringForFirst: String? = nil
@@ -33,15 +33,15 @@ final class MainViewModel: MainViewModelProtocol {
     var numberForSecond: Int? = nil
 }
 
-struct MainContentView<ViewModel: MainViewModelProtocol>: View {
+struct RootView<ViewModel: RootViewModelProtocol>: View {
     @StateObject
     private var viewModel: ViewModel
 
     @State
     private var isBoolShowed: Bool = false
 
-    init() where ViewModel == MainViewModel {
-        _viewModel = StateObject(wrappedValue: MainViewModel())
+    init() where ViewModel == RootViewModel {
+        _viewModel = StateObject(wrappedValue: RootViewModel())
     }
 
     var body: some View {
@@ -74,7 +74,7 @@ struct MainContentView<ViewModel: MainViewModelProtocol>: View {
 
 #if DEBUG
 
-final class MainViewModelMock: MainViewModelProtocol {
+final class RootViewModelMock: RootViewModelProtocol {
     @Published
     var stringForFirst: String?
 
@@ -82,13 +82,13 @@ final class MainViewModelMock: MainViewModelProtocol {
     var numberForSecond: Int?
 }
 
-extension MainContentView {
+extension RootView {
     init(viewModel: ViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    init(isBoolShowed: State<Bool>) where ViewModel == MainViewModel {
-        _viewModel = StateObject(wrappedValue: MainViewModel())
+    init(isBoolShowed: State<Bool>) where ViewModel == RootViewModel {
+        _viewModel = StateObject(wrappedValue: RootViewModel())
         _isBoolShowed = isBoolShowed
     }
 }

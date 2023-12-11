@@ -8,9 +8,9 @@
 import SwiftUI
 
 public final class NavigationStorage: ObservableObject {
-    final class Item: Identifiable, CustomStringConvertible, Hashable, Equatable {
+    public final class Item: Identifiable, CustomStringConvertible, Hashable, Equatable {
         var isPresented: Binding<Bool>
-        let id: String
+        public let id: String
         var isSkipped = false
         // This use for duplicated id
         var uid: String?
@@ -18,7 +18,7 @@ public final class NavigationStorage: ObservableObject {
         var children: [String: NavigateUrlParamsHandler] = [:]
         private(set) var param: NavigationParameter?
 
-        var description: String { "NavigationPathItem with id: \(id) isPresented: \(isPresented.wrappedValue)" }
+        public var description: String { "NavigationPathItem with id: \(id) isPresented: \(isPresented.wrappedValue)" }
 
         init(isPresented: Binding<Bool>, id: String, param: NavigationParameter?) {
             self.isPresented = isPresented
@@ -26,11 +26,11 @@ public final class NavigationStorage: ObservableObject {
             self.param = param
         }
 
-        static func == (lhs: Item, rhs: Item) -> Bool {
+        public static func == (lhs: Item, rhs: Item) -> Bool {
             lhs.id == rhs.id && lhs.uid == rhs.uid
         }
 
-        func hash(into hasher: inout Hasher) {
+        public func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(uid)
         }
@@ -38,14 +38,16 @@ public final class NavigationStorage: ObservableObject {
 
     // Stack of navigation without root
     @Published
-    private(set) var pathItems: [Item] = []
+    public private(set) var pathItems: [Item] = []
 
     // We don't have root from pathItems, so children of this item used by activate some navigation.
-    var rootChildren: [String: NavigateUrlParamsHandler] = [:]
+    public internal(set) var rootChildren: [String: NavigateUrlParamsHandler] = [:]
 
     // `childStorge` and `parentStorge` need for support nested NavigationStorage.
-    weak var childStorge: NavigationStorage? = nil
+    public internal(set) weak var childStorge: NavigationStorage? = nil
     weak var parentStorge: NavigationStorage? = nil
+
+    var bindings: [String: NavigationBindingHandler] = [:]
 
     // It activate navigation from path
     var actionPath: NavigationActionPath? = nil {
@@ -93,6 +95,17 @@ public final class NavigationStorage: ObservableObject {
                 popToRoot()
             }
         }
+    }
+
+    func searchBinding<T: Equatable>(for value: T.Type) -> NavigationBindingHandler {
+        guard let result = bindings[String(describing: T.self)] else {
+            if let parentStorge = self.parentStorge {
+                return searchBinding(for: value)
+            } else {
+                return {_ in EmptyView()}
+            }
+        }
+        return result
     }
 
     /// You can use with the Type of View or the NavigationID case

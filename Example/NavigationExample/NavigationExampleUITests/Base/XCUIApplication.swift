@@ -16,12 +16,16 @@ extension XCUIApplication {
 
     static func app(isEnglish: Bool = true, isTab: Bool = false) -> XCUIApplication {
         let result = XCUIApplication()
-        result.launchArguments = []
+        //result.launchArguments = []
+        
         if isEnglish {
             result.launchArguments.append(contentsOf: ["-AppleLanguages", "(en)", "-AppleLocale", "en_EN"])
         }
         if isTab {
             result.launchArguments.append("-Tab")
+        }
+        if ProcessInfo.processInfo.arguments.contains("-Modular") {
+            result.launchArguments.append("-Modular")
         }
         result.launch()
         return result

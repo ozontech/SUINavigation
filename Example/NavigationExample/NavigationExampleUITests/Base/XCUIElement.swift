@@ -75,7 +75,38 @@ extension View {
         return self
     }
 
-    func dissmissKeyboard() {
+    @discardableResult
+    func swipeTopToBottom() -> Self {
+        let navigationBar = app.windows.firstMatch
+        navigationBar.waitForExistingAndAssert()
+
+        let startOffset = CGVector(dx: 0.5, dy: -0.01)
+        let endOffset = CGVector(dx: 0.5, dy: 1)
+        let startPoint = navigationBar.coordinate(withNormalizedOffset: startOffset)
+        let endPoint = navigationBar.coordinate(withNormalizedOffset: endOffset)
+        startPoint
+            .press(forDuration: 0.1, thenDragTo: endPoint, withVelocity: .fast, thenHoldForDuration: 0.1)
+
+        return self
+    }
+
+    @discardableResult
+    func swipeBottomToTop() -> Self {
+        let navigationBar = app.windows.firstMatch
+        navigationBar.waitForExistingAndAssert()
+
+        let startOffset = CGVector(dx: 0.5, dy: 1)
+        let endOffset = CGVector(dx: 0.5, dy: 0)
+        let startPoint = navigationBar.coordinate(withNormalizedOffset: startOffset)
+        let endPoint = navigationBar.coordinate(withNormalizedOffset: endOffset)
+        startPoint
+            .press(forDuration: 0.1, thenDragTo: endPoint, withVelocity: .fast, thenHoldForDuration: 0.1)
+
+        return self
+    }
+
+    @discardableResult
+    func dissmissKeyboard() -> Self {
         if app.keyboards.element(boundBy: 0).exists {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 let dissmissKeyboard = app.keyboards.buttons["Hide keyboard"]
@@ -89,6 +120,7 @@ extension View {
                 }
             }
         }
+        return self
     }
 
 }

@@ -62,6 +62,7 @@ final class PopToUITests: XCTestCase {
         BoolView(app: app)
             .checkThis()
             .enterPopToTextField("First")
+            .dissmissKeyboard()
             .tapChange()
             .tapPopTo()
         FirstView(app: app)
@@ -69,7 +70,6 @@ final class PopToUITests: XCTestCase {
             .tapBack()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: true)
     }
 
     func testManyScreensPopTo() throws {
@@ -253,6 +253,5 @@ final class PopToUITests: XCTestCase {
             .tapBack()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: false)
     }
 }

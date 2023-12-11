@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "35BE8A67-41FE-4308-BF10-D8E85421799B",
+      "name" : "Standard",
+      "options" : {
+
+      }
+    },
+    {
+      "id" : "7A6AA293-4803-4650-BF24-11E9A2D8B243",
+      "name" : "Modular",
+      "options" : {
+        "commandLineArgumentEntries" : [
+          {
+            "argument" : "-Modular"
+          }
+        ]
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+
+    ],
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "skippedTests" : [
+        "ActionUrlUITests\/testDoubleNavigation()",
+        "RootUITests\/testDoubleNavigation()",
+        "TabUITests\/testTabBarInDoubleNavigation()"
+      ],
+      "target" : {
+        "containerPath" : "container:NavigationExample.xcodeproj",
+        "identifier" : "C30E346F2AC5787500D3DA51",
+        "name" : "NavigationExampleUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

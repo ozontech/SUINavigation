@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier {
+struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatable>: ViewModifier {
     let item: Binding<Item?>
+    let value: Binding<Value?>?
     let id: NavigationID?
     let paramName: String?
 
@@ -18,8 +19,9 @@ struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier 
     @State
     private var isActive: Bool = false
 
-    init(item: Binding<Item?>, id: NavigationID?, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
+    init(item: Binding<Item?>, value: Binding<Value?>?, id: NavigationID?, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
         self.item = item
+        self.value = value
         self.id = id
         self.paramName = paramName
         self.destination = destination
@@ -77,7 +79,7 @@ struct NavigationItemModifier<Destination: View, Item: Equatable>: ViewModifier 
     }
 
     private var param: NavigationParameter? {
-        if let value = item.wrappedValue {
+        if let value = value?.wrappedValue {
             let name = paramName ?? id?.stringValue ?? Destination.navigationID.stringValue
             return NavigationParameter(name: name, value: "\(value)")
         } else {
@@ -101,6 +103,6 @@ public extension View {
         paramName: String? = nil,
         @ViewBuilder destination: @escaping (Item) -> Destination
     ) -> some View {
-        modifier(NavigationItemModifier(item: item, id: id, paramName: paramName, destination: destination))
+        modifier(NavigationItemModifier(item: item, value: item, id: id, paramName: paramName, destination: destination))
     }
 }

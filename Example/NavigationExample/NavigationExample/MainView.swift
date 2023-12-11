@@ -22,6 +22,17 @@ struct MainView: View {
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
+    private let isModular = ProcessInfo.processInfo.arguments.contains("-Modular")
+
+    @ViewBuilder
+    var rootView: some View {
+        if isModular {
+            ModularRootView()
+        } else {
+            RootView()
+        }
+    }
+
     var body: some View {
         NavigationViewStorage{
             ZStack{
@@ -31,7 +42,7 @@ struct MainView: View {
                     Color.yellow.ignoresSafeArea()
                 }
                 VStack{
-                    MainContentView()
+                    rootView
                         .navigationTitle(isRoot ? isChange ? "This screen is changed" : "Waitting changes" : "Back")
                         .navigationStorage(isRoot: $isRoot)
 
@@ -39,6 +50,8 @@ struct MainView: View {
                         navigationStorage?.popToRoot()
                     }
                 }
+            }.navigationStorageBinding(for: Destination.self) { destination in
+                destination.view
             }
         }
         .alert(isPresented: $isRootMessageShowed) {
@@ -46,10 +59,12 @@ struct MainView: View {
         }
         .environment(\.isChange, $isChange)
         .onChange(of: isRoot) { value in
-            Task {
-                // Delay the task by 0.01 second:
-                try await Task.sleep(nanoseconds: 1_0_000_000)
-                isRootMessageShowed = value
+            if isChange == false {
+                Task {
+                    // Delay the task by 0.01 second:
+                    try await Task.sleep(nanoseconds: 1_0_000_000)
+                    isRootMessageShowed = value
+                }
             }
         }
     }

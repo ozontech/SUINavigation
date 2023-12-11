@@ -21,9 +21,9 @@ final class NavigationExampleTests: XCTestCase {
     }
 
     func testMainToSecondDeepLink() throws {
-        let viewModel = MainViewModelMock()
-        let mainContentView = MainContentView(viewModel: viewModel)
-        let navStorage = test(view: mainContentView) {
+        let viewModel = RootViewModelMock()
+        let rootView = RootView(viewModel: viewModel)
+        let navStorage = test(view: rootView) {
             viewModel.numberForSecond = 11
         }
         XCTAssertEqual(navStorage.currentUrl, "SecondView?SecondView=11")
@@ -31,10 +31,10 @@ final class NavigationExampleTests: XCTestCase {
 
     func testMainToFirst() throws {
         self.measure {
-            let viewModel = MainViewModelMock()
-            let mainContentView = MainContentView(viewModel: viewModel)
+            let viewModel = RootViewModelMock()
+            let rootView = RootView(viewModel: viewModel)
 
-            test(sourceView: mainContentView, destinationView: FirstView.self) {
+            test(sourceView: rootView, destinationView: FirstView.self) {
                 viewModel.stringForFirst = "New"
             } destination: { view in
                 XCTAssertEqual(view.string, "New")
@@ -43,10 +43,10 @@ final class NavigationExampleTests: XCTestCase {
     }
 
     func testMainToSecond() throws {
-        let viewModel = MainViewModelMock()
-        let mainContentView = MainContentView(viewModel: viewModel)
+        let viewModel = RootViewModelMock()
+        let rootView = RootView(viewModel: viewModel)
 
-        test(sourceView: mainContentView) {
+        test(sourceView: rootView) {
             viewModel.numberForSecond = 13
         } destination: { (view: SecondView) in
             XCTAssertEqual(view.number, 13)
@@ -55,9 +55,9 @@ final class NavigationExampleTests: XCTestCase {
 
     func testMainToBool() throws {
         let isBoolShowed = State<Bool>(initialValue: true)
-        let mainContentView = MainContentView(isBoolShowed: isBoolShowed)
+        let rootView = RootView(isBoolShowed: isBoolShowed)
 
-        test(sourceView: mainContentView, destinationView: BoolView.self) {
+        test(sourceView: rootView, destinationView: BoolView.self) {
         } destination: { view in
             XCTAssertEqual(BoolView.navigationID.stringValue, "BoolView")
         }

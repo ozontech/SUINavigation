@@ -66,7 +66,7 @@ struct SomeView: View {
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
-    // Standart feature of a dissmiss works too. Swipe to right works too.
+    // Standard feature of a dissmiss works too. Swipe to right works too.
     @Environment(\.presentationMode)
     private var presentationMode
 

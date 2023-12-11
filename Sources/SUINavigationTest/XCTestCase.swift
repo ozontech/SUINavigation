@@ -10,34 +10,36 @@ import SwiftUI
 import SUINavigation
 
 extension UIHostingController {
-
     fileprivate func forceRender() {
         _render(seconds: 0)
     }
+}
 
+public extension View {
+    func render(){
+        let hostingController = UIHostingController(rootView: self)
+        hostingController.forceRender()
+    }
 }
 
 public extension XCTestCase {
 
-    func test<SourceView: View>(view: SourceView, evalution: () -> Void) -> NavigationStorage {
+    func test<SourceView: View>(navigationView: SourceView, evalution: () -> Void) -> NavigationStorage {
         let expectation = expectation(description: "NavigationStorage")
         var navStorage: NavigationStorage!
 
         let view =
-            NavigationViewStorage {
-                view
-                    .navigationStorage { storage in
-                        navStorage = storage
-                    }
-            }
+            navigationView
+                .navigationStorage { storage in
+                    navStorage = storage
+                }
             .onAppear{
                 Task { @MainActor in
                     expectation.fulfill()
                 }
             }
 
-        let hostingController = UIHostingController(rootView: view)
-        hostingController.forceRender()
+        view.render()
 
         evalution()
 
@@ -50,25 +52,28 @@ public extension XCTestCase {
         return navStorage
     }
 
+    func test<SourceView: View>(view: SourceView, evalution: () -> Void) -> NavigationStorage {
+        return test(
+            navigationView: NavigationViewStorage{view},
+            evalution: evalution
+        )
+    }
+
     func test<SourceView: View, DestinationView: View>(
-        sourceView: SourceView, destinationView: DestinationView.Type = DestinationView.self,
+        navigationView: SourceView, destinationView: DestinationView.Type = DestinationView.self,
         evalution: () -> Void = {},
         destination: @escaping (_ view: DestinationView) -> Void = {_ in}
     ) {
         let expectation = expectation(description: "NavigationCatch")
         expectation.assertForOverFulfill = false
 
-        let view =
-            NavigationViewStorage {
-                sourceView
-            }
+        let view = navigationView
             .navigationCatch(to: DestinationView.self) { view in
                 destination(view)
                 expectation.fulfill()
             }
 
-        let hostingController = UIHostingController(rootView: view)
-        hostingController.forceRender()
+        view.render()
 
         evalution()
 
@@ -77,6 +82,19 @@ public extension XCTestCase {
                 print("Error NavigationCatch: \(error.localizedDescription)")
             }
         }
+    }
+
+    func test<SourceView: View, DestinationView: View>(
+        sourceView: SourceView, destinationView: DestinationView.Type = DestinationView.self,
+        evalution: () -> Void = {},
+        destination: @escaping (_ view: DestinationView) -> Void = {_ in}
+    ) {
+        test(
+            navigationView: NavigationViewStorage{sourceView},
+            destinationView: destinationView,
+            evalution: evalution,
+            destination: destination
+        )
     }
 
 }

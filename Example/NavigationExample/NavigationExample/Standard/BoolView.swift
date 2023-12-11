@@ -79,11 +79,13 @@ struct BoolView: View {
                 }
             }
             HStack {
-                Button("append") {
-                    navigationStorage?.append(from: actionUrl)
-                }
-                Button("replace") {
-                    navigationStorage?.replace(with: actionUrl)
+                VStack{
+                    Button("append") {
+                        navigationStorage?.append(from: actionUrl)
+                    }
+                    Button("replace") {
+                        navigationStorage?.replace(with: actionUrl)
+                    }
                 }
                 TextField("URL", text: $actionUrl)
                 Button("clear url") {
@@ -158,5 +160,5 @@ struct BoolView: View {
 }
 
 #Preview {
-    SecondView(number: 777)
+    BoolView()
 }

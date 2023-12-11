@@ -122,4 +122,29 @@ final class SimpleBoolUITests: XCTestCase {
             .checkThis()
     }
 
+    func testToFirstWithSystemPanel() throws {
+        let app = XCUIApplication.launchEn
+
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Bool")
+            .swipeTopToBottom()
+            .checkThis(string: "Bool")
+            .swipeBottomToTop()
+            .checkThis(string: "Bool")
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+    }
+
 }

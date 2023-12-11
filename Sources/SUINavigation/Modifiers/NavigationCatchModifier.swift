@@ -9,15 +9,15 @@ import SwiftUI
 
 #if DEBUG
 
-private struct ClosureKey: EnvironmentKey {
+private struct NavigationCatchKey: EnvironmentKey {
 
     static let defaultValue : (_ view: any View) -> Void = {_ in }
 }
 
 extension EnvironmentValues {
     var catchView : (_ view: any View) -> Void {
-        get { self[ClosureKey.self] }
-        set { self[ClosureKey.self] = newValue }
+        get { self[NavigationCatchKey.self] }
+        set { self[NavigationCatchKey.self] = newValue }
     }
 }
 

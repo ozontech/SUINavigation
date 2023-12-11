@@ -6,7 +6,7 @@ Simple Navigation framework for SwiftUI. Alternate NavigationStack with supporti
 
 ## Motivation
 
-Now Developers have standard framework SwiftUI. Correct navigation features were introduced since iOS 16 as [NavigationStack](https://developer.apple.com/documentation/swiftui/navigationstack), but developers can not use that becase should support a iOS 14.x as target commonly. Now we have solutions to backport NavigationStack: [NavigationBackport](https://github.com/johnpatrickmorgan/NavigationBackport) but it's too bold and different from the declarative approach. We want a simpler interface. In addition, the NavigationStack and NavigationBackport havn't many functions such as `skip` and each others. Functions `append` from URL and `replace` with URL allows store and backup navigation state without special costs. Also allows you to use deep links as an additional feature.
+Now Developers have standard framework SwiftUI. Correct navigation features were introduced since iOS 16 as [NavigationStack](https://developer.apple.com/documentation/swiftui/navigationstack), but developers can not use that becase should support a iOS 14.x as target commonly. Now we have solutions to backport NavigationStack: [NavigationBackport](https://github.com/johnpatrickmorgan/NavigationBackport) but it's too bold and different from the declarative approach. We want a simpler interface. In addition, the NavigationStack and NavigationBackport havn't many functions such as `skip` and each others. Functions `append` from URL and `replace` with URL allows store and backup navigation state without special costs. Also allows you to use deep links as an additional feature. If you want to use microapp-architecture you can inject views to your modules closed by value object.
 
 ## Features
 
@@ -16,6 +16,7 @@ Now Developers have standard framework SwiftUI. Correct navigation features were
 - [x] Fixing known Apple bugs.
 - [x] Has popTo, skip, isRoot and each other functions.
 - [x] Works with URL: simple supporting the deep links.
+- [x] Multy-module supporting (views injecting)
 - [x] UnitTest available
 - [x] UI tests full coverage.
 
@@ -109,7 +110,7 @@ struct SomeView: View {
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
-    // Standart feature of a dissmiss works too. Swipe to right works too.
+    // Standard feature of a dissmiss works too. Swipe to right works too.
     @Environment(\.presentationMode)
     private var presentationMode
 
@@ -243,6 +244,63 @@ struct MyTabView: View {
 Since `NavigationStack` don't support nested `NavigationStack` it affected to `NavigationViewStorge` too. But it reproduced on iOS 16 and leter. On iOS 15.x and lower it work fine because `NavigationView` haven't this problem.
 
 You can also seporate nested `NavigationViewStorge` with help another navigation for example .fullScreenCover or TabBar then you can use fearlessly nested `NavigationViewStorge` even with iOS 16 and leter. For this case, we even provided support for deep links of nested navigation.
+
+## Multi-module supporting (coordinator pattern)
+
+`NavigationStorge` has mirror functions for supporting the Coordinator pattern. I show You how does it differ from the classical approach with SwiftUI:
+ 1. You need registry all `View's` with and binding to special value type. For that use `.navigationStorageBinding` modifier before triger navigation.
+ 2. You need switch from using `.navigation` modifier with some View as destination to the same `.navigation` modifier with this special value type as destination. An Enum can be used as this value type.
+ 
+### Example
+
+```swift
+
+enum Destination: Equatable {
+    case first(String)
+    case second(Int)
+    case bool
+}
+
+struct RootView: View {
+    var body: some View {
+        NavigationViewStorage{
+            ZStack{
+                mainView
+            }.navigationStorageBinding(for: Destination.self) { destination in
+                switch self {
+                case .first(let string):
+                    ModularFirstView(string: string)
+                case .second(let number):
+                    ModularSecondView(number: number)
+                case .bool:
+                    ModularBoolView()
+                }
+            }
+        }
+    }
+}
+
+struct ModularFirstView: View {
+
+    @State
+    private var numberForSecond: Int? = nil
+
+    var body: some View {
+        ZStack {
+            VStack {
+                Text("This is First")
+                Button("to Second with 22") {
+                    numberForSecond = 22
+                }
+            }
+        }
+        .navigationAction(item: $numberForSecond) { numberValue in
+            Destination.second(numberValue)
+        }
+    }
+}
+
+```
 
 ## Common Functions
 

@@ -3,6 +3,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0] - 2023-12-11
+
+#### Added
+
+- Multy-module supporting with coordinator and modifiers: `navigationStorageBinding`, `navigation's` with value destination.
+- Update UI tests to support dual-mode: Standard (classic SwiftUI) and Modular (with coordinator).
+
 ## [1.5.0] - 2023-11-30
 
 #### Added
