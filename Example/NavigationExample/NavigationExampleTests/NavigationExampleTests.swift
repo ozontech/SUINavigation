@@ -9,6 +9,7 @@ import XCTest
 @testable import NavigationExample
 import SwiftUI
 import SUINavigationTest
+import SUINavigation
 
 final class NavigationExampleTests: XCTestCase {
 
@@ -26,7 +27,7 @@ final class NavigationExampleTests: XCTestCase {
         let navStorage = test(view: rootView) {
             viewModel.numberForSecond = 11
         }
-        XCTAssertEqual(navStorage.currentUrl, "SecondView?SecondView=11")
+        XCTAssertEqual(navStorage?.currentUrl, "SecondView?SecondView=11")
     }
 
     func testMainToFirst() throws {

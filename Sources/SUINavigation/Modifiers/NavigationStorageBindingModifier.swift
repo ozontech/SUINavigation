@@ -9,18 +9,6 @@ import SwiftUI
 
 typealias NavigationBindingHandler = (_ value: any Equatable) -> any View
 
-private struct ClosureKey: EnvironmentKey {
-
-    static let defaultValue : NavigationBindingHandler = {_ in  return EmptyView() }
-}
-
-extension EnvironmentValues {
-    var myClosure : (_ value: any Equatable) -> any View {
-        get { self[ClosureKey.self] }
-        set { self[ClosureKey.self] = newValue }
-    }
-}
-
 struct NavigationStorageBindingModifier<Destination: View, Item: Equatable>: ViewModifier {
     var data: Item.Type
 
@@ -29,26 +17,6 @@ struct NavigationStorageBindingModifier<Destination: View, Item: Equatable>: Vie
 
     @OptionalEnvironmentObject
     var navigationStorage: NavigationStorage?
-
-#if DEBUG
-
-    @Environment(\.catchView)
-    private var catchViewDestination: (_ view: any View) -> Void
-
-    @inlinable
-    func viewDestination(_ view: any View) -> any View {
-        catchViewDestination(view)
-        return view
-    }
-
-#else
-
-    @inlinable
-    func viewDestination(_ view: any View) -> any View {
-        return view
-    }
-
-#endif
 
     func body(content: Content) -> some View {
         content

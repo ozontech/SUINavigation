@@ -3,6 +3,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.1] - 2023-13-21
+
+#### Fixed
+
+- Hotfix stack overflow when using Environments from `navigation' modifiers with item trigger.
+- Issue with UnitTests
+
 ## [1.6.0] - 2023-12-11
 
 #### Added

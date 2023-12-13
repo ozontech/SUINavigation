@@ -24,24 +24,30 @@ public extension View {
 
 public extension XCTestCase {
 
-    func test<SourceView: View>(navigationView: SourceView, evalution: () -> Void) -> NavigationStorage {
+    private func test<SourceView: View>(
+        _ sourceView: SourceView,
+        hasStorge: Bool,
+        evalution: () -> Void) -> NavigationStorage?
+    {
         let expectation = expectation(description: "NavigationStorage")
-        var navStorage: NavigationStorage!
+        var navStorage: NavigationStorage? = nil
 
         let view =
-            navigationView
+            sourceView
                 .navigationStorage { storage in
                     navStorage = storage
-                }
-            .onAppear{
-                Task { @MainActor in
                     expectation.fulfill()
                 }
-            }
-
-        view.render()
 
         evalution()
+
+        if hasStorge {
+            view.render()
+        } else {
+            NavigationViewStorage{
+                view
+            }.render()
+        }
 
         waitForExpectations(timeout: 5) { error in
             if let error = error {
@@ -52,30 +58,41 @@ public extension XCTestCase {
         return navStorage
     }
 
-    func test<SourceView: View>(view: SourceView, evalution: () -> Void) -> NavigationStorage {
-        return test(
-            navigationView: NavigationViewStorage{view},
-            evalution: evalution
-        )
+    func test<SourceView: View>(navigationView: SourceView, evalution: () -> Void = {}) -> NavigationStorage? {
+        return test(navigationView, hasStorge: true, evalution: evalution)
     }
 
-    func test<SourceView: View, DestinationView: View>(
-        navigationView: SourceView, destinationView: DestinationView.Type = DestinationView.self,
+    func test<SourceView: View>(view: SourceView, evalution: () -> Void = {}) -> NavigationStorage? {
+        return test(view, hasStorge: false, evalution: evalution)
+    }
+
+
+    private func test<SourceView: View, DestinationView: View>(
+        _ sourceView: SourceView,
+        hasStorge: Bool,
+        destinationView: DestinationView.Type = DestinationView.self,
         evalution: () -> Void = {},
-        destination: @escaping (_ view: DestinationView) -> Void = {_ in}
+        destination: @escaping (_ view: DestinationView) -> Void = {_ in }
     ) {
         let expectation = expectation(description: "NavigationCatch")
         expectation.assertForOverFulfill = false
 
-        let view = navigationView
-            .navigationCatch(to: DestinationView.self) { view in
-                destination(view)
-                expectation.fulfill()
-            }
+        NavigationCatch.shared.catchView(to: DestinationView.self) { view in
+            destination(view)
+            expectation.fulfill()
+        }
 
-        view.render()
+        let view = sourceView
 
         evalution()
+
+        if hasStorge {
+            view.render()
+        } else {
+            NavigationViewStorage{
+                view
+            }.render()
+        }
 
         waitForExpectations(timeout: 3) { error in
             if let error = error {
@@ -85,12 +102,29 @@ public extension XCTestCase {
     }
 
     func test<SourceView: View, DestinationView: View>(
-        sourceView: SourceView, destinationView: DestinationView.Type = DestinationView.self,
+        navigationView: SourceView, 
+        destinationView: DestinationView.Type = DestinationView.self,
         evalution: () -> Void = {},
-        destination: @escaping (_ view: DestinationView) -> Void = {_ in}
+        destination: @escaping (_ view: DestinationView) -> Void = {_ in }
     ) {
         test(
-            navigationView: NavigationViewStorage{sourceView},
+            navigationView,
+            hasStorge: true,
+            destinationView: destinationView,
+            evalution: evalution,
+            destination: destination
+        )
+    }
+
+    func test<SourceView: View, DestinationView: View>(
+        sourceView: SourceView, 
+        destinationView: DestinationView.Type = DestinationView.self,
+        evalution: () -> Void = {},
+        destination: @escaping (_ view: DestinationView) -> Void = {_ in }
+    ) {
+        test(
+            sourceView,
+            hasStorge: false,
             destinationView: destinationView,
             evalution: evalution,
             destination: destination

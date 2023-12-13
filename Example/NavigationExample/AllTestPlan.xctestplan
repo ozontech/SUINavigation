@@ -38,6 +38,16 @@
         "identifier" : "C30E346F2AC5787500D3DA51",
         "name" : "NavigationExampleUITests"
       }
+    },
+    {
+      "skippedTests" : [
+        "NavigationExampleTests\/testMainToSecondDeepLink()"
+      ],
+      "target" : {
+        "containerPath" : "container:NavigationExample.xcodeproj",
+        "identifier" : "C30E34652AC5787500D3DA51",
+        "name" : "NavigationExampleTests"
+      }
     }
   ],
   "version" : 1

@@ -27,27 +27,6 @@ struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatab
         self.destination = destination
     }
 
-#if DEBUG
-
-    @Environment(\.catchView)
-    private var catchViewDestination: (_ view: any View) -> Void
-
-    var viewDestination : (_ view: Destination) -> Destination {
-        return { view in
-            catchViewDestination(view)
-            return view
-        }
-    }
-
-#else
-
-    @inlinable
-    func viewDestination(_ view: Destination) -> Destination {
-        return view
-    }
-
-#endif
-
     func body(content: Content) -> some View {
         ZStack {
             if #available(iOS 16.0, *) {
