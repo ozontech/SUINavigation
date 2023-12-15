@@ -27,7 +27,7 @@ struct NavigationModifier<Destination: View>: ViewModifier {
                 content
                 NavigationLinkWrapperView(isActive: isActive, destination: viewDestination(destination))
             }
-            NavigationStorgeActionItemView<Destination>(isActive: isActive, id: id)
+            NavigationStorageActionItemView<Destination>(isActive: isActive, id: id)
         }
     }
 }

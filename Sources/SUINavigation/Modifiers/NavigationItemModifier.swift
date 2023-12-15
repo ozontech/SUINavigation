@@ -41,7 +41,7 @@ struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatab
                 content
                 NavigationLinkWrapperView(isActive: $isActive, destination: navigationDestination)
             }
-            NavigationStorgeActionItemView<Destination>(isActive: $isActive, id: id, param: param)
+            NavigationStorageActionItemView<Destination>(isActive: $isActive, id: id, param: param)
                 .onChange(of: item.wrappedValue) { newValue in
                     if let newValue {
                         isActive = true

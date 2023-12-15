@@ -24,6 +24,7 @@
 		C34FA8A62B1E012D00069374 /* ModularFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8A52B1E012D00069374 /* ModularFirstView.swift */; };
 		C34FA8A82B1E014000069374 /* ModularBoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8A72B1E014000069374 /* ModularBoolView.swift */; };
 		C34FA8AB2B1F696D00069374 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8AA2B1F696D00069374 /* Destination.swift */; };
+		C38D024A2B2C4FB000C6DB13 /* ModalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D02492B2C4FB000C6DB13 /* ModalUITests.swift */; };
 		C3940B452AD8940400EEE3FC /* PopToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3940B442AD8940400EEE3FC /* PopToUITests.swift */; };
 		C3966A722ACF3BAE00F12FEA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3966A712ACF3BAE00F12FEA /* MainView.swift */; };
 		C3966A742ACF3EF600F12FEA /* BoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3966A732ACF3EF600F12FEA /* BoolView.swift */; };
@@ -80,6 +81,7 @@
 		C34FA8A72B1E014000069374 /* ModularBoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularBoolView.swift; sourceTree = "<group>"; };
 		C34FA8A92B1F0FAA00069374 /* AllTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTestPlan.xctestplan; sourceTree = "<group>"; };
 		C34FA8AA2B1F696D00069374 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		C38D02492B2C4FB000C6DB13 /* ModalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUITests.swift; sourceTree = "<group>"; };
 		C3940B442AD8940400EEE3FC /* PopToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopToUITests.swift; sourceTree = "<group>"; };
 		C3966A712ACF3BAE00F12FEA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C3966A732ACF3EF600F12FEA /* BoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		C30E34732AC5787500D3DA51 /* NavigationExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
+				C38D02492B2C4FB000C6DB13 /* ModalUITests.swift */,
 				C30E34742AC5787500D3DA51 /* SimpleBoolUITests.swift */,
 				C30E34762AC5787500D3DA51 /* SimpleFirstUITests.swift */,
 				C3966A7C2ACF567D00F12FEA /* RootUITests.swift */,
@@ -414,6 +417,7 @@
 				C3940B452AD8940400EEE3FC /* PopToUITests.swift in Sources */,
 				C3966A792ACF50D200F12FEA /* XCUIApplication.swift in Sources */,
 				C30E34752AC5787500D3DA51 /* SimpleBoolUITests.swift in Sources */,
+				C38D024A2B2C4FB000C6DB13 /* ModalUITests.swift in Sources */,
 				C3966A772ACF4FC300F12FEA /* XCUIElement.swift in Sources */,
 				C3F5E0262AF24306003540E4 /* TabUITests.swift in Sources */,
 				C3966A722ACF3BAE00F12FEA /* MainView.swift in Sources */,

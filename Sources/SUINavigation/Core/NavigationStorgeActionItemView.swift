@@ -1,5 +1,5 @@
 //
-//  NavigationStorgeActionItemView.swift
+//  NavigationStorageActionItemView.swift
 //
 //
 //  Created by Sergey Balalaev on 13.11.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationStorgeActionItemView<Destination: View>: View {
+struct NavigationStorageActionItemView<Destination: View>: View {
     let isActive: Binding<Bool>
     let id: NavigationID?
     let param: NavigationParameter?

@@ -241,13 +241,13 @@ struct MyTabView: View {
 
 ## Features of Nested Navigation
 
-Since `NavigationStack` don't support nested `NavigationStack` it affected to `NavigationViewStorge` too. But it reproduced on iOS 16 and leter. On iOS 15.x and lower it work fine because `NavigationView` haven't this problem.
+Since `NavigationStack` don't support nested `NavigationStack` it affected to `NavigationViewStorage` too. But it reproduced on iOS 16 and leter. On iOS 15.x and lower it work fine because `NavigationView` haven't this problem.
 
-You can also seporate nested `NavigationViewStorge` with help another navigation for example .fullScreenCover or TabBar then you can use fearlessly nested `NavigationViewStorge` even with iOS 16 and leter. For this case, we even provided support for deep links of nested navigation.
+You can also seporate nested `NavigationViewStorage` with help another navigation for example .fullScreenCover or TabBar then you can use fearlessly nested `NavigationViewStorage` even with iOS 16 and leter. For this case, we even provided support for deep links of nested navigation.
 
 ## Multi-module supporting (coordinator pattern)
 
-`NavigationStorge` has mirror functions for supporting the Coordinator pattern. I show You how does it differ from the classical approach with SwiftUI:
+`NavigationStorage` has mirror functions for supporting the Coordinator pattern. I show You how does it differ from the classical approach with SwiftUI:
  1. You need registry all `View's` with and binding to special value type. For that use `.navigationStorageBinding` modifier before triger navigation.
  2. You need switch from using `.navigation` modifier with some View as destination to the same `.navigation` modifier with this special value type as destination. An Enum can be used as this value type.
  

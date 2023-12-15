@@ -26,7 +26,7 @@ public extension XCTestCase {
 
     private func test<SourceView: View>(
         _ sourceView: SourceView,
-        hasStorge: Bool,
+        hasStorage: Bool,
         evalution: () -> Void) -> NavigationStorage?
     {
         let expectation = expectation(description: "NavigationStorage")
@@ -41,7 +41,7 @@ public extension XCTestCase {
 
         evalution()
 
-        if hasStorge {
+        if hasStorage {
             view.render()
         } else {
             NavigationViewStorage{
@@ -59,17 +59,17 @@ public extension XCTestCase {
     }
 
     func test<SourceView: View>(navigationView: SourceView, evalution: () -> Void = {}) -> NavigationStorage? {
-        return test(navigationView, hasStorge: true, evalution: evalution)
+        return test(navigationView, hasStorage: true, evalution: evalution)
     }
 
     func test<SourceView: View>(view: SourceView, evalution: () -> Void = {}) -> NavigationStorage? {
-        return test(view, hasStorge: false, evalution: evalution)
+        return test(view, hasStorage: false, evalution: evalution)
     }
 
 
     private func test<SourceView: View, DestinationView: View>(
         _ sourceView: SourceView,
-        hasStorge: Bool,
+        hasStorage: Bool,
         destinationView: DestinationView.Type = DestinationView.self,
         evalution: () -> Void = {},
         destination: @escaping (_ view: DestinationView) -> Void = {_ in }
@@ -86,7 +86,7 @@ public extension XCTestCase {
 
         evalution()
 
-        if hasStorge {
+        if hasStorage {
             view.render()
         } else {
             NavigationViewStorage{
@@ -109,7 +109,7 @@ public extension XCTestCase {
     ) {
         test(
             navigationView,
-            hasStorge: true,
+            hasStorage: true,
             destinationView: destinationView,
             evalution: evalution,
             destination: destination
@@ -124,7 +124,7 @@ public extension XCTestCase {
     ) {
         test(
             sourceView,
-            hasStorge: false,
+            hasStorage: false,
             destinationView: destinationView,
             evalution: evalution,
             destination: destination

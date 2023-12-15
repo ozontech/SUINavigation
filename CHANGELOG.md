@@ -3,6 +3,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.2] - 2023-15-21
+
+#### Fixed
+
+- Hotfix unlimited recursion when using `.navigationStorageBinding` from parent NavigationStorage (when pushing modal FirstView screen).
+- Corrected 'storge' to 'storage' where possible.
+
 ## [1.6.1] - 2023-13-21
 
 #### Fixed

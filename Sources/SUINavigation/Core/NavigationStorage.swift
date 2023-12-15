@@ -100,7 +100,7 @@ public final class NavigationStorage: ObservableObject {
     func searchBinding<T: Equatable>(for value: T.Type) -> NavigationBindingHandler {
         guard let result = bindings[String(describing: T.self)] else {
             if let parentStorge = self.parentStorge {
-                return searchBinding(for: value)
+                return parentStorge.searchBinding(for: value)
             } else {
                 return {_ in EmptyView()}
             }
