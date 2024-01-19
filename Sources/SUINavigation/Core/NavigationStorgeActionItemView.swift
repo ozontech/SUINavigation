@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavigationStorageActionItemView<Destination: View>: View {
     let isActive: Binding<Bool>
-    let id: NavigationID?
+    let identifier: String
     let param: NavigationParameter?
 
     @State
@@ -18,9 +18,9 @@ struct NavigationStorageActionItemView<Destination: View>: View {
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
-    init(isActive: Binding<Bool>, id: NavigationID?, param: NavigationParameter? = nil) {
+    init(isActive: Binding<Bool>, identifier: String, param: NavigationParameter? = nil) {
         self.isActive = isActive
-        self.id = id
+        self.identifier = identifier
         self.param = param
     }
 
@@ -29,16 +29,11 @@ struct NavigationStorageActionItemView<Destination: View>: View {
             .onChange(of: isActive.wrappedValue) { newValue in
                 if let navigationStorage = navigationStorage {
                     if newValue {
-                        uid = navigationStorage.addItem(isPresented: isActive, id: identifier, param: param)
+                        uid = navigationStorage.addItem(isPresented: isActive, id: identifier, viewType: Destination.navigationID.stringValue, param: param)
                     } else {
                         navigationStorage.removeItem(isPresented: isActive, id: identifier, uid: uid)
                     }
                 }
             }
     }
-
-    var identifier: String {
-        id?.stringValue ?? Destination.navigationID.stringValue
-    }
-
 }

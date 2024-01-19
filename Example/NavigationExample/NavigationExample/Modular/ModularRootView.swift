@@ -46,3 +46,18 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
         }
     }
 }
+
+#if DEBUG
+
+extension ModularRootView {
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
+    init(isBoolShowed: State<Bool>) where ViewModel == RootViewModel {
+        _viewModel = StateObject(wrappedValue: RootViewModel())
+        _isBoolShowed = isBoolShowed
+    }
+}
+
+#endif

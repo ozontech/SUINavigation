@@ -1,0 +1,17 @@
+{
+  "id" : "SecondView",
+  "transitions" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "mock",
+      "id" : "BoolView",
+      "params" : [
+
+      ],
+      "viewType" : "BoolView"
+    }
+  ],
+  "viewType" : "SecondView"
+}

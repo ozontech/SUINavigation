@@ -9,6 +9,8 @@ import SwiftUI
 import SUINavigation
 
 enum MainTab: String, Hashable, NavigationParameterValue {
+    static var defaultValue: MainTab = .main
+    
     case main = "Main Tab"
     case first = "First Tab"
     case second = "Second Tab"

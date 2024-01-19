@@ -1,0 +1,507 @@
+{
+  "attributes" : [
+
+  ],
+  "available" : "mock",
+  "children" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "trigger",
+      "children" : [
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "mock",
+          "children" : [
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "mock",
+              "children" : [
+
+              ],
+              "id" : "MainView",
+              "params" : [
+
+              ],
+              "viewType" : "MainView"
+            },
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "SecondView",
+                  "params" : [
+                    {
+                      "defaultValue" : "0",
+                      "name" : "secondNumber",
+                      "type" : "Int"
+                    }
+                  ],
+                  "viewType" : "SecondView"
+                },
+                {
+                  "attributes" : [
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "BoolView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "BoolView"
+                }
+              ],
+              "id" : "FirstView",
+              "params" : [
+                {
+                  "defaultValue" : "",
+                  "name" : "firstString",
+                  "type" : "String"
+                }
+              ],
+              "viewType" : "FirstView"
+            },
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "ModalFirstView",
+              "params" : [
+                {
+                  "defaultValue" : "",
+                  "name" : "modalFirst",
+                  "type" : "String"
+                }
+              ]
+            },
+            {
+              "attributes" : [
+
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "TabView",
+                  "params" : [
+                    {
+                      "defaultValue" : "main",
+                      "name" : "tab",
+                      "type" : "Int"
+                    }
+                  ]
+                }
+              ],
+              "id" : "MainTabView",
+              "params" : [
+
+              ],
+              "viewType" : "MainTabView"
+            }
+          ],
+          "id" : "BoolView",
+          "params" : [
+
+          ],
+          "viewType" : "BoolView"
+        }
+      ],
+      "id" : "SecondView",
+      "params" : [
+        {
+          "defaultValue" : "0",
+          "name" : "SecondView",
+          "type" : "Int"
+        }
+      ],
+      "viewType" : "SecondView"
+    },
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "mock",
+      "children" : [
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "mock",
+          "children" : [
+
+          ],
+          "id" : "MainView",
+          "params" : [
+
+          ],
+          "viewType" : "MainView"
+        },
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "mock",
+          "children" : [
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "BoolView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "BoolView"
+                }
+              ],
+              "id" : "SecondView",
+              "params" : [
+                {
+                  "defaultValue" : "0",
+                  "name" : "secondNumber",
+                  "type" : "Int"
+                }
+              ],
+              "viewType" : "SecondView"
+            },
+            {
+              "attributes" : [
+                "recursiveLoopDetected"
+              ],
+              "available" : "mock",
+              "children" : [
+
+              ],
+              "id" : "BoolView",
+              "params" : [
+
+              ],
+              "viewType" : "BoolView"
+            }
+          ],
+          "id" : "FirstView",
+          "params" : [
+            {
+              "defaultValue" : "",
+              "name" : "firstString",
+              "type" : "String"
+            }
+          ],
+          "viewType" : "FirstView"
+        },
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "none",
+          "children" : [
+
+          ],
+          "id" : "ModalFirstView",
+          "params" : [
+            {
+              "defaultValue" : "",
+              "name" : "modalFirst",
+              "type" : "String"
+            }
+          ]
+        },
+        {
+          "attributes" : [
+
+          ],
+          "available" : "mock",
+          "children" : [
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "TabView",
+              "params" : [
+                {
+                  "defaultValue" : "main",
+                  "name" : "tab",
+                  "type" : "Int"
+                }
+              ]
+            }
+          ],
+          "id" : "MainTabView",
+          "params" : [
+
+          ],
+          "viewType" : "MainTabView"
+        }
+      ],
+      "id" : "BoolView",
+      "params" : [
+
+      ],
+      "viewType" : "BoolView"
+    },
+    {
+      "attributes" : [
+
+      ],
+      "available" : "mock",
+      "children" : [
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "mock",
+          "children" : [
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "MainView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "MainView"
+                },
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "FirstView",
+                  "params" : [
+                    {
+                      "defaultValue" : "",
+                      "name" : "firstString",
+                      "type" : "String"
+                    }
+                  ],
+                  "viewType" : "FirstView"
+                },
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "ModalFirstView",
+                  "params" : [
+                    {
+                      "defaultValue" : "",
+                      "name" : "modalFirst",
+                      "type" : "String"
+                    }
+                  ]
+                },
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "none",
+                      "children" : [
+
+                      ],
+                      "id" : "TabView",
+                      "params" : [
+                        {
+                          "defaultValue" : "main",
+                          "name" : "tab",
+                          "type" : "Int"
+                        }
+                      ]
+                    }
+                  ],
+                  "id" : "MainTabView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "MainTabView"
+                }
+              ],
+              "id" : "BoolView",
+              "params" : [
+
+              ],
+              "viewType" : "BoolView"
+            }
+          ],
+          "id" : "SecondView",
+          "params" : [
+            {
+              "defaultValue" : "0",
+              "name" : "secondNumber",
+              "type" : "Int"
+            }
+          ],
+          "viewType" : "SecondView"
+        },
+        {
+          "attributes" : [
+
+          ],
+          "available" : "mock",
+          "children" : [
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "mock",
+              "children" : [
+
+              ],
+              "id" : "MainView",
+              "params" : [
+
+              ],
+              "viewType" : "MainView"
+            },
+            {
+              "attributes" : [
+                "deeplink",
+                "recursiveLoopDetected"
+              ],
+              "available" : "mock",
+              "children" : [
+
+              ],
+              "id" : "FirstView",
+              "params" : [
+                {
+                  "defaultValue" : "",
+                  "name" : "firstString",
+                  "type" : "String"
+                }
+              ],
+              "viewType" : "FirstView"
+            },
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "ModalFirstView",
+              "params" : [
+                {
+                  "defaultValue" : "",
+                  "name" : "modalFirst",
+                  "type" : "String"
+                }
+              ]
+            },
+            {
+              "attributes" : [
+
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "TabView",
+                  "params" : [
+                    {
+                      "defaultValue" : "main",
+                      "name" : "tab",
+                      "type" : "Int"
+                    }
+                  ]
+                }
+              ],
+              "id" : "MainTabView",
+              "params" : [
+
+              ],
+              "viewType" : "MainTabView"
+            }
+          ],
+          "id" : "BoolView",
+          "params" : [
+
+          ],
+          "viewType" : "BoolView"
+        }
+      ],
+      "id" : "FirstView",
+      "params" : [
+
+      ],
+      "viewType" : "FirstView"
+    }
+  ],
+  "id" : "",
+  "params" : [
+
+  ],
+  "viewType" : "RootView<RootViewModelMock>"
+}

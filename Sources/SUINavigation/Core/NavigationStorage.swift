@@ -11,19 +11,22 @@ public final class NavigationStorage: ObservableObject {
     public final class Item: Identifiable, CustomStringConvertible, Hashable, Equatable {
         var isPresented: Binding<Bool>
         public let id: String
+        public let viewType: String
         var isSkipped = false
         // This use for duplicated id
         var uid: String?
 
-        var children: [String: NavigateUrlParamsHandler] = [:]
+        @Published
+        public internal(set) var children: [String: NavigateUrlParamsHandler] = [:]
         private(set) var param: NavigationParameter?
 
-        public var description: String { "NavigationPathItem with id: \(id) isPresented: \(isPresented.wrappedValue)" }
+        public var description: String { "NavigationPathItem with id: '\(id)' isPresented: \(isPresented.wrappedValue)" }
 
-        init(isPresented: Binding<Bool>, id: String, param: NavigationParameter?) {
+        init(isPresented: Binding<Bool>, id: String, viewType: String, param: NavigationParameter?) {
             self.isPresented = isPresented
             self.id = id
             self.param = param
+            self.viewType = viewType
         }
 
         public static func == (lhs: Item, rhs: Item) -> Bool {
@@ -41,6 +44,7 @@ public final class NavigationStorage: ObservableObject {
     public private(set) var pathItems: [Item] = []
 
     // We don't have root from pathItems, so children of this item used by activate some navigation.
+    @Published
     public internal(set) var rootChildren: [String: NavigateUrlParamsHandler] = [:]
 
     // `childStorge` and `parentStorge` need for support nested NavigationStorage.
@@ -56,10 +60,12 @@ public final class NavigationStorage: ObservableObject {
         }
     }
 
+    public init() {}
+
     // To add View Info to Stack at navigation transition. It return id if has duplicates.
-    func addItem(isPresented: Binding<Bool>, id: String, param: NavigationParameter?) -> String? {
+    func addItem(isPresented: Binding<Bool>, id: String, viewType: String, param: NavigationParameter?) -> String? {
         let hasTheSameId = pathItems.first(where: { $0.id == id }) != nil
-        let item = Item(isPresented: isPresented, id: id, param: param)
+        let item = Item(isPresented: isPresented, id: id, viewType: viewType, param: param)
         pathItems.append(item)
         print("addItem \(id) pathItems.count = \(pathItems.count)")
         // This now called from actionReactor, now it don't needs
@@ -137,6 +143,20 @@ public final class NavigationStorage: ObservableObject {
             NavigationUtils.popToRootView()
             pathItems = []
         }
+    }
+
+    public func pop() {
+        guard pathItems.count > 0 else {
+            return
+        }
+        // with NavigationStack need support iOS 16
+        if #available(iOS 15.0, *) {
+            // Work better that original aproach but in iOS 14 not stable
+            pathItems.last?.isPresented.wrappedValue = false
+        } else {
+            NavigationUtils.popTo(index: pathItems.count - 1)
+        }
+        pathItems = pathItems.dropLast()
     }
 
     /// see skip(_ type)

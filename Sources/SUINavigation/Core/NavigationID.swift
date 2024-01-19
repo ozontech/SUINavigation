@@ -33,4 +33,8 @@ extension View {
     public var navigationID: NavigationID {
         Self.navigationID
     }
+
+    static func identifier(_ navigationID: NavigationID?) -> String {
+        return navigationID?.stringValue ?? Self.navigationID.stringValue
+    }
 }

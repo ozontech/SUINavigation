@@ -28,11 +28,15 @@ struct NavigationBindingModifier<DestinationValue: Equatable>: ViewModifier {
         self.value = value
     }
 
+    var nilValue: Binding<DestinationValue?>? {
+        return nil
+    }
+
     func body(content: Content) -> some View {
         content
-            .modifier(NavigationItemModifier<AnyView, IdentifiableView, DestinationValue>(item: $identifiableView, value: nil, id: id, paramName: nil, destination: { identifiableView in
+            .navigation(item: $identifiableView, value: nilValue, id: id, paramName: nil) { identifiableView in
                 identifiableView.view
-            }))
+            }
             .onChange(of: isActive.wrappedValue) { isActive in
                 if isActive {
                     if let view = navigationStorage?.searchBinding(for: DestinationValue.self)(value) {

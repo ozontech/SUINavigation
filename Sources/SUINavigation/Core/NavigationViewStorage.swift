@@ -14,9 +14,10 @@ public struct NavigationViewStorage<Content: View>: View {
     private var parentNavigationStorage: NavigationStorage?
 
     @StateObject
-    var navigationStorage = NavigationStorage()
+    private var navigationStorage: NavigationStorage
 
     public init(@ViewBuilder content: () -> Content) {
+        _navigationStorage = StateObject(wrappedValue: NavigationStorage())
         self.content = content()
     }
 
@@ -51,3 +52,12 @@ public struct NavigationViewStorage<Content: View>: View {
         }
     }
 }
+
+#if DEBUG
+    extension NavigationViewStorage {
+        public init(navigationStorage: NavigationStorage, @ViewBuilder content: () -> Content) {
+            _navigationStorage = StateObject(wrappedValue: navigationStorage)
+            self.content = content()
+        }
+    }
+#endif

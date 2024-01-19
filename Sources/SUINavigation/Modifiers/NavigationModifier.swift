@@ -9,12 +9,12 @@ import SwiftUI
 
 struct NavigationModifier<Destination: View>: ViewModifier {
     let isActive: Binding<Bool>
-    let id: NavigationID?
+    let identifier: String
     let destination: Destination?
 
-    init(isActive: Binding<Bool>, id: NavigationID?, destination: Destination?) {
+    init(isActive: Binding<Bool>, identifier: String, destination: Destination?) {
         self.isActive = isActive
-        self.id = id
+        self.identifier = identifier
         self.destination = destination
     }
 
@@ -27,7 +27,7 @@ struct NavigationModifier<Destination: View>: ViewModifier {
                 content
                 NavigationLinkWrapperView(isActive: isActive, destination: viewDestination(destination))
             }
-            NavigationStorageActionItemView<Destination>(isActive: isActive, id: id)
+            NavigationStorageActionItemView<Destination>(isActive: isActive, identifier: identifier)
         }
     }
 }
@@ -38,6 +38,8 @@ public extension View {
         id: NavigationID? = nil,
         @ViewBuilder destination: () -> Destination
     ) -> some View {
-        modifier(NavigationModifier(isActive: isActive, id: id, destination: isActive.wrappedValue ? destination() : nil))
+        let identifier = Destination.identifier(id)
+        staticCheckDestination(isActive: isActive, id: identifier, destination: destination)
+        return modifier(NavigationModifier(isActive: isActive, identifier: identifier, destination: isActive.wrappedValue ? destination() : nil))
     }
 }

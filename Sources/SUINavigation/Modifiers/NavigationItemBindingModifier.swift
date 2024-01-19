@@ -31,9 +31,9 @@ struct NavigationItemBindingModifier<DestinationValue: Equatable, Item: Equatabl
 
     func body(content: Content) -> some View {
         content
-            .modifier(NavigationItemModifier(item: $identifiableView, value: item, id: id ?? navigationId, paramName: paramName, destination: { identifiableView in
+            .navigation(item: $identifiableView, value: item, id: id ?? navigationId, paramName: paramName) { identifiableView in
                 identifiableView.view
-            }))
+            }
             .onChange(of: item.wrappedValue) { value in
                 if let value = value {
                     let navigationItem = destinationValue(value)

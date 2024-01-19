@@ -2,7 +2,7 @@
 
 # Overview
 
-Simple Navigation framework for SwiftUI. Alternate NavigationStack with supporting from iOS 14 and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation has functions of getting and applying the URL which allows you to organize deep links without special costs.
+Simple Navigation framework for SwiftUI. Alternate `NavigationStack` with supporting from iOS 14 and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests.
 
 ## Motivation
 
@@ -17,7 +17,7 @@ Now Developers have standard framework SwiftUI. Correct navigation features were
 - [x] Has popTo, skip, isRoot and each other functions.
 - [x] Works with URL: simple supporting the deep links.
 - [x] Multy-module supporting (views injecting)
-- [x] UnitTest available
+- [x] Contains unit and snapshot tests framework
 - [x] UI tests full coverage.
 
 ## Installation
@@ -157,14 +157,69 @@ final class NavigationExampleTests: XCTestCase {
             XCTAssertEqual(view.string, "New")
         }
     }
+}
+```
 
-    func testMainToSecondDeepLink() throws {
-        let viewModel = MainViewModelMock()
-        let mainContentView = MainContentView(viewModel: viewModel)
-        let navStorage = test(view: mainContentView) {
-            viewModel.numberForSecond = 11
-        }
-        XCTAssertEqual(navStorage.currentUrl, "SecondView?SecondView=11")
+## SnapshotTests supporting
+
+From `SUINavigationTest` you will find many other way for make a stable navigation. 
+For example use snapshot tests. Snapshot tests can ensure that changes are authorised and I found two ways for they organization:
+
+1. Saving all transition tree of nodes to one file.
+2. Saving each View to separate files.
+
+Pros and cons:
+
+| Item                      | One Tree node file | Many Views files |
+| :------------------------ | :----------------: | :--------------: |
+| Accuracy place of error   |         ⛔         |        ✅        |
+| Details accuracy          |         ✅         |        ⛔        |
+| Merge conflicts           |         ⛔         |        ✅        |
+| Deeplink validation       |         ✅         |        ⛔        |
+| Recursive loop detection  |         ✅         |        ⛔        |
+| Duplication id checking   |         ✅         |        ✅        |
+
+How do you see better use both way.
+
+### One Tree node Snapshot file
+
+This way store result to one file. Format you can found [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/NodesTests.swift).
+First run of the test to create snapshot file, next run compare this file with current navigation nodes.
+If you wan to update this file just delete [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/NodesTests.swift) and run again.
+Example how you can organize:
+
+```swift
+
+import SUINavigationTest
+
+final class NavigationExampleTests: XCTestCase {
+
+    func testSnapshot() throws {
+        let viewModel = RootViewModelMock()
+        let rootView = RootView(viewModel: viewModel)
+        try assertSnapshot(rootView, mock: mock)
+    }
+}
+
+```
+
+### Many Views Snapshot files
+
+This way store many files with name of a View which find from tree transition nodes. Format you can found [on this snapshot directory](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testItemsSnapshot).
+First run of the test to create snapshot files, next run compare all files in this directory with current navigation nodes.
+If you wan to update all files just delete [this snapshot directory](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testItemsSnapshot) and run again.
+Example how you can organize:
+
+```swift
+
+import SUINavigationTest
+
+final class NavigationExampleTests: XCTestCase {
+
+    func testItemsSnapshot() throws {
+        let viewModel = RootViewModelMock()
+        let rootView = RootView(viewModel: viewModel)
+        try assertItemsSnapshot(rootView, mock: mock)
     }
 }
 

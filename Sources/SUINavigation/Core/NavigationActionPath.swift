@@ -7,23 +7,51 @@
 
 import Foundation
 
-public typealias NavigateUrlParamsHandler = (_ path: NavigationActionPath) -> Void
+public typealias NavigateUrlParamsHandler = (_ path: NavigationActionPathProtocol) -> Void
 
 public protocol NavigationParameterValue {
     init?(_ description: String)
+    static var defaultValue: Self {get}
+    var stringValue: String {get}
 }
 
-extension String : NavigationParameterValue {}
-extension Int : NavigationParameterValue {}
-extension Float : NavigationParameterValue {}
-extension Double : NavigationParameterValue {}
+extension NavigationParameterValue {
+    public var stringValue: String {
+        "\(self)"
+    }
+}
+
+extension String : NavigationParameterValue {
+    public static var defaultValue = ""
+}
+extension Int : NavigationParameterValue {
+    public static var defaultValue = 0
+}
+extension Float : NavigationParameterValue {
+    public static var defaultValue: Float = 0.0
+}
+extension Double : NavigationParameterValue {
+    public static var defaultValue: Double = 0.0
+}
 
 struct NavigationParameter {
     let name: String
     let value: String
 }
 
-final public class NavigationActionPath {
+public protocol NavigationActionPathProtocol {
+
+    func popStringParam(_ name: String) -> String?
+    func getStringParam(_ name: String) -> String?
+
+    func popIntParam(_ name: String) -> Int?
+    func getIntParam(_ name: String) -> Int?
+
+    func popParam<T: NavigationParameterValue>(_ name: String) -> T?
+    func getParam<T: NavigationParameterValue>(_ name: String) -> T?
+}
+
+final public class NavigationActionPath: NavigationActionPathProtocol {
     private(set) var path: [String]
     private var params: [NavigationParameter] = []
 

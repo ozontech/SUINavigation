@@ -9,11 +9,11 @@ import XCTest
 @testable import NavigationExample
 import SwiftUI
 import SUINavigationTest
-import SUINavigation
 
 final class NavigationExampleTests: XCTestCase {
 
     override func setUpWithError() throws {
+        Self.preferMode = .static
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -24,10 +24,17 @@ final class NavigationExampleTests: XCTestCase {
     func testMainToSecondDeepLink() throws {
         let viewModel = RootViewModelMock()
         let rootView = RootView(viewModel: viewModel)
-        let navStorage = test(view: rootView) {
-            viewModel.numberForSecond = 11
+        let navStorage = test(view: rootView) { }
+        guard let navStorage = navStorage else {
+            XCTFail()
+            return
         }
-        XCTAssertEqual(navStorage?.currentUrl, "SecondView?SecondView=11")
+        test(rootView) {
+            viewModel.numberForSecond = 11
+        } destination: { view in
+            print(" [CATCH] ! \(view)")
+        }
+        XCTAssertEqual(navStorage.currentUrl, "SecondView?SecondView=11")
     }
 
     func testMainToFirst() throws {

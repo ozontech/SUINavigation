@@ -1,0 +1,20 @@
+{
+  "id" : "MainTabView",
+  "transitions" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "none",
+      "id" : "TabView",
+      "params" : [
+        {
+          "defaultValue" : "main",
+          "name" : "tab",
+          "type" : "Int"
+        }
+      ]
+    }
+  ],
+  "viewType" : "MainTabView"
+}

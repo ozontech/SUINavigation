@@ -60,7 +60,7 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
             }
         }
         .padding()
-        .navigation(item: $viewModel.stringForFirst) { stringValue in
+        .navigation(item: $viewModel.stringForFirst/*, id: "First"*/) { stringValue in
             FirstView(string: stringValue)
         }
         .navigationAction(item: $viewModel.numberForSecond) { numberValue in

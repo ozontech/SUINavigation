@@ -3,14 +3,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.6.2] - 2023-15-21
+## [1.7.0] - 2024-01-19
+
+### Added
+
+- Static unit tests without expectation (run faster).
+- Snapshot tests with render/static analyser.
+- Mock injection approach for snapshot tests.
+
+## [1.6.2] - 2023-12-15
 
 #### Fixed
 
 - Hotfix unlimited recursion when using `.navigationStorageBinding` from parent NavigationStorage (when pushing modal FirstView screen).
 - Corrected 'storge' to 'storage' where possible.
 
-## [1.6.1] - 2023-13-21
+## [1.6.1] - 2023-12-13
 
 #### Fixed
 

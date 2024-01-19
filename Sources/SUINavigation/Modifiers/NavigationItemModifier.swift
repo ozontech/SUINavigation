@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatable>: ViewModifier {
+struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: View>: ViewModifier {
     let item: Binding<Item?>
     let value: Binding<Value?>?
-    let id: NavigationID?
+    let identifier: String
     let paramName: String?
 
     @ViewBuilder
@@ -19,10 +19,10 @@ struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatab
     @State
     private var isActive: Bool = false
 
-    init(item: Binding<Item?>, value: Binding<Value?>?, id: NavigationID?, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
+    init(item: Binding<Item?>, value: Binding<Value?>?, identifier: String, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
         self.item = item
         self.value = value
-        self.id = id
+        self.identifier = identifier
         self.paramName = paramName
         self.destination = destination
     }
@@ -41,7 +41,7 @@ struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatab
                 content
                 NavigationLinkWrapperView(isActive: $isActive, destination: navigationDestination)
             }
-            NavigationStorageActionItemView<Destination>(isActive: $isActive, id: id, param: param)
+            NavigationStorageActionItemView<Destination>(isActive: $isActive, identifier: identifier, param: param)
                 .onChange(of: item.wrappedValue) { newValue in
                     if let newValue {
                         isActive = true
@@ -59,7 +59,7 @@ struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatab
 
     private var param: NavigationParameter? {
         if let value = value?.wrappedValue {
-            let name = paramName ?? id?.stringValue ?? Destination.navigationID.stringValue
+            let name = paramName ?? identifier
             return NavigationParameter(name: name, value: "\(value)")
         } else {
             return nil
@@ -75,6 +75,20 @@ struct NavigationItemModifier<Destination: View, Item: Equatable, Value: Equatab
     }
 }
 
+extension View {
+    func navigation<Item: Equatable, Value: Equatable, Destination: View>(
+        item: Binding<Item?>,
+        value: Binding<Value?>?,
+        id: NavigationID? = nil,
+        paramName: String? = nil,
+        @ViewBuilder destination: @escaping (Item) -> Destination
+    ) -> some View {
+        let identifier = Destination.identifier(id)
+        staticCheckDestination(item: item, id: identifier, paramName: paramName, destination: destination)
+        return modifier(NavigationItemModifier(item: item, value: value, identifier: identifier, paramName: paramName, destination: destination))
+    }
+}
+
 public extension View {
     func navigation<Item: Equatable, Destination: View>(
         item: Binding<Item?>,
@@ -82,6 +96,6 @@ public extension View {
         paramName: String? = nil,
         @ViewBuilder destination: @escaping (Item) -> Destination
     ) -> some View {
-        modifier(NavigationItemModifier(item: item, value: item, id: id, paramName: paramName, destination: destination))
+        navigation(item: item, value: item, id: id, paramName: paramName, destination: destination)
     }
 }
