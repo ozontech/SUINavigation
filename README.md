@@ -36,7 +36,7 @@ dependencies: [
 
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate `BxInputController` into your project manually.
+If you prefer not to use either of the aforementioned dependency managers, you can integrate `SUINavigation` into your project manually.
 
 ## Build & test
 
