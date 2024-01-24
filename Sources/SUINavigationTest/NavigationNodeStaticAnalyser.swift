@@ -19,6 +19,15 @@ public final class NavigationNodeStaticAnalyser : NavigationNodeAnalyserProtocol
         self.mock = mock
     }
 
+    private func processing<V: View>(_ view: V, _ parent: NavigationNode) {
+        do {
+            _ = view.body
+        } catch let error {
+            self.failuresCount += 1
+            self.failureResult += "\(self.failuresCount). From \(parent.name) node can not analyse '\(view.navigationID.stringValue)' view. Catch error: '\(error.localizedDescription)'.\n"
+        }
+    }
+    
     private func searchNodes<V: View>(for parent: NavigationNode, view: V, isRecursive: Bool = false) {
 
         NavigationCatch.shared.clean()
@@ -39,7 +48,8 @@ public final class NavigationNodeStaticAnalyser : NavigationNodeAnalyserProtocol
             }
             parent.addChild(child)
         }
-        _ = view.body
+
+        processing(view, parent)
 
         NavigationCatch.shared.clean()
 
@@ -79,7 +89,8 @@ public final class NavigationNodeStaticAnalyser : NavigationNodeAnalyserProtocol
                 availableChildren.append((node, view))
             }
         }
-        _ = view.body
+        
+        processing(view, parent)
 
         NavigationCatch.shared.clean()
 

@@ -36,7 +36,7 @@ struct BoolView: View {
 
     @discardableResult
     func tapFirst() -> Self {
-        let button = app.buttons["to First with Bool"]
+        let button = app.buttons["to First"]
         _ = button.waitForExistence(timeout: 2)
         button.tap()
         return self

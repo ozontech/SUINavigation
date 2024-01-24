@@ -51,14 +51,6 @@ struct BoolView: View {
     var body: some View {
         VStack {
             Text("This is Bool")
-            if let navigationStorage = navigationStorage {
-                Text("Path: \(navigationStorage.currentUrl)")
-            }
-            if isChange.wrappedValue {
-                Text("This screen is changed")
-            } else {
-                Text("Waitting changes")
-            }
             HStack {
                 Button("popTo:") {
                     if popToViewName == "" {
@@ -92,26 +84,38 @@ struct BoolView: View {
                     actionUrl = ""
                 }
             }
+
             Button("to Root") {
                 navigationStorage?.popToRoot()
             }
-            Button("to First with Bool") {
-                stringForFirst = "Bool"
-            }
-            Button("to Modal First") {
-                firstModalData = FirstModalData(string: "Modal")
-            }
-            Button("to Main") {
-                isMainShowing = true
-            }
-            Button("to Tab") {
-                isTabShowing = true
+            HStack {
+                Button("to First") {
+                    stringForFirst = "Bool"
+                }
+                Button("to Modal First") {
+                    firstModalData = FirstModalData(string: "Modal")
+                }
+                Button("to Main") {
+                    isMainShowing = true
+                }
+                Button("to Tab") {
+                    isTabShowing = true
+                }
             }
             Button("to change") {
                 isChange.wrappedValue.toggle()
             }
             Button("dismiss") {
                 presentationMode.wrappedValue.dismiss()
+            }
+
+            if let navigationStorage = navigationStorage {
+                Text("Path: \(navigationStorage.currentUrl)")
+            }
+            if isChange.wrappedValue {
+                Text("This screen is changed")
+            } else {
+                Text("Waitting changes")
             }
         }
         .padding()

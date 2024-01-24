@@ -10,23 +10,35 @@ import SUINavigation
 
 public struct NavigationMockStore: NavigationCatchMockProtocol {
 
-    private var items: [Any] = []
+    private var items: [Any]
 
-    public init(items: [Any]) {
+    private var views: [any View]
+
+    public init(items: [Any], views: [any View] = []) {
         self.items = items
+        self.views = views
     }
 
     public func tryGetView<Item: Equatable, Destination: View>(destination: @escaping (Item) -> Destination) -> Destination? {
         for item in items {
             if let item = item as? Item {
-                return destination(item)
+                return getDestination(destination(item))
             }
         }
         return nil
     }
 
     public func tryGetView<Destination: View>(destination: () -> Destination) -> Destination? {
-        return destination()
+        return getDestination(destination())
+    }
+
+    private func getDestination<Destination: View>(_ view: Destination) -> Destination {
+        for view in views {
+            if let view = view as? Destination {
+                return view
+            }
+        }
+        return view
     }
 
 }

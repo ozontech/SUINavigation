@@ -170,7 +170,7 @@ For example use snapshot tests. Snapshot tests can ensure that changes are autho
 
 Pros and cons:
 
-| Item                      | One Tree node file | Many Views files |
+| Feature                   | One Tree node file | Many Views files |
 | :------------------------ | :----------------: | :--------------: |
 | Accuracy place of error   |         ⛔         |        ✅        |
 | Details accuracy          |         ✅         |        ⛔        |
@@ -183,9 +183,9 @@ How do you see better use both way.
 
 ### One Tree node Snapshot file
 
-This way store result to one file. Format you can found [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/NodesTests.swift).
+This way store result to one file. Format you can found [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testSnapshot.json).
 First run of the test to create snapshot file, next run compare this file with current navigation nodes.
-If you wan to update this file just delete [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/NodesTests.swift) and run again.
+If you wan to update this file just delete [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testSnapshot.json) and run again.
 Example how you can organize:
 
 ```swift
@@ -193,6 +193,8 @@ Example how you can organize:
 import SUINavigationTest
 
 final class NavigationExampleTests: XCTestCase {
+
+    let mock = NavigationMockStore(items: ["Test", Int(0)])
 
     func testSnapshot() throws {
         let viewModel = RootViewModelMock()
@@ -206,6 +208,7 @@ final class NavigationExampleTests: XCTestCase {
 ### Many Views Snapshot files
 
 This way store many files with name of a View which find from tree transition nodes. Format you can found [on this snapshot directory](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testItemsSnapshot).
+This way is based on one Tree node, use `NavigationNodeTestItem`'s which created by `NavigationNode`.
 First run of the test to create snapshot files, next run compare all files in this directory with current navigation nodes.
 If you wan to update all files just delete [this snapshot directory](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testItemsSnapshot) and run again.
 Example how you can organize:
@@ -216,6 +219,8 @@ import SUINavigationTest
 
 final class NavigationExampleTests: XCTestCase {
 
+    let mock = NavigationMockStore(items: ["Test", Int(0)])
+
     func testItemsSnapshot() throws {
         let viewModel = RootViewModelMock()
         let rootView = RootView(viewModel: viewModel)
@@ -224,6 +229,31 @@ final class NavigationExampleTests: XCTestCase {
 }
 
 ```
+
+## About analysers for snapshot and unit tests processing from SUINavigationTest
+
+Snapshot of navigation require creation tree nods with root `NavigationNode` object. In order to get a `NavigationNode`, it is necessary to analyze all `View`'s start from Root. I have found 2 ways how to do it:
+
+1. `NavigationNodeRenderingAnalyser` analyse render view as is need for presentation.
+2. `NavigationNodeStaticAnalyser` call creation body objects without environments and state objects.
+
+Unit tests have the same analysers for processing.
+
+So far the static one is leading, and it is chosen as default. However, you have the right to make a choice at your discretion. It is possible that there will be a third because both have advantages and disadvantages:
+
+| Feature                         |  Rendering  |   Static    |
+| :------------------------------ | :---------: | :---------: |
+| Speed of process                |     ⛔      |     ✅      |
+| Stable of work, constant result |     ⛔      |     ✅      |
+| Environments object supporting  |     ✅      |     ⛔      |
+| State value/object supporting   |     ✅      |     ⛔      |
+| Published value supporting      |     ✅      |     ✅      |
+| Deeplink transition detect      |     ✅      |     ✅      |
+| Static transition detect        |     ⛔      |     ✅      |
+| Recursion loop detection        |     ✅      |     ✅      |
+| Can mock trigger values         |     ⛔      |     ✅      |
+| Can mock result views           |     ⛔      |     ⛔      |
+
 
 ## Deeplinks supporting
 

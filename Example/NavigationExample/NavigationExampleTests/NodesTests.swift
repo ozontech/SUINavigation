@@ -14,7 +14,15 @@ import Combine
 
 final class NodesTests: XCTestCase {
 
-    let mock = NavigationMockStore(items: ["Test", Int(0)])
+    let mock = NavigationMockStore (
+        items: [
+            "Test",
+            Int(0)
+        ],
+        views: [
+            BoolView()
+        ]
+    )
 
     func testSnapshot() throws {
         let viewModel = RootViewModelMock()
@@ -241,4 +249,18 @@ final class NodesTests: XCTestCase {
         XCTAssertFalse(boolNode.children[3].isDeeplinkSupport)
     }
 
+    func testErrorSnapshot() throws {
+        try assertSnapshot(BugView().environmentObject(RootViewModelMock()), mock: mock)
+    }
+
+}
+
+fileprivate struct BugView: View {
+
+    @EnvironmentObject
+    private var vm: RootViewModel
+
+    var body: some View {
+        Text("\(vm.stringForFirst ?? "")")
+    }
 }

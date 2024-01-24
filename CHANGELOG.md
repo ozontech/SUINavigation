@@ -3,6 +3,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.1] - 2024-01-24
+
+### Added
+
+- View mock to `NavigationMockStore` from `SUINavigationTest`.
+
+#### Fixed
+
+- Stable UI tests at iOS 17.2.
+- Up to date the documentation.
+- Extract snapshot tests from XCTestCase.
+
 ## [1.7.0] - 2024-01-19
 
 ### Added
