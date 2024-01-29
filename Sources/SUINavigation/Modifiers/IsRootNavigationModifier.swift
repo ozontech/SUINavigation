@@ -27,6 +27,6 @@ struct IsRootNavigationModifier: ViewModifier {
 
 public extension View {
     func navigationStorage(isRoot: Binding<Bool>) -> some View {
-        modifier(IsRootNavigationModifier(isRoot: isRoot))
+        navigationModifier(IsRootNavigationModifier(isRoot: isRoot))
     }
 }

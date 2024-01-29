@@ -37,6 +37,6 @@ public extension View {
         for data: Item.Type,
         @ViewBuilder destination: @escaping (Item) -> Destination
     ) -> some View {
-        modifier(NavigationStorageBindingModifier(data: data, destination: destination))
+        navigationModifier(NavigationStorageBindingModifier(data: data, destination: destination))
     }
 }

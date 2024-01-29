@@ -37,6 +37,17 @@
 
       ],
       "viewType" : "FirstView"
+    },
+    {
+      "attributes" : [
+
+      ],
+      "available" : "mock",
+      "id" : "PerformView",
+      "params" : [
+
+      ],
+      "viewType" : "PerformView"
     }
   ],
   "viewType" : "RootView<RootViewModelMock>"

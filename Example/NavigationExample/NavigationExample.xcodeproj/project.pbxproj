@@ -15,6 +15,7 @@
 		C30E34752AC5787500D3DA51 /* SimpleBoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E34742AC5787500D3DA51 /* SimpleBoolUITests.swift */; };
 		C30E34772AC5787500D3DA51 /* SimpleFirstUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E34762AC5787500D3DA51 /* SimpleFirstUITests.swift */; };
 		C30E348F2AC5D02700D3DA51 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C30E348E2AC5D02700D3DA51 /* SUINavigation */; };
+		C31AFD3E2B62B22B00F454E7 /* PerformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31AFD3D2B62B22B00F454E7 /* PerformView.swift */; };
 		C34FA89C2B1E004100069374 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8982B1E004100069374 /* SecondView.swift */; };
 		C34FA89D2B1E004100069374 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8992B1E004100069374 /* RootView.swift */; };
 		C34FA89E2B1E004100069374 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA89A2B1E004100069374 /* FirstView.swift */; };
@@ -72,6 +73,7 @@
 		C30E34702AC5787500D3DA51 /* NavigationExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30E34742AC5787500D3DA51 /* SimpleBoolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBoolUITests.swift; sourceTree = "<group>"; };
 		C30E34762AC5787500D3DA51 /* SimpleFirstUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFirstUITests.swift; sourceTree = "<group>"; };
+		C31AFD3D2B62B22B00F454E7 /* PerformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformView.swift; sourceTree = "<group>"; };
 		C34FA8982B1E004100069374 /* SecondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		C34FA8992B1E004100069374 /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C34FA89A2B1E004100069374 /* FirstView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		C34FA8972B1E004100069374 /* Standard */ = {
 			isa = PBXGroup;
 			children = (
+				C31AFD3D2B62B22B00F454E7 /* PerformView.swift */,
 				C34FA8982B1E004100069374 /* SecondView.swift */,
 				C34FA8992B1E004100069374 /* RootView.swift */,
 				C34FA89A2B1E004100069374 /* FirstView.swift */,
@@ -391,6 +394,7 @@
 				C34FA8A62B1E012D00069374 /* ModularFirstView.swift in Sources */,
 				C34FA89F2B1E004100069374 /* BoolView.swift in Sources */,
 				C3D88BBE2B060A2D007E6B2C /* MainTabView.swift in Sources */,
+				C31AFD3E2B62B22B00F454E7 /* PerformView.swift in Sources */,
 				C34FA89C2B1E004100069374 /* SecondView.swift in Sources */,
 				C30E345A2AC5787300D3DA51 /* NavigationExampleApp.swift in Sources */,
 				C34FA89D2B1E004100069374 /* RootView.swift in Sources */,
@@ -572,6 +576,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NavigationExample/Preview Content\"";
+				DEVELOPMENT_TEAM = FDK83T8QNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -601,6 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NavigationExample/Preview Content\"";
+				DEVELOPMENT_TEAM = FDK83T8QNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -629,6 +635,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FDK83T8QNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -648,6 +655,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FDK83T8QNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -666,6 +674,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FDK83T8QNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Ozon.NavigationExampleUITests;
@@ -683,6 +692,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FDK83T8QNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Ozon.NavigationExampleUITests;

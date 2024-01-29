@@ -22,6 +22,8 @@ extension EnvironmentValues {
 protocol RootViewModelProtocol: ObservableObject {
     var stringForFirst: String? {set get}
     var numberForSecond: Int? {set get}
+    var performStartDate: Date? {set get}
+    var performLoad: PerformLoad {set get}
 }
 
 final class RootViewModel: RootViewModelProtocol {
@@ -31,6 +33,11 @@ final class RootViewModel: RootViewModelProtocol {
 
     @Published
     var numberForSecond: Int? = nil
+
+    @Published
+    var performStartDate: Date? = nil
+    @Published
+    var performLoad: PerformLoad = .empty
 }
 
 struct RootView<ViewModel: RootViewModelProtocol>: View {
@@ -57,6 +64,29 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
                 Button("to Bool") {
                     isBoolShowed = true
                 }
+                HStack {
+                    Button("to Perform") {
+                        viewModel.performStartDate = Date()
+                    }
+                    Text(" with: ")
+                }
+                HStack {
+                    Button("Empty>") {
+                        viewModel.performLoad = .empty
+                    }
+                    Button("Nav>") {
+                        viewModel.performLoad = .navigation
+                    }
+                    Button("Full>") {
+                        viewModel.performLoad = .full
+                    }
+                    Button("Sheet>") {
+                        viewModel.performLoad = .sheet
+                    }
+                    Button("SheetOpt>") {
+                        viewModel.performLoad = .sheetOptimized
+                    }
+                }
             }
         }
         .padding()
@@ -69,6 +99,9 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
         .navigationAction(isActive: $isBoolShowed){
             BoolView()
         }
+        .navigation(item: $viewModel.performStartDate){ startDate in
+            PerformView(startDate: startDate, performLoad: $viewModel.performLoad)
+        }
     }
 }
 
@@ -80,6 +113,11 @@ final class RootViewModelMock: RootViewModelProtocol {
 
     @Published
     var numberForSecond: Int?
+
+    @Published
+    var performStartDate: Date? = nil
+    @Published
+    var performLoad: PerformLoad = .empty
 }
 
 extension RootView {

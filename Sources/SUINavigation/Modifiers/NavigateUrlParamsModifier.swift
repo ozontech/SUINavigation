@@ -27,6 +27,6 @@ struct NavigateUrlParamsModifier: ViewModifier {
 public extension View {
     func navigateUrlParams(_ urlComponent: String, action: @escaping NavigateUrlParamsHandler) -> some View {
         staticCheckUrlParams(urlComponent, action: action)
-        return modifier(NavigateUrlParamsModifier(urlComponent: urlComponent, action: action))
+        return navigationModifier(NavigateUrlParamsModifier(urlComponent: urlComponent, action: action))
     }
 }

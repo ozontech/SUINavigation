@@ -60,7 +60,7 @@ public extension View {
         id: NavigationID? = nil,
         destinationValue: DestinationValue
     ) -> some View {
-        modifier(NavigationBindingModifier(isActive: isActive, id: id, value: destinationValue))
+        navigationModifier(NavigationBindingModifier(isActive: isActive, id: id, value: destinationValue))
     }
 
     func navigation<DestinationValue: Equatable>(
@@ -68,6 +68,6 @@ public extension View {
         id: NavigationID? = nil,
         destinationValue: @escaping () -> DestinationValue
     ) -> some View {
-        modifier(NavigationBindingModifier(isActive: isActive, id: id, value: destinationValue()))
+        navigationModifier(NavigationBindingModifier(isActive: isActive, id: id, value: destinationValue()))
     }
 }

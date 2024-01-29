@@ -17,7 +17,9 @@ final class NodesTests: XCTestCase {
     let mock = NavigationMockStore (
         items: [
             "Test",
-            Int(0)
+            Int(0),
+            Date(),
+            PerformLoad.empty
         ],
         views: [
             BoolView()
@@ -42,15 +44,16 @@ final class NodesTests: XCTestCase {
 
         let rootNode = rootNode(for: rootView, mock: mock, isRecursive: true)
 
-        XCTAssertEqual(rootNode.children.count, 3)
-        guard rootNode.children.count == 3 else {
+        XCTAssertEqual(rootNode.children.count, 4)
+        guard rootNode.children.count == 4 else {
             return
         }
         let rootChildren = rootNode.children.sorted { $0 < $1 }
 
         let boolNode = rootChildren[0]
         let firstNode = rootChildren[1]
-        let secondNode = rootChildren[2]
+        let _ = rootChildren[2] // performanceNode
+        let secondNode = rootChildren[3]
 
         XCTAssertEqual(boolNode.id, "BoolView")
         XCTAssertEqual(boolNode.viewType, "BoolView")

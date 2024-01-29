@@ -2,7 +2,7 @@
 
 # Overview
 
-Simple Navigation framework for SwiftUI. Alternate `NavigationStack` with supporting from iOS 14 and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests.
+Simple Navigation framework for SwiftUI. Alternate `NavigationStack` with supporting from iOS 14 and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests. We care about quality and performance what why we have UI tests.
 
 ## Motivation
 
@@ -19,6 +19,7 @@ Now Developers have standard framework SwiftUI. Correct navigation features were
 - [x] Multy-module supporting (views injecting)
 - [x] Contains unit and snapshot tests framework
 - [x] UI tests full coverage.
+- [x] Performance concern.
 
 ## Installation
 
@@ -386,6 +387,10 @@ struct ModularFirstView: View {
 }
 
 ```
+
+## Performance
+
+We did [performance research](Docs/Performance.md) and found weaknesses in the component and tried to fix them. This is covered in a separate article in the documentation: [Performance Research](Docs/Performance.md).
 
 ## Common Functions
 

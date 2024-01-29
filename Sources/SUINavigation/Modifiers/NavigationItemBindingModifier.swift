@@ -65,7 +65,7 @@ public extension View {
         paramName: String? = nil,
         destinationValue: @escaping (Item) -> DestinationValue
     ) -> some View {
-        modifier(NavigationItemBindingModifier(item: item, id: id, paramName: paramName, destinationValue: destinationValue))
+        navigationModifier(NavigationItemBindingModifier(item: item, id: id, paramName: paramName, destinationValue: destinationValue))
     }
 
     // trigger from DestinationValue

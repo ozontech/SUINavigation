@@ -85,7 +85,7 @@ extension View {
     ) -> some View {
         let identifier = Destination.identifier(id)
         staticCheckDestination(item: item, id: identifier, paramName: paramName, destination: destination)
-        return modifier(NavigationItemModifier(item: item, value: value, identifier: identifier, paramName: paramName, destination: destination))
+        return navigationModifier(NavigationItemModifier(item: item, value: value, identifier: identifier, paramName: paramName, destination: destination))
     }
 }
 

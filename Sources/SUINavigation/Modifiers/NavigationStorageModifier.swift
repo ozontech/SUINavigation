@@ -34,6 +34,6 @@ public extension View {
     func navigationStorage(
         destination: @escaping (_ storage: NavigationStorage) -> Void
     ) -> some View {
-        modifier(NavigationStorageModifier(destination: destination))
+        navigationModifier(NavigationStorageModifier(destination: destination))
     }
 }

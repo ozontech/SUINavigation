@@ -3,6 +3,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.2] - 2024-01-29
+
+### Added
+
+- View modifier `.navigationModifier` for increase performance.
+- Performance test to the example.
+- Article with performance research in documentation
+
+#### Fixed
+
+- The Performance degradation on iOS 15.5 with many `.navigation` invocation.
+
 ## [1.7.1] - 2024-01-24
 
 ### Added

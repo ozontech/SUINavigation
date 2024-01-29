@@ -92,7 +92,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-Modular"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

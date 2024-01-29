@@ -40,6 +40,6 @@ public extension View {
     ) -> some View {
         let identifier = Destination.identifier(id)
         staticCheckDestination(isActive: isActive, id: identifier, destination: destination)
-        return modifier(NavigationModifier(isActive: isActive, identifier: identifier, destination: isActive.wrappedValue ? destination() : nil))
+        return navigationModifier(NavigationModifier(isActive: isActive, identifier: identifier, destination: isActive.wrappedValue ? destination() : nil))
     }
 }
