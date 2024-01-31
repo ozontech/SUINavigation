@@ -3,9 +3,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.3] - 2024-01-31
+
+#### Fixed
+
+- Cleaning prints from SUINavigation.
+- SUINavigationTest with static analysis of optional views
+
 ## [1.7.2] - 2024-01-29
 
-### Added
+#### Added
 
 - View modifier `.navigationModifier` for increase performance.
 - Performance test to the example.
@@ -17,7 +24,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.7.1] - 2024-01-24
 
-### Added
+#### Added
 
 - View mock to `NavigationMockStore` from `SUINavigationTest`.
 
@@ -29,7 +36,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.7.0] - 2024-01-19
 
-### Added
+#### Added
 
 - Static unit tests without expectation (run faster).
 - Snapshot tests with render/static analyser.

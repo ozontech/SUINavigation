@@ -21,7 +21,14 @@ public final class NavigationNodeStaticAnalyser : NavigationNodeAnalyserProtocol
 
     private func processing<V: View>(_ view: V, _ parent: NavigationNode) {
         do {
-            _ = view.body
+            // Yes, the compiler may miss everything type
+            // It can Never, Environments etc, we research how it handle too, now only optional
+            if let view = view as? Optional<any View> {
+                // Possible check to nil and make warning in a future.
+                _ = view?.body
+            } else {
+                _ = view.body
+            }
         } catch let error {
             self.failuresCount += 1
             self.failureResult += "\(self.failuresCount). From \(parent.name) node can not analyse '\(view.navigationID.stringValue)' view. Catch error: '\(error.localizedDescription)'.\n"

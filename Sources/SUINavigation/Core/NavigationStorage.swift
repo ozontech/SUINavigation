@@ -67,7 +67,6 @@ public final class NavigationStorage: ObservableObject {
         let hasTheSameId = pathItems.first(where: { $0.id == id }) != nil
         let item = Item(isPresented: isPresented, id: id, viewType: viewType, param: param)
         pathItems.append(item)
-        print("addItem \(id) pathItems.count = \(pathItems.count)")
         // This now called from actionReactor, now it don't needs
         //checkSubAction(id: id)
         if hasTheSameId {
@@ -84,7 +83,6 @@ public final class NavigationStorage: ObservableObject {
             return
         }
         self.pathItems.removeLast(pathItems.count - foundIndex)
-        print("removeItem \(id) pathItems.count = \(pathItems.count)")
 
         // check last skipped
         if pathItems.count > 0 && pathItems.lastIndex(where: { $0.isSkipped == true }) != nil {
