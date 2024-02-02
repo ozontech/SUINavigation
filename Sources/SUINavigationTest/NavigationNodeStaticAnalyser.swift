@@ -19,16 +19,24 @@ public final class NavigationNodeStaticAnalyser : NavigationNodeAnalyserProtocol
         self.mock = mock
     }
 
-    private func processing<V: View>(_ view: V, _ parent: NavigationNode) {
-        do {
-            // Yes, the compiler may miss everything type
-            // It can Never, Environments etc, we research how it handle too, now only optional
-            if let view = view as? Optional<any View> {
-                // Possible check to nil and make warning in a future.
+    static func processing<V: View>(_ view: V) {
+        // Yes, the compiler may miss everything type
+        // It can Never, Environments etc, we research how it handle too, now only optional
+        if let view = view as? Optional<any View> {
+            // Possible check to nil and make warning in a future.
+            if view?.isNever == false {
                 _ = view?.body
-            } else {
+            }
+        } else {
+            if view.isNever == false {
                 _ = view.body
             }
+        }
+    }
+
+    private func processing<V: View>(_ view: V, _ parent: NavigationNode) {
+        do {
+            Self.processing(view)
         } catch let error {
             self.failuresCount += 1
             self.failureResult += "\(self.failuresCount). From \(parent.name) node can not analyse '\(view.navigationID.stringValue)' view. Catch error: '\(error.localizedDescription)'.\n"

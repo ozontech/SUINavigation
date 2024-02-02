@@ -3,6 +3,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.4] - 2024-02-02
+
+#### Fixed
+
+- Fatal error from unit and snapshot tests of the `SUINavigationTest` for Text view destination.
+- Add the `SUINavigationTest` documentation to a separate page.
+- Move the `Deeplinks` documentation to a separate page.
+
 ## [1.7.3] - 2024-01-31
 
 #### Fixed

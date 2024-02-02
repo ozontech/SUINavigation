@@ -85,7 +85,7 @@ struct FirstView: View {
             }
         }.navigation(item: $optionalValue, id: "second"){ item in
             // item is unwrapped optionalValue where can used by SecondView
-            SecondView()
+            SecondView(number: item)
         }
     }
 }
@@ -138,10 +138,11 @@ struct SomeView: View {
 
 ```
 
-## UnitTests supporting
+## Test of Navigation
 
-`SUINavigation` includes `SUINavigationTest` framework whith you can covare your Views with UnitTests.
-The Best solution who you have ViewModel whith manage navigation. In next example I show you how test navigation push and deeplinks with `SUINavigationTest`.
+`SUINavigation` includes `SUINavigationTest` framework, which allows you to cover your views with Unit and Snapshot tests. 
+More details about why this is needed and how to implement it are written in a separate article [SUINavigationTest](Docs/SUINavigationTest.md).
+The Next example just shows how to write tests:
 
 ```swift
 
@@ -149,176 +150,56 @@ import SUINavigationTest
 
 final class NavigationExampleTests: XCTestCase {
 
-    func testMainToFirst() throws {
-        let viewModel = MainViewModelMock()
-        let mainContentView = MainContentView(viewModel: viewModel)
-        test(sourceView: mainContentView, destinationView: FirstView.self) {
-            viewModel.stringForFirst = "New"
-        } destination: { view in
-            XCTAssertEqual(view.string, "New")
+    /// Unit Test
+    func testView1ToView2() throws {
+        let view1 = View1()
+        test(sourceView: view1, destinationView: View2.self) {
+            view1.triggerValue = "trigger"
+        } destination: { view2 in
+            XCTAssertEqual(view2.inputValue, "trigger")
         }
     }
-}
-```
-
-## SnapshotTests supporting
-
-From `SUINavigationTest` you will find many other way for make a stable navigation. 
-For example use snapshot tests. Snapshot tests can ensure that changes are authorised and I found two ways for they organization:
-
-1. Saving all transition tree of nodes to one file.
-2. Saving each View to separate files.
-
-Pros and cons:
-
-| Feature                   | One Tree node file | Many Views files |
-| :------------------------ | :----------------: | :--------------: |
-| Accuracy place of error   |         ⛔         |        ✅        |
-| Details accuracy          |         ✅         |        ⛔        |
-| Merge conflicts           |         ⛔         |        ✅        |
-| Deeplink validation       |         ✅         |        ⛔        |
-| Recursive loop detection  |         ✅         |        ⛔        |
-| Duplication id checking   |         ✅         |        ✅        |
-
-How do you see better use both way.
-
-### One Tree node Snapshot file
-
-This way store result to one file. Format you can found [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testSnapshot.json).
-First run of the test to create snapshot file, next run compare this file with current navigation nodes.
-If you wan to update this file just delete [this snapshot file](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testSnapshot.json) and run again.
-Example how you can organize:
-
-```swift
-
-import SUINavigationTest
-
-final class NavigationExampleTests: XCTestCase {
-
-    let mock = NavigationMockStore(items: ["Test", Int(0)])
-
-    func testSnapshot() throws {
-        let viewModel = RootViewModelMock()
-        let rootView = RootView(viewModel: viewModel)
-        try assertSnapshot(rootView, mock: mock)
+    
+    /// Snapshot Test
+    func testAllItemsOfTheRoot() throws {
+        let rootView = RootView()
+        try assertItemsSnapshot(rootView)
     }
 }
 
 ```
-
-### Many Views Snapshot files
-
-This way store many files with name of a View which find from tree transition nodes. Format you can found [on this snapshot directory](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testItemsSnapshot).
-This way is based on one Tree node, use `NavigationNodeTestItem`'s which created by `NavigationNode`.
-First run of the test to create snapshot files, next run compare all files in this directory with current navigation nodes.
-If you wan to update all files just delete [this snapshot directory](/Example/NavigationExample/NavigationExampleTests/__Snapshots__/NodesTests/testItemsSnapshot) and run again.
-Example how you can organize:
-
-```swift
-
-import SUINavigationTest
-
-final class NavigationExampleTests: XCTestCase {
-
-    let mock = NavigationMockStore(items: ["Test", Int(0)])
-
-    func testItemsSnapshot() throws {
-        let viewModel = RootViewModelMock()
-        let rootView = RootView(viewModel: viewModel)
-        try assertItemsSnapshot(rootView, mock: mock)
-    }
-}
-
-```
-
-## About analysers for snapshot and unit tests processing from SUINavigationTest
-
-Snapshot of navigation require creation tree nods with root `NavigationNode` object. In order to get a `NavigationNode`, it is necessary to analyze all `View`'s start from Root. I have found 2 ways how to do it:
-
-1. `NavigationNodeRenderingAnalyser` analyse render view as is need for presentation.
-2. `NavigationNodeStaticAnalyser` call creation body objects without environments and state objects.
-
-Unit tests have the same analysers for processing.
-
-So far the static one is leading, and it is chosen as default. However, you have the right to make a choice at your discretion. It is possible that there will be a third because both have advantages and disadvantages:
-
-| Feature                         |  Rendering  |   Static    |
-| :------------------------------ | :---------: | :---------: |
-| Speed of process                |     ⛔      |     ✅      |
-| Stable of work, constant result |     ⛔      |     ✅      |
-| Environments object supporting  |     ✅      |     ⛔      |
-| State value/object supporting   |     ✅      |     ⛔      |
-| Published value supporting      |     ✅      |     ✅      |
-| Deeplink transition detect      |     ✅      |     ✅      |
-| Static transition detect        |     ⛔      |     ✅      |
-| Recursion loop detection        |     ✅      |     ✅      |
-| Can mock trigger values         |     ⛔      |     ✅      |
-| Can mock result views           |     ⛔      |     ⛔      |
-
 
 ## Deeplinks supporting
 
 `SUINavigation` has functions of getting and applying the URL which allows you to organize deep links without special costs. Modifier `.navigationAction` identical `.navigation`, but support navigate by `append` or `replace` from URL (URI). If you want custom navigate or use presentation type of navigation (alert, botomsheet, fullScreenCover, TabBar, etc) you can use part of `.navigationAction` as `.navigateUrlParams`. Modifiers `.navigationAction` as `.navigateUrlParams` have addition sets of params for customisation an URL representation.
 
-![Deeplinks1](/Docs/Deeplinks1.svg "Deeplinks1")
-![Deeplinks2](/Docs/Deeplinks2.svg "Deeplinks2")
+More about Deeplinks in separated article page [Deeplinks](Docs/Deeplinks.md).
 
-## Deeplinks supporting at custom navigation
-
-You can use `.navigateUrlParams` with `TabBar`, `.fullScreenCover`, and your custom approach of showing a screen. I Just show it in example, how it passible. More info find you in examples of the project.
-
-### fullScreenCover
+The Next example just shows how to navigate from url:
 
 ```swift
 
-var body: some View {
-    ContentView()
-        .fullScreenCover(item: $data) { value in
-            FirstView(value)
-        }
-        .navigateUrlParams("FirstView") { params in
-            if let value = params.popStringParam("firstModalParam") {
-                data = FirstModalData(value)
-            }
-        }
-}
+import SwiftUI
+import SUINavigation
 
-```
+struct SomeView: View {
 
-### TabBar
-
-```swift
-
-enum MyTab: String, Hashable, NavigationParameterValue {
-    case first = "First Tab"
-    case second = "Second Tab"
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
     
-    // NavigationParameterValue implementation
-    init?(_ description: String) {
-        self.init(rawValue: description)
-    }
-}
-
-struct MyTabView: View {
-
     @State
-    private var selectedTab: MyTab = .first
+    private var optionalValue: Int? = nil
+    
+    let url = "second?secondValue=777"
 
     var body: some View {
-        NavigationViewStorage{
-            ZStack(alignment: .bottom) {
-                TabView(selection: $selectedTab) {
-                    FirstView()
-                        .tag(MyTab.first)
-                    SecondView()
-                        .tag(MyTab.second)
-                }
-                .navigateUrlParams("MyTabView") { params in
-                    if let tab: MyTab = params.popParam("tab") {
-                        selectedTab = tab
-                    }
-                }
+        VStack() {
+            Text("Some")
+            Button("to Second from URL"){
+                navigationStorage.append(url)
             }
+        }.navigationAction(item: $optionalValue, id: "second", paramName: "secondValue") { item in
+            SecondView(number: item)
         }
     }
 }

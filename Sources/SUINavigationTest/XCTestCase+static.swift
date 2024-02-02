@@ -30,7 +30,7 @@ extension XCTestCase {
         }
 
         if hasCheckingBeforeEvolution {
-            _ = sourceView.body
+            NavigationNodeStaticAnalyser.processing(sourceView)
 
             if isFound == true {
                 XCTFail("Shown before triger evalution yet.")
@@ -39,7 +39,7 @@ extension XCTestCase {
 
         evalution()
 
-        _ = sourceView.body
+        NavigationNodeStaticAnalyser.processing(sourceView)
 
         if isFound == false {
             XCTFail("Not found after triger evalution")

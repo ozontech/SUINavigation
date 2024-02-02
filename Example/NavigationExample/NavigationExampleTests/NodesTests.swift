@@ -145,6 +145,7 @@ final class NodesTests: XCTestCase {
         let boolChildren = boolNode.children.sorted { $0 < $1 }
         let boolFirstNode = boolChildren[0]
         let boolMainTabNode = boolChildren[1]
+        XCTAssertEqual(boolMainTabNode.viewType, "MainTabView")
         let boolMainNode = boolChildren[2]
         let boolModalFirstNode = boolChildren[3]
         XCTAssertNil(secondBoolMainNode.check(with: boolMainNode, hasCheckingOrder: true))
