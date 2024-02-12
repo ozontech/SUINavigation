@@ -12,6 +12,10 @@ struct SecondView: View {
 
     var number: Int
 
+    // Don't use this approach, just for testing
+    @Binding
+    var numberFromParent: Int?
+
     @State
     private var isBoolShowed: Bool = false
 
@@ -40,6 +44,9 @@ struct SecondView: View {
             Button("dismiss") {
                 presentationMode.wrappedValue.dismiss()
             }
+            Button("trigger to nil") {
+                numberFromParent = nil
+            }
             Button("to URL: BoolView/FirstView/SecondView?firstString=??&secondNumber=88") {
                 navigationStorage?.append(from: "BoolView/FirstView/SecondView?firstString=??&secondNumber=88")
             }
@@ -54,5 +61,5 @@ struct SecondView: View {
 }
 
 #Preview {
-    SecondView(number: 777)
+    SecondView(number: 777, numberFromParent: .constant(0))
 }

@@ -66,7 +66,7 @@ struct MainView: View {
     @discardableResult
     func tapRoot() -> Self {
         let button = app.buttons["to Root"]
-        _ = button.waitForExistence(timeout: 2)
+        _ = button.waitForExistence(timeout: 0.5)
         button.tap()
         return self
     }
@@ -74,7 +74,7 @@ struct MainView: View {
     @discardableResult
     func tapTab(_ tab: String) -> Self {
         let button = app.buttons[tab]
-        _ = button.waitForExistence(timeout: 2)
+        button.waitForExistingAndAssert()
         button.tap()
         return self
     }

@@ -55,7 +55,7 @@ struct ModularFirstView: View {
             Destination.bool
         }
         .navigationAction(item: $numberForSecond, id: Destination.second, paramName: "secondNumber", isRemovingParam: true) { numberValue in
-            Destination.second(numberValue)
+            Destination.second(numberValue, $numberForSecond)
         }
     }
 }

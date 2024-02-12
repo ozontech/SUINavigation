@@ -25,118 +25,123 @@ public extension View {
     }
 }
 
-internal extension XCTestCase {
+@inline(__always)
+public func renderingTest<SourceView: View>(
+    _ sourceView: SourceView,
+    hasStorage: Bool,
+    evalution: () -> Void,
+    file: StaticString = #file,
+    testName: String = #function,
+    line: UInt = #line) -> (navigationView: any View, storage: NavigationStorage?)
+{
+    let waiter = XCTWaiter()
+    let expectation = XCTestExpectation(description: "NavigationStorage")
+    var navStorage: NavigationStorage? = nil
 
-    func renderingTest<SourceView: View>(
-        _ sourceView: SourceView,
-        hasStorage: Bool,
-        evalution: () -> Void) -> (navigationView: any View, storage: NavigationStorage?)
-    {
-        let expectation = expectation(description: "NavigationStorage")
-        var navStorage: NavigationStorage? = nil
-
-        let view =
-        sourceView
-            .navigationStorage { storage in
-                if navStorage == nil {
-                    navStorage = storage
-                    expectation.fulfill()
-                }
-            }
-
-        evalution()
-
-        var result: any View = sourceView
-
-        if hasStorage {
-            result = view.render()
-        } else {
-            result = NavigationViewStorage{
-                view
-            }.render()
-        }
-
-        waitForExpectations(timeout: 5) { error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-
-        return (result, navStorage)
-    }
-
-    func renderingTest<SourceView: View, DestinationView: View>(
-        _ sourceView: SourceView,
-        hasStorage: Bool,
-        destinationView: DestinationView.Type = DestinationView.self,
-        evalution: () -> Void = {},
-        destination: @escaping (_ view: DestinationView) -> Void = {_ in }
-    ) {
-        let expectation = expectation(description: "NavigationCatch")
-        expectation.assertForOverFulfill = true
-        var isFound = false
-
-        NavigationCatch.shared.catchView(to: DestinationView.self) { view in
-            if isFound == false {
-                isFound = true
-                destination(view)
+    let view =
+    sourceView
+        .navigationStorage { storage in
+            if navStorage == nil {
+                navStorage = storage
                 expectation.fulfill()
             }
         }
 
-        let view = sourceView
+    evalution()
 
-        evalution()
+    var result: any View = sourceView
 
-        if hasStorage {
-            view.render()
-        } else {
-            NavigationViewStorage{
-                view
-            }.render()
-        }
+    if hasStorage {
+        result = view.render()
+    } else {
+        result = NavigationViewStorage{
+            view
+        }.render()
+    }
 
-        waitForExpectations(timeout: 3) { error in
-            if let error = error {
-                print("Error NavigationCatch: \(error.localizedDescription)")
-            }
+    if waiter.wait(for: [expectation], timeout: 3) == .timedOut {
+        XCTFail("Not found view after triger evalution", file: file, line: line)
+    }
+
+    return (result, navStorage)
+}
+
+@inline(__always)
+public func renderingTest<SourceView: View, DestinationView: View>(
+    _ sourceView: SourceView,
+    hasStorage: Bool,
+    destinationView: DestinationView.Type = DestinationView.self,
+    evalution: () -> Void = {},
+    destination: @escaping (_ view: DestinationView) -> Void = {_ in },
+    file: StaticString = #file,
+    testName: String = #function,
+    line: UInt = #line
+) {
+    let waiter = XCTWaiter()
+    let expectation = XCTestExpectation(description: "NavigationCatch")
+    expectation.assertForOverFulfill = true
+    var isFound = false
+
+    NavigationCatch.shared.catchView(to: DestinationView.self) { view in
+        if isFound == false {
+            isFound = true
+            destination(view)
+            expectation.fulfill()
         }
     }
 
-    func renderingTest<SourceView: View>(
-        _ view: SourceView,
-        hasStorge: Bool = false,
-        evalution: () -> Void = { },
-        destination: @escaping (_ view: any View) -> Void
-    ) {
+    let view = sourceView
 
-        let expectationCatch = expectation(description: "NavigationCatch")
-        expectationCatch.assertForOverFulfill = true
-        var isFound = false
+    evalution()
 
-        NavigationCatch.shared.catchAnyView { view in
-            if isFound == false {
-                isFound = true
-                destination(view)
-                expectationCatch.fulfill()
-            }
-        }
+    if hasStorage {
+        view.render()
+    } else {
+        NavigationViewStorage{
+            view
+        }.render()
+    }
 
-        evalution()
+    if waiter.wait(for: [expectation], timeout: 3) == .timedOut {
+        XCTFail("Not found view after triger evalution", file: file, line: line)
+    }
+}
 
-        if hasStorge {
-            view.render()
-        } else {
-            NavigationViewStorage{
-                view
-            }.render()
-        }
+@inline(__always)
+public func renderingTest<SourceView: View>(
+    _ view: SourceView,
+    hasStorge: Bool = false,
+    evalution: () -> Void = { },
+    destination: @escaping (_ view: any View) -> Void,
+    file: StaticString = #file,
+    testName: String = #function,
+    line: UInt = #line
+) {
 
-        waitForExpectations(timeout: 3) { error in
-            if let error = error {
-                print("Error NavigationCatch: \(error.localizedDescription)")
-            }
+    let waiter = XCTWaiter()
+    let expectationCatch = XCTestExpectation(description: "NavigationCatch")
+    expectationCatch.assertForOverFulfill = true
+    var isFound = false
+
+    NavigationCatch.shared.catchAnyView { view in
+        if isFound == false {
+            isFound = true
+            destination(view)
+            expectationCatch.fulfill()
         }
     }
 
+    evalution()
+
+    if hasStorge {
+        view.render()
+    } else {
+        NavigationViewStorage{
+            view
+        }.render()
+    }
+
+    if waiter.wait(for: [expectationCatch], timeout: 3) == .timedOut {
+        XCTFail("Not found view after triger evalution", file: file, line: line)
+    }
 }

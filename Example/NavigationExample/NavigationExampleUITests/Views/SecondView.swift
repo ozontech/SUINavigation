@@ -53,4 +53,12 @@ struct SecondView: View {
         return self
     }
 
+    @discardableResult
+    func tapTriggerNil() -> Self {
+        let button = app.buttons["trigger to nil"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
 }

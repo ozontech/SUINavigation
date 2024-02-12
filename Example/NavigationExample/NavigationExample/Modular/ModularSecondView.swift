@@ -12,6 +12,10 @@ struct ModularSecondView: View {
 
     var number: Int
 
+    // Don't use this approach, just for testing
+    @Binding
+    var numberFromParent: Int?
+
     @State
     private var isBoolShowed: Bool = false
 
@@ -40,6 +44,11 @@ struct ModularSecondView: View {
             Button("dismiss") {
                 presentationMode.wrappedValue.dismiss()
             }
+            Button("trigger to nil") {
+                // Yes, it is not working, because Modular use AnyView: technical imposible use Binding
+                //numberFromParent = nil
+                presentationMode.wrappedValue.dismiss()
+            }
             Button("to URL: BoolView/FirstView/SecondView?firstString=??&secondNumber=88") {
                 navigationStorage?.append(from: "BoolView/FirstView/SecondView?firstString=??&secondNumber=88")
             }
@@ -52,5 +61,5 @@ struct ModularSecondView: View {
 }
 
 #Preview {
-    ModularSecondView(number: 777)
+    ModularSecondView(number: 777, numberFromParent: .constant(0))
 }

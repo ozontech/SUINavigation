@@ -20,7 +20,7 @@ struct RootView: View {
                 Button("to First"){
                     isShowingFirst = true
                 }
-            }.navigation(isActive: $isShowingFirst){
+            }.navigationAction(isActive: $isShowingFirst){
                 FirstView()
             }
         }
@@ -38,30 +38,40 @@ struct FirstView: View {
             Button("to Second"){
                 optionalValue = 777
             }
-        }.navigation(item: $optionalValue, id: "second"){ item in
+        }.navigationAction(item: $optionalValue, id: "second", paramName: "value"){ item in
             // item is unwrapped optionalValue where can used by SecondView
-            SecondView()
+            SecondView(value: item)
         }
     }
 }
 
 struct SecondView: View {
+
+    @State
+    private var value: Int
     @State
     private var isShowingLast: Bool = false
+
+    init(value: Int) {
+        _value = State(wrappedValue: value)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
             Text("Second")
+            Text("\(value)")
             Button("to Last"){
                 isShowingLast = true
             }
-        }.navigation(isActive: $isShowingLast, id: "last"){
-            SomeView()
+        }.navigationAction(isActive: $isShowingLast, id: "last"){
+            SomeView(secondValue: $value)
         }
     }
 }
 
 struct SomeView: View {
+    @Binding
+    var secondValue: Int
     // This optional everywhere, because in a test can use NavigationView without navigationStorage object
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
@@ -77,6 +87,7 @@ struct SomeView: View {
         }
         Button("Go to SecondView") {
             // You should use id for navigate to SecondView, because it determinate as id
+            secondValue = 10
             navigationStorage?.popTo("second")
         }
         Button("Go to Root") {

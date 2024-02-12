@@ -57,7 +57,8 @@ Result in milliseconds:
 
 First showing is slow every start the application, it makes sense to conduct similar tests.
 Condition of the test:
-100 modifier calls on first time from click button to call onAppear with te same hardware
+100 modifier calls on first time from click button to call onAppear with the same hardware
+
 Result with millisecond:
 
 #### Table 1.2.1

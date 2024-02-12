@@ -51,7 +51,7 @@ struct MainTabView: View {
                             Text(MainTab.first.title)
                         }
                         .tag(MainTab.first)
-                    SecondView(number: 120)
+                    SecondView(number: 120, numberFromParent: .constant(120))
                         .tabItem{
                             Text(MainTab.second.title)
                         }

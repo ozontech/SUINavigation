@@ -19,8 +19,15 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
     @State
     private var isActive: Bool = false
 
+    @State
+    private var isOldActive: Bool = false
+
+    @State
+    private var oldItem: Item?
+
     init(item: Binding<Item?>, value: Binding<Value?>?, identifier: String, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
         self.item = item
+        _oldItem = State(initialValue: item.wrappedValue)
         self.value = value
         self.identifier = identifier
         self.paramName = paramName
@@ -33,7 +40,7 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
                 // We can't use from iOS 17 .navigationDestination with item param because that has an issue with navigation
                 content
                     .navigationDestination(isPresented: $isActive, destination: {
-                        if let item = item.wrappedValue {
+                        if let item = item.wrappedValue ?? oldItem {
                             viewDestination(destination(item))
                         }
                     })
@@ -42,18 +49,33 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
                 NavigationLinkWrapperView(isActive: $isActive, destination: navigationDestination)
             }
             NavigationStorageActionItemView<Destination>(isActive: $isActive, identifier: identifier, param: param)
-                .onChange(of: item.wrappedValue) { newValue in
-                    if let newValue {
-                        isActive = true
-                    } else {
-                        isActive = false
-                    }
+
+            let _ = update()
+        }
+    }
+
+    private func update(){
+        if isOldActive != isActive {
+            Task { @MainActor in
+                isOldActive = isActive
+                if !isActive {
+                    item.wrappedValue = nil
                 }
-                .onChange(of: isActive) { newValue in
-                    if newValue == false {
-                        item.wrappedValue = nil
-                    }
-                }
+            }
+        }
+        if oldItem != item.wrappedValue {
+            Task { @MainActor in
+                oldItem = item.wrappedValue
+                self.changeItem(item.wrappedValue)
+            }
+        }
+    }
+
+    private func changeItem(_ newItem: Item?){
+        if let newItem {
+            isActive = true
+        } else {
+            isActive = false
         }
     }
 
@@ -67,7 +89,7 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
     }
 
     private var navigationDestination: Destination? {
-        guard let item = item.wrappedValue else {
+        guard let item = item.wrappedValue ?? oldItem else {
             return nil
         }
 

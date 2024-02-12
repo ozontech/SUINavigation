@@ -8,17 +8,6 @@
 import SwiftUI
 import SUINavigation
 
-private struct RootViewIsChangeShowedKey: EnvironmentKey {
-    static let defaultValue: Binding<Bool> = .constant(false)
-}
-
-extension EnvironmentValues {
-    var isChange: Binding<Bool> {
-        get { self[RootViewIsChangeShowedKey.self] }
-        set { self[RootViewIsChangeShowedKey.self] = newValue }
-    }
-}
-
 protocol RootViewModelProtocol: ObservableObject {
     var stringForFirst: String? {set get}
     var numberForSecond: Int? {set get}
@@ -94,7 +83,7 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
             FirstView(string: stringValue)
         }
         .navigationAction(item: $viewModel.numberForSecond) { numberValue in
-            SecondView(number: numberValue)
+            SecondView(number: numberValue, numberFromParent: $viewModel.numberForSecond)
         }
         .navigationAction(isActive: $isBoolShowed){
             BoolView()

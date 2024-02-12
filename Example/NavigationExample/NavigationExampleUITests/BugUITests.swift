@@ -148,7 +148,7 @@ final class BugUITests: XCTestCase {
             .checkChanging(false)
     }
 
-    /// This bug can be reproduced only on iOS 17
+    /// This Apple bug can be reproduced only on iOS 17
     /// When on Navigation has TabView and a User go to next View on Navigation, change screen or show system top panel he show how get to the root View
     /// Apple bug: when NavigationViewStorage content the NavigationView instead of the NavigationStack.
     /// Can't reproduce on iOS 16 and earlier.
@@ -176,6 +176,33 @@ final class BugUITests: XCTestCase {
         MainView(app: app)
             .checkThis()
             .checkChanging(true)
+    }
+
+    /// Reproduced by SDK iOS 17. Trigger to nil make empty screen without go to back.
+    func testBugWithNilTrigger() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .checkChanging(false)
+            .tapSecond22()
+        SecondView(app: app)
+            .checkThis(number: 22)
+            .tapTriggerNil()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapDismiss()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+            .tapSecond()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .tapTriggerNil()
+        MainView(app: app)
+            .checkThis()
     }
 
 }

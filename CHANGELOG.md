@@ -3,6 +3,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2024-02-12
+
+#### Fixed
+
+- Bug with dismissing view by triggering to nil state.
+- UnitTests showing error. Extracted from `XCTestCase`.
+- `preferMode` removed as static property `XCTestCase` and added to tests functions.
+
+#### Added
+
+- Example with Router SwiftUI pattern.
+
 ## [1.7.4] - 2024-02-02
 
 #### Fixed

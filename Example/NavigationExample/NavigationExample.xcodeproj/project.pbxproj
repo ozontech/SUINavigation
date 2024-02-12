@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30385B42B70C456008958CF /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385B32B70C456008958CF /* EnvironmentValues.swift */; };
 		C30E345A2AC5787300D3DA51 /* NavigationExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E34592AC5787300D3DA51 /* NavigationExampleApp.swift */; };
 		C30E345C2AC5787300D3DA51 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E345B2AC5787300D3DA51 /* MainView.swift */; };
 		C30E345E2AC5787500D3DA51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30E345D2AC5787500D3DA51 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C30385B32B70C456008958CF /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		C30E34562AC5787300D3DA51 /* NavigationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30E34592AC5787300D3DA51 /* NavigationExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExampleApp.swift; sourceTree = "<group>"; };
 		C30E345B2AC5787300D3DA51 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				C3D88BBD2B060A2D007E6B2C /* MainTabView.swift */,
 				C30E345B2AC5787300D3DA51 /* MainView.swift */,
 				C34FA8AA2B1F696D00069374 /* Destination.swift */,
+				C30385B32B70C456008958CF /* EnvironmentValues.swift */,
 				C34FA8972B1E004100069374 /* Standard */,
 				C34FA8A02B1E00A200069374 /* Modular */,
 				C30E345D2AC5787500D3DA51 /* Assets.xcassets */,
@@ -392,6 +395,7 @@
 				C34FA89E2B1E004100069374 /* FirstView.swift in Sources */,
 				C34FA8A42B1E00EB00069374 /* ModularSecondView.swift in Sources */,
 				C34FA8A62B1E012D00069374 /* ModularFirstView.swift in Sources */,
+				C30385B42B70C456008958CF /* EnvironmentValues.swift in Sources */,
 				C34FA89F2B1E004100069374 /* BoolView.swift in Sources */,
 				C3D88BBE2B060A2D007E6B2C /* MainTabView.swift in Sources */,
 				C31AFD3E2B62B22B00F454E7 /* PerformView.swift in Sources */,

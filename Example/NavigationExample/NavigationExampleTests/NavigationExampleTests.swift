@@ -13,7 +13,6 @@ import SUINavigationTest
 final class NavigationExampleTests: XCTestCase {
 
     override func setUpWithError() throws {
-        Self.preferMode = .static
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -65,10 +64,7 @@ final class NavigationExampleTests: XCTestCase {
         let isBoolShowed = State<Bool>(initialValue: true)
         let rootView = RootView(isBoolShowed: isBoolShowed)
 
-        test(sourceView: rootView, destinationView: BoolView.self) {
-        } destination: { view in
-            XCTAssertEqual(BoolView.navigationID.stringValue, "BoolView")
-        }
+        test(sourceView: rootView, destinationView: BoolView.self)
     }
 
     func testFirstToSecond() throws {

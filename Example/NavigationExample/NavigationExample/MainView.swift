@@ -22,14 +22,18 @@ struct MainView: View {
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
-    private let isModular = ProcessInfo.processInfo.arguments.contains("-Modular")
+    @Environment(\.viewMode)
+    private var viewMode
+    @Environment(\.modelMode)
+    private var modelMode
 
     @ViewBuilder
     var rootView: some View {
-        if isModular {
-            ModularRootView()
-        } else {
+        switch modelMode.wrappedValue {
+        case .standard:
             RootView()
+        case .modular:
+            ModularRootView()
         }
     }
 
@@ -48,6 +52,18 @@ struct MainView: View {
 
                     Button("to Root") {
                         navigationStorage?.popToRoot()
+                    }
+                    HStack {
+                        Text("viewMode: \(viewMode.wrappedValue.rawValue)")
+                        Button("ChangeVM") {
+                            viewMode.wrappedValue.next()
+                        }
+                    }
+                    HStack {
+                        Text("modelMode: \(modelMode.wrappedValue.rawValue)")
+                        Button("ChangeMM") {
+                            modelMode.wrappedValue.next()
+                        }
                     }
                 }
             }.navigationStorageBinding(for: Destination.self) { destination in

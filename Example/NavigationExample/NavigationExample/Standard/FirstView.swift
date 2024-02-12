@@ -13,7 +13,7 @@ struct FirstView: View {
     let string: String
 
     @State
-    var numberForSecond: Int? = nil
+    private var numberForSecond: Int? = nil
 
     @State
     private var isBoolShowed: Bool = false
@@ -55,7 +55,7 @@ struct FirstView: View {
             BoolView()
         }
         .navigationAction(item: $numberForSecond, paramName: "secondNumber", isRemovingParam: true) { numberValue in
-            SecondView(number: numberValue)
+            SecondView(number: numberValue, numberFromParent: $numberForSecond)
         }
     }
 }

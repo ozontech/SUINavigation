@@ -39,7 +39,7 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
             Destination.first(stringValue)
         }
         .navigationAction(item: $viewModel.numberForSecond, id: Destination.second) { numberValue in
-            Destination.second(numberValue)
+            Destination.second(numberValue, $viewModel.numberForSecond)
         }
         .navigationAction(isActive: $isBoolShowed) {
             Destination.bool
