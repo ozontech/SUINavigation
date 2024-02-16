@@ -13,6 +13,7 @@ import SUINavigation
 enum PerformLoad: String, Equatable {
     case empty
     case navigation
+    case navigationItem
     case full
     case sheet
     case sheetOptimized
@@ -66,6 +67,12 @@ extension View {
                 let _ = boolIndex+=1
                 let id = "Bool\(boolIndex)"
                 EmptyView().navigation(isActive: .constant(false), id: id) {
+                    BoolView()
+                }
+            case .navigationItem:
+                let _ = boolIndex+=1
+                let id = "Bool\(boolIndex)"
+                EmptyView().navigation(item: .constant(String?(nil)), id: id) { item in
                     BoolView()
                 }
             case .full:

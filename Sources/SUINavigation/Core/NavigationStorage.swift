@@ -18,7 +18,7 @@ public final class NavigationStorage: ObservableObject {
 
         @Published
         public internal(set) var children: [String: NavigateUrlParamsHandler] = [:]
-        private(set) var param: NavigationParameter?
+        fileprivate(set) var param: NavigationParameter?
 
         public var description: String { "NavigationPathItem with id: '\(id)' isPresented: \(isPresented.wrappedValue)" }
 
@@ -74,6 +74,21 @@ public final class NavigationStorage: ObservableObject {
             return item.uid
         } else {
             return nil
+        }
+    }
+
+    // Better update item every time. But it can down performance so it was reserved to future using.
+    func updateItem(isPresented: Binding<Bool>, id: String, uid: String?, viewType: String, param: NavigationParameter?) {
+        var index: Int? = nil
+        if let uid {
+            index = pathItems.firstIndex(where: { $0.uid == uid })
+        } else {
+            index = pathItems.firstIndex(where: { $0.id == id })
+        }
+        if let index {
+            let item = pathItems[index]
+            item.isPresented = isPresented
+            item.param = param
         }
     }
 

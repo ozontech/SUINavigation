@@ -15,9 +15,16 @@ struct SecondView: View {
     @discardableResult
     func checkThis(number: Int, timeout: TimeInterval = 5) -> Self {
         var text = app.staticTexts["This is Second"]
-        text.waitForExistingAndAssert(timeout: 5)
+        text.waitForExistingAndAssert(timeout: timeout)
         text = app.staticTexts["with: \(number)"]
         text.waitForExistingAndAssert(timeout: timeout)
+        return self
+    }
+
+    @discardableResult
+    func checkChanging(_ isChanged: Bool) -> Self {
+        let text = app.staticTexts[isChanged ? "changed" : "wait change"]
+        text.waitForExistingAndAssert()
         return self
     }
 

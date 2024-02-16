@@ -20,7 +20,8 @@ struct NavigationModifier<Destination: View>: ViewModifier {
 
     func body(content: Content) -> some View {
         ZStack {
-            if #available(iOS 16.0, *) {
+            // #available version should be equal version whith using from NavigationViewStorage for trigger using NavigationStack
+            if #available(iOS 16.4, *) {
                 content
                     .navigationDestination(isPresented: isActive, destination: {viewDestination(destination)})
             } else {

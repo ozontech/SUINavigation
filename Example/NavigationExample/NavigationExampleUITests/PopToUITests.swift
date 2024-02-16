@@ -20,7 +20,6 @@ final class PopToUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
             .tapSecond()
         SecondView(app: app)
             .checkThis(number: 11)
@@ -35,6 +34,73 @@ final class PopToUITests: XCTestCase {
         MainView(app: app)
             .checkThis()
             .checkRootMessage(tapOK: true)
+    }
+
+    func testTwoBack() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapSecond22()
+        SecondView(app: app)
+            .checkThis(number: 22)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterPopToTextField("First")
+            .tapPopTo()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+    }
+
+    func testBackToSecondChanged() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .tapSecond()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .tapChange()
+            .enterPopToTextField("Second")
+            .tapPopTo()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .checkChanging(true)
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+    }
+
+    func testBackToFirstChanged() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .tapChange()
+            .enterPopToTextField("First")
+            .tapPopTo()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .checkChanging(true)
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
     }
 
     func testDoublePopTo() throws {
@@ -92,12 +158,14 @@ final class PopToUITests: XCTestCase {
             .tapBool()
         BoolView(app: app)
             .checkThis()
+            .tapChange()
             .tapFirst()
         FirstView(app: app)
             .checkThis(string: "Bool")
             .tapBool()
         BoolView(app: app)
             .checkThis()
+            .tapChange()
             .enterPopToTextField("Second")
             .tapPopTo()
         SecondView(app: app)
@@ -108,6 +176,7 @@ final class PopToUITests: XCTestCase {
             .tapBack()
         MainView(app: app)
             .checkThis()
+            .checkChanging(false)
             .checkRootMessage(tapOK: true)
     }
 
@@ -125,11 +194,12 @@ final class PopToUITests: XCTestCase {
             .tapBool()
         BoolView(app: app)
             .checkThis()
+            .tapChange()
             .enterPopToTextField("")
             .tapPopTo()
         MainView(app: app)
             .checkThis()
-            .checkRootMessage(tapOK: true)
+            .checkChanging(true)
     }
 
     func testNotFound() throws {

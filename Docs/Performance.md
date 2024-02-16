@@ -20,13 +20,14 @@ Condition of the test:
 100 modifier calls, 1000 times to update UI. Total: 100 000 items.
 Test in MacBook with M1 processor with 16 Gb RAM on iPhone SE simulator with different iOS version.
 Result with millisecond:
-
+ 
 #### Table 1.1.1
 | Modifier                           | iOS 15    | iOS 15.5  | iOS 16.4  | iOS 17.2  |
 | :--------------------------------- | :-------: | :-------: | :-------: | :-------: |
 | empty                              | 27584     | 28383     | 3844      | 2618      |
 | .navigation isActive               | 63691     | 62498     | 6945      | 4267      |
 | .navigation isActive optimised     | 29178     | 30342     | 5023      | 4156      |
+| .navigation item optimised         | 32368     | 32259     | 8177      | 8317      |
 | .fullScreenCover standart          | 28344     | 29360     | 3971      | 3279      |
 | .sheet standart                    | 28264     | 29426     | 4011      | 3287      |
 
@@ -51,6 +52,7 @@ Result in milliseconds:
 | :--------------------------------- | :-------: | :-------: | :-------: | :-------: |
 | .navigation isActive               | 0.361     | 0.341     | 0.031     | 0.016     |
 | .navigation isActive optimised     | 0.016     | 0.019     | 0.011     | 0.015     |
+| .navigation item optimised         | 0.048     | 0.038     | 0.043     | 0.056     |
 | standart, .sheet for example       | 0.007     | 0.010     | 0.002     | 0.006     |
 
 ### 1.2 The same test for first showing

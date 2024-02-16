@@ -30,7 +30,14 @@ struct SecondView: View {
 
     var body: some View {
         VStack {
-            Text("This is Second")
+            HStack{
+                Text("This is Second")
+                if isChange.wrappedValue {
+                    Text("changed")
+                } else {
+                    Text("wait change")
+                }
+            }
             Text("with: \(number)")
             Button("to Bool") {
                 isBoolShowed = true

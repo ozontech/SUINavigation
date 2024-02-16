@@ -37,7 +37,10 @@ public struct NavigationViewStorage<Content: View>: View {
 
     @ViewBuilder
     private var navigation: some View {
-        if #available(iOS 16.0, *) {
+        // Why NavigationStack using from 16.4 and not 16.0:
+        // I found bug with trigger Binding from iOS with versions [16.0...16.3]
+        // Just ignore message: NavigationLink presenting a value must appear inside a NavigationContent-based NavigationView. Link will be disabled.
+        if #available(iOS 16.4, *) {
             NavigationStack {
                 content
             }

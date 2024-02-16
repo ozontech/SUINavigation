@@ -3,6 +3,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.1] - 2024-02-16
+
+#### Fixed
+
+- Apple Bug with dismissing view by trigger on iOS 16.0, iOS 16.1, iOS 16.2, iOS 16.3.
+- Now on iOS 16.x you can see "NavigationLink presenting a value must appear inside a NavigationContent-based NavigationView. Link will be disabled.". Just ignore it. All works fine and fixed a problem of using of the NavigationStack on iOS 16.x.
+
 ## [1.8.0] - 2024-02-12
 
 #### Fixed

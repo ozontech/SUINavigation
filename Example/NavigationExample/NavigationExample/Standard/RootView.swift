@@ -66,13 +66,16 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
                     Button("Nav>") {
                         viewModel.performLoad = .navigation
                     }
+                    Button("NavItem>") {
+                        viewModel.performLoad = .navigationItem
+                    }
                     Button("Full>") {
                         viewModel.performLoad = .full
                     }
-                    Button("Sheet>") {
+                    Button("Sh>") {
                         viewModel.performLoad = .sheet
                     }
-                    Button("SheetOpt>") {
+                    Button("ShOpt>") {
                         viewModel.performLoad = .sheetOptimized
                     }
                 }
