@@ -15,6 +15,7 @@ enum Destination: Equatable {
     case bool
     case main
     case tab
+    case object(ObjectDTO)
 
     static func == (lhs: Destination, rhs: Destination) -> Bool {
         switch lhs {
@@ -48,6 +49,12 @@ enum Destination: Equatable {
             } else {
                 return false
             }
+        case .object(let object):
+            if case .object(let value) = rhs {
+                return value == object
+            } else {
+                return false
+            }
         }
     }
 }
@@ -65,6 +72,8 @@ extension Destination: NavigationID {
             return true
         case .tab:
             return false
+        case .object(_):
+            return false
         }
     }
 
@@ -80,6 +89,8 @@ extension Destination: NavigationID {
             return "MainView"
         case .tab:
             return "TabMainView"
+        case .object(_):
+            return "ObjectView"
         }
     }
 }
@@ -104,6 +115,8 @@ extension Destination {
             MainView()
         case .tab:
             MainTabView()
+        case .object(let object):
+            ObjectView(object: object)
         }
     }
 }

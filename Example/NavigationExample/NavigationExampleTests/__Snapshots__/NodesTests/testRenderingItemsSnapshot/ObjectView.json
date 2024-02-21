@@ -1,0 +1,17 @@
+{
+  "id" : "ObjectView",
+  "transitions" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "trigger",
+      "id" : "FirstView",
+      "params" : [
+
+      ],
+      "viewType" : "FirstView"
+    }
+  ],
+  "viewType" : "ObjectView"
+}

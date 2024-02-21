@@ -52,8 +52,7 @@ final class ReplaceUrlUITests: XCTestCase {
             .tapReplaceUrl()
         BoolView(app: app)
             .checkThis()
-        // FirstView have different input (firstString) output (FirstView) params
-            .checkPath("SecondView/BoolView/FirstView/SecondView/BoolView?SecondView=1&FirstView=first&secondNumber=2")
+            .checkPath("SecondView/BoolView/FirstView/SecondView/BoolView?SecondView=1&firstString=first&secondNumber=2")
             .tapBack()
         SecondView(app: app)
             .checkThis(number: 2)

@@ -11,7 +11,7 @@
         {
           "defaultValue" : "main",
           "name" : "tab",
-          "type" : "Int"
+          "type" : "MainTab"
         }
       ]
     }

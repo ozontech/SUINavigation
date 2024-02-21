@@ -8,6 +8,11 @@
 import SwiftUI
 
 public final class NavigationStorage: ObservableObject {
+    public struct Child {
+        public internal(set) var uid: String = UUID().uuidString
+        public internal(set) var load: NavigateUrlParamsHandler
+        public internal(set) var save: NavigateUrlParamsSaveHandler?
+    }
     public final class Item: Identifiable, CustomStringConvertible, Hashable, Equatable {
         var isPresented: Binding<Bool>
         public let id: String
@@ -16,8 +21,8 @@ public final class NavigationStorage: ObservableObject {
         // This use for duplicated id
         var uid: String?
 
-        @Published
-        public internal(set) var children: [String: NavigateUrlParamsHandler] = [:]
+        @NavigationPublished
+        public internal(set) var children: [String: Child] = [:]
         fileprivate(set) var param: NavigationParameter?
 
         public var description: String { "NavigationPathItem with id: '\(id)' isPresented: \(isPresented.wrappedValue)" }
@@ -44,8 +49,8 @@ public final class NavigationStorage: ObservableObject {
     public private(set) var pathItems: [Item] = []
 
     // We don't have root from pathItems, so children of this item used by activate some navigation.
-    @Published
-    public internal(set) var rootChildren: [String: NavigateUrlParamsHandler] = [:]
+    @NavigationPublished
+    public internal(set) var rootChildren: [String: Child] = [:]
 
     // `childStorge` and `parentStorge` need for support nested NavigationStorage.
     public internal(set) weak var childStorge: NavigationStorage? = nil

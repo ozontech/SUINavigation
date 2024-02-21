@@ -28,7 +28,7 @@ struct BoolView: View {
     private var isMainShowing: Bool = false
 
     @State
-    var isTabShowing: Bool = false
+    private var isTabShowing: Bool = false
 
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
@@ -119,7 +119,7 @@ struct BoolView: View {
             }
         }
         .padding()
-        .navigation(item: $stringForFirst) { stringValue in
+        .navigation(item: $stringForFirst, paramName: "firstString") { stringValue in
             FirstView(string: stringValue)
         }
         .navigationAction(isActive: $isMainShowing) {

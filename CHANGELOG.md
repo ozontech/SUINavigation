@@ -3,6 +3,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.0] - 2024-02-21
+
+#### Added
+
+- Save section to `navigateUrlParams` modifier for making custom deeplink url.
+- The preferMode at snapshot tests for chousing the rendering type.
+- Many tests of deeplinks.
+
+#### Fixed
+
+- Detection of custom types at snapshot tests.
+- The preferMode with other position from Unit tests.
+- @Published to custom @NavigationPublished (higher performance).
+- Logic of NavigationNodeRenderingAnalyser.
+- Documentation of deeplinks.
+
 ## [1.8.1] - 2024-02-16
 
 #### Fixed
@@ -12,15 +28,15 @@ All notable changes to this project will be documented in this file.
 
 ## [1.8.0] - 2024-02-12
 
+#### Added
+
+- Example with Router SwiftUI pattern.
+
 #### Fixed
 
 - Bug with dismissing view by triggering to nil state.
 - UnitTests showing error. Extracted from `XCTestCase`.
 - `preferMode` removed as static property `XCTestCase` and added to tests functions.
-
-#### Added
-
-- Example with Router SwiftUI pattern.
 
 ## [1.7.4] - 2024-02-02
 

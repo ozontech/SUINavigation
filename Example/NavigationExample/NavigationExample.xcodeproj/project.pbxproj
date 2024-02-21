@@ -38,6 +38,11 @@
 		C3966A812ACFDC0600F12FEA /* BugUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3966A802ACFDC0600F12FEA /* BugUITests.swift */; };
 		C3AFEBD02B336E7000F8CE9C /* NodesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFEBCF2B336E7000F8CE9C /* NodesTests.swift */; };
 		C3B23C662AD97B28006C653F /* SkipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B23C652AD97B28006C653F /* SkipUITests.swift */; };
+		C3B6B5142B8377A100505594 /* NavigationTransitionStaticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6B5132B8377A100505594 /* NavigationTransitionStaticTests.swift */; };
+		C3B6B5162B83781500505594 /* NavigationTransitionRenderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6B5152B83781500505594 /* NavigationTransitionRenderingTests.swift */; };
+		C3CAD3712B7DE7AC00BF388D /* ObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAD3702B7DE7AC00BF388D /* ObjectView.swift */; };
+		C3CAD3732B7E32D300BF388D /* ModularObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAD3722B7E32D300BF388D /* ModularObjectView.swift */; };
+		C3CAD3752B7E34A100BF388D /* ObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAD3742B7E34A100BF388D /* ObjectView.swift */; };
 		C3D4FFE82AE08248003306E8 /* AppendUrlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FFE72AE08248003306E8 /* AppendUrlUITests.swift */; };
 		C3D88BBE2B060A2D007E6B2C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D88BBD2B060A2D007E6B2C /* MainTabView.swift */; };
 		C3F5E0262AF24306003540E4 /* TabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F5E0252AF24306003540E4 /* TabUITests.swift */; };
@@ -98,6 +103,11 @@
 		C3966A802ACFDC0600F12FEA /* BugUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugUITests.swift; sourceTree = "<group>"; };
 		C3AFEBCF2B336E7000F8CE9C /* NodesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesTests.swift; sourceTree = "<group>"; };
 		C3B23C652AD97B28006C653F /* SkipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipUITests.swift; sourceTree = "<group>"; };
+		C3B6B5132B8377A100505594 /* NavigationTransitionStaticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionStaticTests.swift; sourceTree = "<group>"; };
+		C3B6B5152B83781500505594 /* NavigationTransitionRenderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionRenderingTests.swift; sourceTree = "<group>"; };
+		C3CAD3702B7DE7AC00BF388D /* ObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectView.swift; sourceTree = "<group>"; };
+		C3CAD3722B7E32D300BF388D /* ModularObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularObjectView.swift; sourceTree = "<group>"; };
+		C3CAD3742B7E34A100BF388D /* ObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectView.swift; sourceTree = "<group>"; };
 		C3D4FFE72AE08248003306E8 /* AppendUrlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendUrlUITests.swift; sourceTree = "<group>"; };
 		C3D88BBD2B060A2D007E6B2C /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		C3F5E0252AF24306003540E4 /* TabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabUITests.swift; sourceTree = "<group>"; };
@@ -182,6 +192,8 @@
 			children = (
 				C30E346A2AC5787500D3DA51 /* NavigationExampleTests.swift */,
 				C3AFEBCF2B336E7000F8CE9C /* NodesTests.swift */,
+				C3B6B5132B8377A100505594 /* NavigationTransitionStaticTests.swift */,
+				C3B6B5152B83781500505594 /* NavigationTransitionRenderingTests.swift */,
 			);
 			path = NavigationExampleTests;
 			sourceTree = "<group>";
@@ -213,6 +225,7 @@
 				C34FA8992B1E004100069374 /* RootView.swift */,
 				C34FA89A2B1E004100069374 /* FirstView.swift */,
 				C34FA89B2B1E004100069374 /* BoolView.swift */,
+				C3CAD3702B7DE7AC00BF388D /* ObjectView.swift */,
 			);
 			path = Standard;
 			sourceTree = "<group>";
@@ -224,6 +237,7 @@
 				C34FA8A32B1E00EB00069374 /* ModularSecondView.swift */,
 				C34FA8A52B1E012D00069374 /* ModularFirstView.swift */,
 				C34FA8A72B1E014000069374 /* ModularBoolView.swift */,
+				C3CAD3722B7E32D300BF388D /* ModularObjectView.swift */,
 			);
 			path = Modular;
 			sourceTree = "<group>";
@@ -235,6 +249,7 @@
 				C3966A732ACF3EF600F12FEA /* BoolView.swift */,
 				C3966A7A2ACF533D00F12FEA /* FirstView.swift */,
 				C3966A7E2ACF56C200F12FEA /* SecondView.swift */,
+				C3CAD3742B7E34A100BF388D /* ObjectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -395,6 +410,8 @@
 				C34FA89E2B1E004100069374 /* FirstView.swift in Sources */,
 				C34FA8A42B1E00EB00069374 /* ModularSecondView.swift in Sources */,
 				C34FA8A62B1E012D00069374 /* ModularFirstView.swift in Sources */,
+				C3CAD3712B7DE7AC00BF388D /* ObjectView.swift in Sources */,
+				C3CAD3732B7E32D300BF388D /* ModularObjectView.swift in Sources */,
 				C30385B42B70C456008958CF /* EnvironmentValues.swift in Sources */,
 				C34FA89F2B1E004100069374 /* BoolView.swift in Sources */,
 				C3D88BBE2B060A2D007E6B2C /* MainTabView.swift in Sources */,
@@ -411,6 +428,8 @@
 			files = (
 				C30E346B2AC5787500D3DA51 /* NavigationExampleTests.swift in Sources */,
 				C3AFEBD02B336E7000F8CE9C /* NodesTests.swift in Sources */,
+				C3B6B5142B8377A100505594 /* NavigationTransitionStaticTests.swift in Sources */,
+				C3B6B5162B83781500505594 /* NavigationTransitionRenderingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +443,7 @@
 				C3966A7D2ACF567D00F12FEA /* RootUITests.swift in Sources */,
 				C3966A742ACF3EF600F12FEA /* BoolView.swift in Sources */,
 				C3D4FFE82AE08248003306E8 /* AppendUrlUITests.swift in Sources */,
+				C3CAD3752B7E34A100BF388D /* ObjectView.swift in Sources */,
 				C3966A7F2ACF56C200F12FEA /* SecondView.swift in Sources */,
 				C3966A812ACFDC0600F12FEA /* BugUITests.swift in Sources */,
 				C3940B452AD8940400EEE3FC /* PopToUITests.swift in Sources */,

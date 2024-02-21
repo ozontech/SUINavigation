@@ -17,6 +17,11 @@ struct ModularFirstView: View {
 
     @State
     private var isBoolShowed: Bool = false
+    
+    @State
+    private var object: ObjectDTO? = nil
+    @State
+    private var objectDTO: ObjectDTO? = nil
 
     @Environment(\.isChange)
     private var isChange
@@ -56,6 +61,28 @@ struct ModularFirstView: View {
         }
         .navigationAction(item: $numberForSecond, id: Destination.second, paramName: "secondNumber", isRemovingParam: true) { numberValue in
             Destination.second(numberValue, $numberForSecond)
+        }
+        .navigationAction(item: $object, paramName: "object") { objectValue in
+            ObjectView(object: objectValue)
+        }
+        .navigation(item: $objectDTO, id: "object") { objectValue in
+            ObjectView(object: objectValue)
+        }
+        .navigateUrlParams("object") { path in
+            guard let id = path.getIntParam("object.id"),
+                  let name = path.getStringParam("object.name"),
+                  let date = ObjectDTO.dateFormatter.date(from: path.getStringParam("object.date") ?? "")
+            else {
+                return
+            }
+            objectDTO = ObjectDTO(id: id, name: name, date: date)
+        } save: { path in
+            guard let object = objectDTO else {
+                return
+            }
+            path.pushIntParam("object.id", value: object.id)
+            path.pushStringParam("object.name", value: object.name)
+            path.pushStringParam("object.date", value: ObjectDTO.dateFormatter.string(from: object.date))
         }
     }
 }

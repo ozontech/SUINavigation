@@ -77,6 +77,7 @@ public class NavigationNode : Codable {
     }
 }
 
+// Standart type of params
 public enum NavigationNodeParameterType: String, Codable {
     case string = "String"
     case int = "Int"
@@ -86,10 +87,10 @@ public enum NavigationNodeParameterType: String, Codable {
 
 public struct NavigationNodeParameter : Codable {
     public let name: String
-    public let type: NavigationNodeParameterType
+    public let type: String
     public let defaultValue: String
 
-    public init(name: String, type: NavigationNodeParameterType, defaultValue: String) {
+    public init(name: String, type: String, defaultValue: String) {
         self.name = name
         self.type = type
         self.defaultValue = defaultValue

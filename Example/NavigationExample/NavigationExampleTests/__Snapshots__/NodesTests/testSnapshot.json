@@ -57,6 +57,50 @@
                 },
                 {
                   "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "ObjectView",
+                  "params" : [
+                    {
+                      "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+                      "name" : "object",
+                      "type" : "ObjectDTO"
+                    }
+                  ]
+                },
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "object",
+                  "params" : [
+                    {
+                      "defaultValue" : "0",
+                      "name" : "object.id",
+                      "type" : "Int"
+                    },
+                    {
+                      "defaultValue" : "",
+                      "name" : "object.name",
+                      "type" : "String"
+                    },
+                    {
+                      "defaultValue" : "",
+                      "name" : "object.date",
+                      "type" : "String"
+                    }
+                  ]
+                },
+                {
+                  "attributes" : [
                     "recursiveLoopDetected"
                   ],
                   "available" : "mock",
@@ -116,7 +160,7 @@
                     {
                       "defaultValue" : "main",
                       "name" : "tab",
-                      "type" : "Int"
+                      "type" : "MainTab"
                     }
                   ]
                 }
@@ -205,6 +249,50 @@
             },
             {
               "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "ObjectView",
+              "params" : [
+                {
+                  "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+                  "name" : "object",
+                  "type" : "ObjectDTO"
+                }
+              ]
+            },
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "object",
+              "params" : [
+                {
+                  "defaultValue" : "0",
+                  "name" : "object.id",
+                  "type" : "Int"
+                },
+                {
+                  "defaultValue" : "",
+                  "name" : "object.name",
+                  "type" : "String"
+                },
+                {
+                  "defaultValue" : "",
+                  "name" : "object.date",
+                  "type" : "String"
+                }
+              ]
+            },
+            {
+              "attributes" : [
                 "recursiveLoopDetected"
               ],
               "available" : "mock",
@@ -264,7 +352,7 @@
                 {
                   "defaultValue" : "main",
                   "name" : "tab",
-                  "type" : "Int"
+                  "type" : "MainTab"
                 }
               ]
             }
@@ -369,7 +457,7 @@
                         {
                           "defaultValue" : "main",
                           "name" : "tab",
-                          "type" : "Int"
+                          "type" : "MainTab"
                         }
                       ]
                     }
@@ -397,6 +485,50 @@
             }
           ],
           "viewType" : "SecondView"
+        },
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "none",
+          "children" : [
+
+          ],
+          "id" : "ObjectView",
+          "params" : [
+            {
+              "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+              "name" : "object",
+              "type" : "ObjectDTO"
+            }
+          ]
+        },
+        {
+          "attributes" : [
+            "deeplink"
+          ],
+          "available" : "none",
+          "children" : [
+
+          ],
+          "id" : "object",
+          "params" : [
+            {
+              "defaultValue" : "0",
+              "name" : "object.id",
+              "type" : "Int"
+            },
+            {
+              "defaultValue" : "",
+              "name" : "object.name",
+              "type" : "String"
+            },
+            {
+              "defaultValue" : "",
+              "name" : "object.date",
+              "type" : "String"
+            }
+          ]
         },
         {
           "attributes" : [
@@ -473,7 +605,7 @@
                     {
                       "defaultValue" : "main",
                       "name" : "tab",
-                      "type" : "Int"
+                      "type" : "MainTab"
                     }
                   ]
                 }
@@ -591,7 +723,7 @@
                             {
                               "defaultValue" : "main",
                               "name" : "tab",
-                              "type" : "Int"
+                              "type" : "MainTab"
                             }
                           ]
                         }
@@ -619,6 +751,50 @@
                 }
               ],
               "viewType" : "SecondView"
+            },
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "ObjectView",
+              "params" : [
+                {
+                  "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+                  "name" : "object",
+                  "type" : "ObjectDTO"
+                }
+              ]
+            },
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "none",
+              "children" : [
+
+              ],
+              "id" : "object",
+              "params" : [
+                {
+                  "defaultValue" : "0",
+                  "name" : "object.id",
+                  "type" : "Int"
+                },
+                {
+                  "defaultValue" : "",
+                  "name" : "object.name",
+                  "type" : "String"
+                },
+                {
+                  "defaultValue" : "",
+                  "name" : "object.date",
+                  "type" : "String"
+                }
+              ]
             },
             {
               "attributes" : [
@@ -695,7 +871,7 @@
                         {
                           "defaultValue" : "main",
                           "name" : "tab",
-                          "type" : "Int"
+                          "type" : "MainTab"
                         }
                       ]
                     }

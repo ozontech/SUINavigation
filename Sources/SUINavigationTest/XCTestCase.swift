@@ -63,9 +63,9 @@ public func navigation<SourceView: View>(
 public func test<SourceView: View, DestinationView: View>(
     navigationView: SourceView,
     destinationView: DestinationView.Type = DestinationView.self,
+    preferMode: NavigationCatchMode = .static,
     evalution: () -> Void = {},
     destination: @escaping (_ view: DestinationView) -> Void = {_ in },
-    preferMode: NavigationCatchMode = .static,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
@@ -99,9 +99,9 @@ public func test<SourceView: View, DestinationView: View>(
 public func test<SourceView: View, DestinationView: View>(
     sourceView: SourceView,
     destinationView: DestinationView.Type = DestinationView.self,
+    preferMode: NavigationCatchMode = .static,
     evalution: () -> Void = {},
     destination: @escaping (_ view: DestinationView) -> Void = {_ in },
-    preferMode: NavigationCatchMode = .static,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line

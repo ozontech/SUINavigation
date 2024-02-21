@@ -10,20 +10,18 @@ import Foundation
 extension NavigationStorage {
 
     public var currentUrl: String {
-        let pathString = pathItems.map { $0.id }.joined(separator: "/")
-        let paramsString = pathItems.compactMap {
-            guard let param = $0.param else {
-                return nil
+        let path = pathItems.map { $0.id }
+        let result = NavigationActionPath(path: path)
+        var lastChildren = rootChildren
+        for pathItem in pathItems {
+            if let saveHandler = lastChildren[pathItem.id]?.save {
+                saveHandler(result)
+            } else if let param = pathItem.param {
+                result.pushParam(param)
             }
-            return "\(param.name)=\(param.value)"
+            lastChildren = pathItem.children
         }
-            .filter{ $0.isEmpty == false }
-            .joined(separator: "&")
-        if paramsString.isEmpty {
-            return pathString
-        } else {
-            return "\(pathString)?\(paramsString)"
-        }
+        return result.getURL()
     }
 
     public func append(from url: String) {
@@ -43,11 +41,40 @@ extension NavigationStorage {
         }
     }
 
-    func addChild(_ urlComponent: String, _ paramsAction: @escaping NavigateUrlParamsHandler) {
+    func addChild(
+        _ urlComponent: String,
+        _ paramsAction: @escaping NavigateUrlParamsHandler,
+        _ save: NavigateUrlParamsSaveHandler?
+    ) -> String {
+        let result = Child(load: paramsAction, save: save)
         if let pathItem = pathItems.last {
-            pathItem.children[urlComponent] = paramsAction
+            pathItem.children[urlComponent] = result
         } else {
-            rootChildren[urlComponent] = paramsAction
+            rootChildren[urlComponent] = result
+        }
+        return result.uid
+    }
+
+    func updateChild(
+        uid: String,
+        _ urlComponent: String,
+        _ paramsAction: @escaping NavigateUrlParamsHandler,
+        _ save: NavigateUrlParamsSaveHandler?
+    ) {
+        if let pathItem = pathItems.last, let current = pathItem.children[urlComponent], current.uid == uid {
+            pathItem.children[urlComponent] = Child(uid: uid, load: paramsAction, save: save)
+            return
+        }
+        for (index, pathItem) in pathItems.reversed().enumerated() {
+            if pathItem.id == urlComponent, index > 0 {
+                if let current = pathItems[index - 1].children[urlComponent], current.uid == uid {
+                    pathItems[index - 1].children[urlComponent] = Child(uid: uid, load: paramsAction, save: save)
+                    return
+                }
+            }
+        }
+        if let current = rootChildren[urlComponent], current.uid == uid {
+            rootChildren[urlComponent] = Child(uid: uid, load: paramsAction, save: save)
         }
     }
 
@@ -86,7 +113,7 @@ extension NavigationStorage {
         let children = pathItems.last?.children ?? rootChildren
 
         if let action = children[actionName] {
-            action(actionPath)
+            action.load(actionPath)
             // need check for call custom navigation or remove it from 
             checkSubAction(id: actionName)
             return

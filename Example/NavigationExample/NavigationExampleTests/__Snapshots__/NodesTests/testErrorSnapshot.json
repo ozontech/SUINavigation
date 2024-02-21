@@ -1,0 +1,14 @@
+{
+  "attributes" : [
+
+  ],
+  "available" : "mock",
+  "children" : [
+
+  ],
+  "id" : "",
+  "params" : [
+
+  ],
+  "viewType" : "ModifiedContent<BugView, _EnvironmentKeyWritingModifier<Optional<RootViewModelMock>>>"
+}

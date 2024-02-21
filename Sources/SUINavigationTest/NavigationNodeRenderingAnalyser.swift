@@ -13,11 +13,11 @@ import XCTest
 // need add id douplication checking
 public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProtocol {
 
-    var cancellention: Cancellable? = nil
-
     public init() { }
 
-    fileprivate func searchChildNodes<V: View>(view: V, parent: NavigationNode, id: String, navStorage: NavigationStorage, isRecursive: Bool, children: [String: NavigateUrlParamsHandler])
+    var cancellention: Cancellable? = nil
+
+    fileprivate func searchChildNodes<V: View>(view: V, parent: NavigationNode, id: String, navStorage: NavigationStorage, isRecursive: Bool, children: [String: NavigationStorage.Child])
     {
         let actionPathTester = NavigationActionPathTester()
         var available = NavigationNodeAvailable.none
@@ -31,6 +31,7 @@ public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProto
         let startItemsCount = navStorage.pathItems.count
 
         let expectationAddItem = XCTestExpectation(description: "addItem")
+        let expectationNewView = XCTestExpectation(description: "newView")
         let waiter = XCTWaiter()
 
         cancellention = navStorage.$pathItems.sink { items in
@@ -42,41 +43,36 @@ public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProto
             }
         }
 
-        children[id]!(actionPathTester)
+        var newView: (any View)? = nil
 
-        waiter.wait(for: [expectationAddItem], timeout: 0.3)
+        NavigationCatch.shared.catchAnyView(mode: .rendering) { view in
+            print("New view")
+            if newView == nil {
+                newView = view
+                expectationNewView.fulfill()
+            }
+        }
+
+        let transitionTrigger = children[id]!.load
+        transitionTrigger(actionPathTester)
+
+        waiter.wait(for: [expectationAddItem, expectationNewView], timeout: 0.3)
+
+        NavigationCatch.shared.clean()
 
         let node = NavigationNode(id: id, params: actionPathTester.params, available: available, attributes: attributes)
         if let childItem {
             node.viewType = childItem.viewType
         }
         parent.addChild(node)
-        if let childItem, isRecursive == true, node.isRecursiveLoopDetected == false {
-            let expectationChildren = XCTestExpectation(description: "children")
 
-            var children: [String: NavigateUrlParamsHandler] = [:]
-
-            cancellention = childItem.$children
-                .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)
-                .sink { items in
-                    children = items
-                    expectationChildren.fulfill()
-            }
-
-            view.render()
-
-            waiter.wait(for: [expectationChildren], timeout: 0.3)
-
-            for id in children.keys.sorted() {
-                searchChildNodes(view: view, parent: node, id: id, navStorage: navStorage, isRecursive: isRecursive, children: children)
-            }
-        }
-
+        // to revert to start position
         if node.isAvailable {
-
             let expectationRemove = XCTestExpectation(description: "remove")
 
-            cancellention = navStorage.$pathItems.sink { data in
+            cancellention = navStorage.$pathItems
+                .sink
+            { data in
                 print("complite \(data)")
             } receiveValue: { items in
                 if items.count == startItemsCount {
@@ -89,6 +85,13 @@ public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProto
 
             waiter.wait(for: [expectationRemove], timeout: 0.3)
         }
+
+        // from start position try to analyze chields
+        if let childItem, isRecursive == true, node.isRecursiveLoopDetected == false {
+            if let newView {
+                searchNodes(for: node, view: newView, isRecursive: isRecursive)
+            }
+        }
     }
 
     func searchNodes<V: View>(for parent: NavigationNode, view: V, isRecursive: Bool = false) {
@@ -97,14 +100,12 @@ public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProto
         let expectationRootChildren = XCTestExpectation(description: "rootChildren")
         var navStorage: NavigationStorage = NavigationStorage()
 
-        var rootChildren: [String: NavigateUrlParamsHandler] = [:]
+        var rootChildren: [String: NavigationStorage.Child] = [:]
 
-        cancellention = navStorage.$rootChildren
-            .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)
-            .sink { items in
-                rootChildren = items
-                print("Found root children: \(rootChildren.count)")
-                expectationRootChildren.fulfill()
+        navStorage.$rootChildren.catchDidChange(delay: 0.1) { items in
+            rootChildren = items
+            print("Found root children: \(rootChildren.count)")
+            expectationRootChildren.fulfill()
         }
 
         let destinationView =
@@ -115,6 +116,8 @@ public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProto
         destinationView.render()
 
         waiter.wait(for: [expectationRootChildren], timeout: 0.3)
+
+        navStorage.$rootChildren.clean()
 
         for id in rootChildren.keys.sorted() {
             searchChildNodes(view: view, parent: parent, id: id, navStorage: navStorage, isRecursive: isRecursive, children: rootChildren)

@@ -32,6 +32,7 @@ public final class NavigationCatch {
     internal var staticMock: NavigationCatchMockProtocol? = nil
 
     public var catchUrlParamsHandler : ((_ urlComponent: String, _ action: NavigateUrlParamsHandler) -> Void)? = nil
+    public var catchUrlParamsSaveHandler : ((_ urlComponent: String, _ action: NavigateUrlParamsSaveHandler?) -> Void)? = nil
 
     public func catchView<V: View>(
         to viewType: V.Type,
@@ -134,11 +135,15 @@ internal extension View {
 
     internal func staticCheckUrlParams(
         _ urlComponent: String,
-        action: @escaping NavigateUrlParamsHandler
+        action: @escaping NavigateUrlParamsHandler,
+        save: NavigateUrlParamsSaveHandler?
     ){
 #if DEBUG
         if let catchUrlParamsHandler = NavigationCatch.shared.catchUrlParamsHandler {
             catchUrlParamsHandler(urlComponent, action)
+        }
+        if let catchUrlParamsSaveHandler = NavigationCatch.shared.catchUrlParamsSaveHandler {
+            catchUrlParamsSaveHandler(urlComponent, save)
         }
 #endif
     }

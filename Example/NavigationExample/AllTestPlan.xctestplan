@@ -42,7 +42,8 @@
     {
       "skippedTests" : [
         "NavigationExampleTests\/testMainToSecondDeepLink()",
-        "NodesTests\/testErrorSnapshot()"
+        "NodesTests\/testErrorSnapshot()",
+        "NodesTests\/testRenderingItemsSnapshot()"
       ],
       "target" : {
         "containerPath" : "container:NavigationExample.xcodeproj",

@@ -5,7 +5,22 @@
       "attributes" : [
         "deeplink"
       ],
-      "available" : "mock",
+      "available" : "trigger",
+      "id" : "ObjectView",
+      "params" : [
+        {
+          "defaultValue" : "Object: id:0; name:; date:2020-02-20",
+          "name" : "object",
+          "type" : "ObjectDTO"
+        }
+      ],
+      "viewType" : "ObjectView"
+    },
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "trigger",
       "id" : "SecondView",
       "params" : [
         {
@@ -15,20 +30,6 @@
         }
       ],
       "viewType" : "SecondView"
-    },
-    {
-      "attributes" : [
-        "deeplink"
-      ],
-      "available" : "none",
-      "id" : "ObjectView",
-      "params" : [
-        {
-          "defaultValue" : "Object: id:0; name:; date:2024-02-16",
-          "name" : "object",
-          "type" : "ObjectDTO"
-        }
-      ]
     },
     {
       "attributes" : [
@@ -53,17 +54,6 @@
           "type" : "String"
         }
       ]
-    },
-    {
-      "attributes" : [
-
-      ],
-      "available" : "mock",
-      "id" : "BoolView",
-      "params" : [
-
-      ],
-      "viewType" : "BoolView"
     }
   ],
   "viewType" : "FirstView"

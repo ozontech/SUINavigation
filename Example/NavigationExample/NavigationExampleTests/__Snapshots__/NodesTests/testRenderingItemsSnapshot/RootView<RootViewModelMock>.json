@@ -1,0 +1,32 @@
+{
+  "id" : "",
+  "transitions" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "trigger",
+      "id" : "BoolView",
+      "params" : [
+
+      ],
+      "viewType" : "BoolView"
+    },
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "trigger",
+      "id" : "SecondView",
+      "params" : [
+        {
+          "defaultValue" : "0",
+          "name" : "SecondView",
+          "type" : "Int"
+        }
+      ],
+      "viewType" : "SecondView"
+    }
+  ],
+  "viewType" : "RootView<RootViewModelMock>"
+}

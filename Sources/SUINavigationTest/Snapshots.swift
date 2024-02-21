@@ -24,17 +24,19 @@ public func rootNode(for view: any View, mock: NavigationMockStore? = nil, isRec
 @inline(__always)
 public func assertSnapshot<V: View>(
     _ view: V,
+    // default is static analyser
+    preferMode: NavigationCatchMode = .static,
     mock: NavigationMockStore? = nil,
     snapshotDirectory: String? = nil,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
 ) throws {
-    // default is static analyser
-    let staticAnalyser = NavigationNodeStaticAnalyser(mock: mock)
-    let rootNode = rootNode(for: view, analyser: staticAnalyser, mock: mock, isRecursive: true)
+    let analyser = preferMode.nodeAnalyser(mock: mock)
 
-    if staticAnalyser.failuresCount > 0 {
+    let rootNode = rootNode(for: view, analyser: analyser, mock: mock, isRecursive: true)
+
+    if let staticAnalyser = analyser as? NavigationNodeStaticAnalyser, staticAnalyser.failuresCount > 0 {
         XCTFail("Static analyser found issues: \n\n\(staticAnalyser.failureResult)", file: file, line: line)
     }
 
@@ -77,6 +79,8 @@ public func assertSnapshot<V: View>(
 @inline(__always)
 public func assertItemsSnapshot<V: View>(
     _ view: V,
+    // default is static analyser
+    preferMode: NavigationCatchMode = .static,
     mock: NavigationMockStore? = nil,
     hasDuplicationChecking: Bool = true,
     snapshotDirectory: String? = nil,
@@ -84,11 +88,11 @@ public func assertItemsSnapshot<V: View>(
     testName: String = #function,
     line: UInt = #line
 ) throws {
-    // default is static analyser
-    let staticAnalyser = NavigationNodeStaticAnalyser(mock: mock)
-    let rootNode = rootNode(for: view, analyser: staticAnalyser, mock: mock, isRecursive: true)
+    let analyser = preferMode.nodeAnalyser(mock: mock)
+    
+    let rootNode = rootNode(for: view, analyser: analyser, mock: mock, isRecursive: true)
 
-    if staticAnalyser.failuresCount > 0 {
+    if let staticAnalyser = analyser as? NavigationNodeStaticAnalyser, staticAnalyser.failuresCount > 0 {
         XCTFail("Static analyser found issues: \n\n\(staticAnalyser.failureResult)", file: file, line: line)
     }
 

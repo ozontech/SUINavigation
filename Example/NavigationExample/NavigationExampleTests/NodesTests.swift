@@ -67,7 +67,7 @@ final class NodesTests: XCTestCase {
         XCTAssertTrue(firstNode.isAvailable)
         XCTAssertFalse(firstNode.isDeeplinkSupport)
         XCTAssertFalse(firstNode.isRecursiveLoopDetected)
-        XCTAssertEqual(firstNode.children.count, 2)
+        XCTAssertEqual(firstNode.children.count, 4)
 
         XCTAssertEqual(secondNode.id, "SecondView")
         XCTAssertEqual(secondNode.viewType, "SecondView")
@@ -95,7 +95,7 @@ final class NodesTests: XCTestCase {
         XCTAssertEqual(secondBoolFirstNode.viewType, "FirstView")
         XCTAssertTrue(secondBoolFirstNode.isAvailable)
         XCTAssertFalse(secondBoolFirstNode.isRecursiveLoopDetected)
-        XCTAssertEqual(secondBoolFirstNode.children.count, 2)
+        XCTAssertEqual(secondBoolFirstNode.children.count, 4)
 
         let secondBoolMainTabNode = secondBoolChildren[1]
         XCTAssertEqual(secondBoolMainTabNode.id, "MainTabView")
@@ -255,6 +255,14 @@ final class NodesTests: XCTestCase {
 
     func testErrorSnapshot() throws {
         try assertSnapshot(BugView().environmentObject(RootViewModelMock()), mock: mock)
+    }
+
+    // warning ustable test, because use rendering type of nodes analayes.
+    // For testing up to iOS 16.3
+    func testRenderingItemsSnapshot() throws {
+        let viewModel = RootViewModelMock()
+        let rootView = RootView(viewModel: viewModel)
+        try assertItemsSnapshot(rootView, preferMode: .rendering, mock: mock, hasDuplicationChecking: false)
     }
 
 }
