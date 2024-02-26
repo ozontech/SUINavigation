@@ -17,6 +17,8 @@
 		C30E34772AC5787500D3DA51 /* SimpleFirstUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E34762AC5787500D3DA51 /* SimpleFirstUITests.swift */; };
 		C30E348F2AC5D02700D3DA51 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C30E348E2AC5D02700D3DA51 /* SUINavigation */; };
 		C31AFD3E2B62B22B00F454E7 /* PerformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31AFD3D2B62B22B00F454E7 /* PerformView.swift */; };
+		C335502F2B8C80AE00B6FFC6 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C335502E2B8C80AE00B6FFC6 /* SUINavigation */; };
+		C33550312B8C80AE00B6FFC6 /* SUINavigationTest in Frameworks */ = {isa = PBXBuildFile; productRef = C33550302B8C80AE00B6FFC6 /* SUINavigationTest */; };
 		C34FA89C2B1E004100069374 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8982B1E004100069374 /* SecondView.swift */; };
 		C34FA89D2B1E004100069374 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8992B1E004100069374 /* RootView.swift */; };
 		C34FA89E2B1E004100069374 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA89A2B1E004100069374 /* FirstView.swift */; };
@@ -47,7 +49,6 @@
 		C3D88BBE2B060A2D007E6B2C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D88BBD2B060A2D007E6B2C /* MainTabView.swift */; };
 		C3F5E0262AF24306003540E4 /* TabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F5E0252AF24306003540E4 /* TabUITests.swift */; };
 		C3F948BD2B18820700AA0FA8 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C3F948BC2B18820700AA0FA8 /* SUINavigation */; };
-		C3F948BF2B18820700AA0FA8 /* SUINavigationTest in Frameworks */ = {isa = PBXBuildFile; productRef = C3F948BE2B18820700AA0FA8 /* SUINavigationTest */; };
 		C3FCC1D92AE7A87D003E0754 /* ReplaceUrlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FCC1D82AE7A87D003E0754 /* ReplaceUrlUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3F948BD2B18820700AA0FA8 /* SUINavigation in Frameworks */,
+				C335502F2B8C80AE00B6FFC6 /* SUINavigation in Frameworks */,
 				C30E348F2AC5D02700D3DA51 /* SUINavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3F948BF2B18820700AA0FA8 /* SUINavigationTest in Frameworks */,
+				C33550312B8C80AE00B6FFC6 /* SUINavigationTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +284,7 @@
 			packageProductDependencies = (
 				C30E348E2AC5D02700D3DA51 /* SUINavigation */,
 				C3F948BC2B18820700AA0FA8 /* SUINavigation */,
+				C335502E2B8C80AE00B6FFC6 /* SUINavigation */,
 			);
 			productName = NavigationExample;
 			productReference = C30E34562AC5787300D3DA51 /* NavigationExample.app */;
@@ -302,7 +305,7 @@
 			);
 			name = NavigationExampleTests;
 			packageProductDependencies = (
-				C3F948BE2B18820700AA0FA8 /* SUINavigationTest */,
+				C33550302B8C80AE00B6FFC6 /* SUINavigationTest */,
 			);
 			productName = NavigationExampleTests;
 			productReference = C30E34662AC5787500D3DA51 /* NavigationExampleTests.xctest */;
@@ -359,7 +362,7 @@
 			);
 			mainGroup = C30E344D2AC5787300D3DA51;
 			packageReferences = (
-				C3F948BB2B18820700AA0FA8 /* XCLocalSwiftPackageReference "../.." */,
+				C335502D2B8C80AE00B6FFC6 /* XCLocalSwiftPackageReference "../.." */,
 			);
 			productRefGroup = C30E34572AC5787300D3DA51 /* Products */;
 			projectDirPath = "";
@@ -770,7 +773,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		C3F948BB2B18820700AA0FA8 /* XCLocalSwiftPackageReference "../.." */ = {
+		C335502D2B8C80AE00B6FFC6 /* XCLocalSwiftPackageReference "../.." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../..;
 		};
@@ -781,13 +784,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SUINavigation;
 		};
-		C3F948BC2B18820700AA0FA8 /* SUINavigation */ = {
+		C335502E2B8C80AE00B6FFC6 /* SUINavigation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SUINavigation;
 		};
-		C3F948BE2B18820700AA0FA8 /* SUINavigationTest */ = {
+		C33550302B8C80AE00B6FFC6 /* SUINavigationTest */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SUINavigationTest;
+		};
+		C3F948BC2B18820700AA0FA8 /* SUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SUINavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
