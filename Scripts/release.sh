@@ -8,7 +8,7 @@ checkExit(){
 }
 
 CHANGELOG=$(cat CHANGELOG.md)
-VERSION_REGEX='## \[([.0-9]*)\]'
+VERSION_REGEX='## *\[([.0-9]*)\]'
 CURRENT_VERSION=""
 if [[ $CHANGELOG =~ $VERSION_REGEX ]]; then
     CURRENT_VERSION=${BASH_REMATCH[1]}
@@ -31,13 +31,13 @@ sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simu
 checkExit "Tests on iOS 17.0.1"
 
 xcrun simctl shutdown all
-sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 14,OS=16.4'
+sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=16.4'
 checkExit "Tests on iOS 16.4"
 
 xcrun simctl shutdown all
-sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 14,OS=16.0'
+sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=16.0'
 checkExit "Tests on iOS 16.0"
 
 xcrun simctl shutdown all
-sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 13,OS=15.2'
-checkExit "Tests on iOS 15.2"
+sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=15.5'
+checkExit "Tests on iOS 15.5"
