@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.1] - 2024-02-26
+
+#### Added
+
+- Automatisation: CI scripts for testing and release.
+
 ## [1.9.0] - 2024-02-21
 
 #### Added
