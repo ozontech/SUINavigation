@@ -222,6 +222,7 @@ final class SkipUITests: XCTestCase {
             .checkThis()
     }
 
+    // Not stable on iOS 16.4
     func testRepeat() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)

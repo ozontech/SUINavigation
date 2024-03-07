@@ -32,6 +32,7 @@
         "ActionUrlUITests\/testDoubleNavigation()",
         "RootUITests\/testDoubleNavigation()",
         "SkipUITests\/testDoubleSkipAfterRepeat()",
+        "SkipUITests\/testRepeat()",
         "TabUITests\/testTabBarInDoubleNavigation()"
       ],
       "target" : {
