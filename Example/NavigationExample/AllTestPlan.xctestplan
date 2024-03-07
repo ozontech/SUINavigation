@@ -20,9 +20,11 @@
     }
   ],
   "defaultOptions" : {
+    "diagnosticCollectionPolicy" : "Always",
     "environmentVariableEntries" : [
 
     ],
+    "testRepetitionMode" : "retryOnFailure",
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
@@ -31,8 +33,6 @@
       "skippedTests" : [
         "ActionUrlUITests\/testDoubleNavigation()",
         "RootUITests\/testDoubleNavigation()",
-        "SkipUITests\/testDoubleSkipAfterRepeat()",
-        "SkipUITests\/testRepeat()",
         "TabUITests\/testTabBarInDoubleNavigation()"
       ],
       "target" : {
