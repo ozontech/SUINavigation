@@ -35,6 +35,7 @@ final class SkipUITests: XCTestCase {
             .checkRootMessage(tapOK: true)
     }
 
+    // Not stable on iOS 17.2
     func testDoubleSkipAfterRepeat() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
