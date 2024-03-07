@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.2] - 2024-03-07
+
+#### Added
+
+- Automatisation: CI scripts for public release notes on GitHub.
+
 ## [1.9.1] - 2024-02-26
 
 #### Added
