@@ -1,4 +1,11 @@
-#! /bin/bash
+#!/bin/bash
+
+checkExit(){
+    if [ $? != 0 ]; then
+        echo "Building failed: $1\n"
+        exit 1
+    fi
+}
 
 CHANGELOG=$(cat CHANGELOG.md)
 VERSION_REGEX='##[[:space:]]*\[([.0-9]*)\]'
@@ -8,6 +15,8 @@ if [[ $CHANGELOG =~ $VERSION_REGEX ]]; then
 fi
 
 echo "Release version $CURRENT_VERSION detected"
+
+checkExit "Version detection"
 
 #perl scripts/releasenotes.pl
 #VERSION_MESSAGE=$(perl scripts/releasenotes.pl)
@@ -31,10 +40,12 @@ if ($CHANGELOG =~ m/## *\[$CURRENT_VERSION\].*\s+((.|\s)*?)\s+## *\[[.0-9]*\]/) 
 EOF
 )
 
-#echo "$VERSION_MESSAGE"
+checkExit "Release notes detection"
 
-exit 1
+echo "Release notes:"
+echo "$VERSION_MESSAGE"
 
+echo "Start upload release to GitHub"
 
 # GitHub CLI api
 # https://cli.github.com/manual/gh_api
@@ -52,3 +63,6 @@ gh api \
  -F draft=false \
  -F prerelease=false \
  -F generate_release_notes=false 
+
+
+checkExit "GitHub release upload"
