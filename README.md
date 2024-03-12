@@ -41,6 +41,25 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 ## Build & test
 
+### Bash script
+
+For tests on popular iOS versions you just call script:
+
+```bash
+sh Scripts/release.sh
+```
+
+The same script can prepare release with detection version from [CHANGELOG](CHANGELOG.md) and you can use it for tag new version.
+For the creating release notes I use [GL](https://cli.github.com/manual/gh), installed and setup and call next script:
+
+```bash
+brew install gh
+gh auth login
+sh Scripts/releasenotes.sh
+```
+
+### Manually
+
 Just open `Example/NavigationExample/NavigationExample.xcodeproj` from Xcode and you can build, test this from IDE.
 
 ## Using

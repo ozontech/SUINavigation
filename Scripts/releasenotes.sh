@@ -50,6 +50,11 @@ echo "Start upload release to GitHub"
 # GitHub CLI api
 # https://cli.github.com/manual/gh_api
 # I change '$CURRENT_VERSION' to "$CURRENT_VERSION"
+# If you need auth GitHub on Runner:
+# 1. install gh: `brew install gh`
+# 2. Start interactive setup `gh auth login`
+# 3. More: https://cli.github.com/manual/gh
+# About create Release API: https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release
 
 gh api \
   --method POST \
