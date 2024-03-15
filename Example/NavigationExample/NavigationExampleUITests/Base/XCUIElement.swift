@@ -51,6 +51,12 @@ protocol View {
 
 }
 
+enum SwipeTopPosition: CGFloat {
+    case left = 0.02
+    case center = 0.5
+    case right = 0.98
+}
+
 extension View {
     @discardableResult
     func tapBack() -> Self {
@@ -75,13 +81,15 @@ extension View {
         return self
     }
 
+
+
     @discardableResult
-    func swipeTopToBottom() -> Self {
+    func swipeTopToBottom(_ position: SwipeTopPosition) -> Self {
         let navigationBar = app.windows.firstMatch
         navigationBar.waitForExistingAndAssert()
 
-        let startOffset = CGVector(dx: 0.5, dy: -0.01)
-        let endOffset = CGVector(dx: 0.5, dy: 1)
+        let startOffset = CGVector(dx: position.rawValue, dy: -0.01)
+        let endOffset = CGVector(dx: position.rawValue, dy: 1)
         let startPoint = navigationBar.coordinate(withNormalizedOffset: startOffset)
         let endPoint = navigationBar.coordinate(withNormalizedOffset: endOffset)
         startPoint
@@ -91,12 +99,12 @@ extension View {
     }
 
     @discardableResult
-    func swipeBottomToTop() -> Self {
+    func swipeBottomToTop(_ position: SwipeTopPosition) -> Self {
         let navigationBar = app.windows.firstMatch
         navigationBar.waitForExistingAndAssert()
 
-        let startOffset = CGVector(dx: 0.5, dy: 1)
-        let endOffset = CGVector(dx: 0.5, dy: 0)
+        let startOffset = CGVector(dx: position.rawValue, dy: 1)
+        let endOffset = CGVector(dx: position.rawValue, dy: 0)
         let startPoint = navigationBar.coordinate(withNormalizedOffset: startOffset)
         let endPoint = navigationBar.coordinate(withNormalizedOffset: endOffset)
         startPoint
