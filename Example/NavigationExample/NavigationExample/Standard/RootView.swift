@@ -13,6 +13,9 @@ protocol RootViewModelProtocol: ObservableObject {
     var numberForSecond: Int? {set get}
     var performStartDate: Date? {set get}
     var performLoad: PerformLoad {set get}
+
+    static var initCount: Int {get}
+    static var deinitCount: Int {get}
 }
 
 final class RootViewModel: RootViewModelProtocol {
@@ -27,6 +30,17 @@ final class RootViewModel: RootViewModelProtocol {
     var performStartDate: Date? = nil
     @Published
     var performLoad: PerformLoad = .empty
+
+    static var initCount: Int = 0
+    static var deinitCount: Int = 0
+
+    init(){
+        Self.initCount += 1
+    }
+
+    deinit {
+        Self.deinitCount += 1
+    }
 }
 
 struct RootView<ViewModel: RootViewModelProtocol>: View {
@@ -79,6 +93,11 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
                         viewModel.performLoad = .sheetOptimized
                     }
                 }
+                HStack {
+                    Text("VM init count: \(ViewModel.initCount)")
+                    Text(", ")
+                    Text("VM deinit count: \(ViewModel.deinitCount)")
+                }
             }
         }
         .padding()
@@ -110,6 +129,17 @@ final class RootViewModelMock: RootViewModelProtocol {
     var performStartDate: Date? = nil
     @Published
     var performLoad: PerformLoad = .empty
+
+    static var initCount: Int = 0
+    static var deinitCount: Int = 0
+
+    init(){
+        Self.initCount += 1
+    }
+
+    deinit {
+        Self.deinitCount += 1
+    }
 }
 
 extension RootView {

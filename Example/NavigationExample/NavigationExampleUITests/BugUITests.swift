@@ -205,4 +205,35 @@ final class BugUITests: XCTestCase {
             .checkThis()
     }
 
+    /// From iOS 16 to iOS 16.9 NavigationStack init StateObject twice.
+    /// This Apple bug illustrated on https://openradar.appspot.com/radar?id=5578366417633280
+    func testBugWithDoubleStateObjectInit() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .checkVM(initCount: 1)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .tapMain()
+        MainView(app: app)
+            .checkThis()
+            .checkVM(initCount: 2)
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .tapMain()
+        MainView(app: app)
+            .checkThis()
+            .checkVM(initCount: 3)
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+            .checkVM(initCount: 3)
+    }
+
 }

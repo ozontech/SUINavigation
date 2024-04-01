@@ -16,7 +16,7 @@ struct MainView: View {
     @discardableResult
     func checkThis() -> Self {
         let text = app.staticTexts["This is Main"]
-        text.waitForExistingAndAssert(timeout: 5)
+        text.waitForExistingAndAssert(timeout: 1)
         return self
     }
 
@@ -76,6 +76,13 @@ struct MainView: View {
         let button = app.buttons[tab]
         button.waitForExistingAndAssert()
         button.tap()
+        return self
+    }
+
+    @discardableResult
+    func checkVM(initCount: Int) -> Self {
+        let text = app.staticTexts["VM init count: \(initCount)"]
+        text.waitForExistingAndAssert(timeout: 1)
         return self
     }
 
