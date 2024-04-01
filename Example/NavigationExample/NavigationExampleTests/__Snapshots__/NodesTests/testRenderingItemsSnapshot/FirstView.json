@@ -5,7 +5,7 @@
       "attributes" : [
         "deeplink"
       ],
-      "available" : "trigger",
+      "available" : "none",
       "id" : "ObjectView",
       "params" : [
         {
@@ -13,14 +13,13 @@
           "name" : "object",
           "type" : "ObjectDTO"
         }
-      ],
-      "viewType" : "ObjectView"
+      ]
     },
     {
       "attributes" : [
         "deeplink"
       ],
-      "available" : "trigger",
+      "available" : "none",
       "id" : "SecondView",
       "params" : [
         {
@@ -28,8 +27,7 @@
           "name" : "secondNumber",
           "type" : "Int"
         }
-      ],
-      "viewType" : "SecondView"
+      ]
     },
     {
       "attributes" : [

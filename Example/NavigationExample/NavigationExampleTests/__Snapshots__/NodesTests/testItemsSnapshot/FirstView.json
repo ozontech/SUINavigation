@@ -24,7 +24,7 @@
       "id" : "ObjectView",
       "params" : [
         {
-          "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+          "defaultValue" : "Object: id:0; name:; date:2020-02-20",
           "name" : "object",
           "type" : "ObjectDTO"
         }

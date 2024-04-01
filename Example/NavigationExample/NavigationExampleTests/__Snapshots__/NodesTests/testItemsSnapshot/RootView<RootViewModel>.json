@@ -1,0 +1,54 @@
+{
+  "id" : "Root",
+  "transitions" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "mock",
+      "id" : "SecondView",
+      "params" : [
+        {
+          "defaultValue" : "0",
+          "name" : "SecondView",
+          "type" : "Int"
+        }
+      ],
+      "viewType" : "SecondView"
+    },
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "mock",
+      "id" : "BoolView",
+      "params" : [
+
+      ],
+      "viewType" : "BoolView"
+    },
+    {
+      "attributes" : [
+
+      ],
+      "available" : "mock",
+      "id" : "FirstView",
+      "params" : [
+
+      ],
+      "viewType" : "FirstView"
+    },
+    {
+      "attributes" : [
+
+      ],
+      "available" : "mock",
+      "id" : "PerformView",
+      "params" : [
+
+      ],
+      "viewType" : "PerformView"
+    }
+  ],
+  "viewType" : "RootView<RootViewModel>"
+}

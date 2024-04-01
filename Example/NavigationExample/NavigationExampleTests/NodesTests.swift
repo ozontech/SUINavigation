@@ -60,7 +60,7 @@ final class NodesTests: XCTestCase {
         XCTAssertTrue(boolNode.isAvailable)
         XCTAssertTrue(boolNode.isDeeplinkSupport)
         XCTAssertFalse(boolNode.isRecursiveLoopDetected)
-        XCTAssertEqual(boolNode.children.count, 4)
+        XCTAssertEqual(boolNode.children.count, 5)
 
         XCTAssertEqual(firstNode.id, "FirstView")
         XCTAssertEqual(firstNode.viewType, "FirstView")
@@ -84,7 +84,7 @@ final class NodesTests: XCTestCase {
         XCTAssertEqual(secondBoolNode.viewType, "BoolView")
         XCTAssertTrue(secondBoolNode.isAvailable)
         XCTAssertFalse(secondBoolNode.isRecursiveLoopDetected)
-        XCTAssertEqual(secondBoolNode.children.count, 4)
+        XCTAssertEqual(secondBoolNode.children.count, 5)
         guard secondBoolNode.children.count == 4 else {
             return
         }
@@ -222,7 +222,7 @@ final class NodesTests: XCTestCase {
     func testOnlyBool() throws {
         let boolNode = rootNode(for: BoolView(), mock: mock, isRecursive: false)
 
-        XCTAssertEqual(boolNode.children.count, 4)
+        XCTAssertEqual(boolNode.children.count, 5)
         guard boolNode.children.count == 4 else {
             return
         }
@@ -251,6 +251,8 @@ final class NodesTests: XCTestCase {
         XCTAssertTrue(boolNode.children[3].isAvailable)
         XCTAssertFalse(boolNode.children[3].isRecursiveLoopDetected)
         XCTAssertFalse(boolNode.children[3].isDeeplinkSupport)
+
+        XCTAssertEqual(boolNode.children[4].id, "Root")
     }
 
     func testErrorSnapshot() throws {

@@ -51,6 +51,17 @@
 
       ],
       "viewType" : "MainTabView"
+    },
+    {
+      "attributes" : [
+
+      ],
+      "available" : "mock",
+      "id" : "Root",
+      "params" : [
+
+      ],
+      "viewType" : "RootView<RootViewModel>"
     }
   ],
   "viewType" : "BoolView"
