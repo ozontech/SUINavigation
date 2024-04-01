@@ -15,6 +15,9 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
     @State
     private var isBoolShowed: Bool = false
 
+    @Environment(\.isChange)
+    private var isChange
+
     init() where ViewModel == RootViewModel {
         _viewModel = StateObject(wrappedValue: RootViewModel())
     }
@@ -31,6 +34,13 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
                 }
                 Button("to Bool") {
                     isBoolShowed = true
+                }
+                if isChange.wrappedValue {
+                    HStack {
+                        Text("VM init count: \(ViewModel.initCount)")
+                        Text(", ")
+                        Text("VM deinit count: \(ViewModel.deinitCount)")
+                    }
                 }
             }
         }

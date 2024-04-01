@@ -50,6 +50,9 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
     @State
     private var isBoolShowed: Bool = false
 
+    @Environment(\.isChange)
+    private var isChange
+
     init() where ViewModel == RootViewModel {
         _viewModel = StateObject(wrappedValue: RootViewModel())
     }
@@ -93,10 +96,12 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
                         viewModel.performLoad = .sheetOptimized
                     }
                 }
-                HStack {
-                    Text("VM init count: \(ViewModel.initCount)")
-                    Text(", ")
-                    Text("VM deinit count: \(ViewModel.deinitCount)")
+                if isChange.wrappedValue {
+                    HStack {
+                        Text("VM init count: \(ViewModel.initCount)")
+                        Text(", ")
+                        Text("VM deinit count: \(ViewModel.deinitCount)")
+                    }
                 }
             }
         }
