@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 
 #### Fixed
 
-- Apple bug with StateObject on 16.4 with NavigationStack and YES, this is no joke again.
+- Apple bug with StateObject double creation on 16.4 with NavigationStack and YES, this is no joke again.
 
 ## [1.9.3] - 2024-03-12
 
