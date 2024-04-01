@@ -50,8 +50,13 @@ struct MainView: View {
                         .navigationTitle(isRoot ? isChange ? "This screen is changed" : "Waitting changes" : "Back")
                         .navigationStorage(isRoot: $isRoot)
 
-                    Button("to Root") {
-                        navigationStorage?.popToRoot()
+                    HStack {
+                        Button("to Root") {
+                            navigationStorage?.popToRoot()
+                        }
+                        Button("to change") {
+                            isChange.toggle()
+                        }
                     }
                     HStack {
                         Text("viewMode: \(viewMode.wrappedValue.rawValue)")

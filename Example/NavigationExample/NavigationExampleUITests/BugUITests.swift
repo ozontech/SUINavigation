@@ -211,13 +211,16 @@ final class BugUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
+            .tapChange()
             .checkVM(initCount: 1)
+            .tapChange()
             .tapBool()
         BoolView(app: app)
             .checkThis()
             .tapMain()
         MainView(app: app)
             .checkThis()
+            .tapChange()
             .checkVM(initCount: 2)
             .tapBack()
         BoolView(app: app)
@@ -225,6 +228,7 @@ final class BugUITests: XCTestCase {
             .tapMain()
         MainView(app: app)
             .checkThis()
+            .tapChange()
             .checkVM(initCount: 3)
             .tapBack()
         BoolView(app: app)
@@ -233,6 +237,7 @@ final class BugUITests: XCTestCase {
         MainView(app: app)
             .checkThis()
             .checkRootMessage(tapOK: true)
+            .tapChange()
             .checkVM(initCount: 3)
     }
 

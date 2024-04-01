@@ -80,6 +80,14 @@ struct MainView: View {
     }
 
     @discardableResult
+    func tapChange() -> Self {
+        let button = app.buttons["to change"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
     func checkVM(initCount: Int) -> Self {
         let text = app.staticTexts["VM init count: \(initCount)"]
         text.waitForExistingAndAssert(timeout: 1)
