@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.4] - 2024-04-01
+
+#### Fixed
+
+- Apple bug with StateObject on 16.4 with NavigationStack and YES, this is no joke again.
+
 ## [1.9.3] - 2024-03-12
 
 #### Added

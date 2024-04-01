@@ -37,7 +37,7 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
     func body(content: Content) -> some View {
         ZStack {
             // #available version should be equal version whith using from NavigationViewStorage for trigger using NavigationStack
-            if #available(iOS 16.4, *) {
+            if #available(iOS 17.0, *) {
                 // We can't use from iOS 17 .navigationDestination with item param because that has an issue with navigation
                 content
                     .navigationDestination(isPresented: $isActive, destination: {
