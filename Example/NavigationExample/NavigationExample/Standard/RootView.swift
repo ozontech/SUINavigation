@@ -35,10 +35,12 @@ final class RootViewModel: RootViewModelProtocol {
     static var deinitCount: Int = 0
 
     init(){
+        print("init RootViewModel")
         Self.initCount += 1
     }
 
     deinit {
+        print("deinit RootViewModel")
         Self.deinitCount += 1
     }
 }
@@ -54,6 +56,7 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
     private var isChange
 
     init() where ViewModel == RootViewModel {
+        print("init RootView")
         _viewModel = StateObject(wrappedValue: RootViewModel())
     }
 
@@ -96,12 +99,8 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
                         viewModel.performLoad = .sheetOptimized
                     }
                 }
-                if isChange.wrappedValue {
-                    HStack {
-                        Text("VM init count: \(ViewModel.initCount)")
-                        Text(", ")
-                        Text("VM deinit count: \(ViewModel.deinitCount)")
-                    }
+                HStack {
+                    Text("VM init count: \(ViewModel.initCount), VM deinit count: \(ViewModel.deinitCount)")
                 }
             }
         }
@@ -117,6 +116,9 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
         }
         .navigation(item: $viewModel.performStartDate){ startDate in
             PerformView(startDate: startDate, performLoad: $viewModel.performLoad)
+        }
+        .onAppear {
+            print("show RootView")
         }
     }
 }
