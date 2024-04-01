@@ -88,8 +88,8 @@ struct MainView: View {
     }
 
     @discardableResult
-    func checkVM(initCount: Int) -> Self {
-        let text = app.staticTexts["VM init count: \(initCount)"]
+    func checkVM(initCount: Int, deinitCount: Int) -> Self {
+        let text = app.staticTexts["VM init count: \(initCount), VM deinit count: \(deinitCount)"]
         text.waitForExistingAndAssert(timeout: 1)
         return self
     }

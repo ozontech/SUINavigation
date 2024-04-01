@@ -22,6 +22,9 @@ struct ModularBoolView: View {
     @State
     private var isTabShowing: Bool = false
 
+    @State
+    private var isRootShowing: Bool = false
+
     @OptionalEnvironmentObject
     private var navigationStorage: NavigationStorage?
 
@@ -94,11 +97,16 @@ struct ModularBoolView: View {
                     isTabShowing = true
                 }
             }
-            Button("to change") {
-                isChange.wrappedValue.toggle()
-            }
-            Button("dismiss") {
-                presentationMode.wrappedValue.dismiss()
+            HStack {
+                Button("to change") {
+                    isChange.wrappedValue.toggle()
+                }
+                Button("dismiss") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                Button("to RootView") {
+                    isRootShowing = true
+                }
             }
             if let navigationStorage = navigationStorage {
                 Text("Path: \(navigationStorage.currentUrl)")
@@ -133,6 +141,9 @@ struct ModularBoolView: View {
             if let modalFirst = params.popStringParam("modalFirst") {
                 firstModalData = FirstModalData(string: modalFirst)
             }
+        }
+        .navigation(isActive: $isRootShowing, id: "Root") {
+            ModularRootView()
         }
     }
 

@@ -67,6 +67,14 @@ struct BoolView: View {
     }
 
     @discardableResult
+    func tapRootView() -> Self {
+        let button = app.buttons["to RootView"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
     func tapChange() -> Self {
         let button = app.buttons["to change"]
         _ = button.waitForExistence(timeout: 2)
