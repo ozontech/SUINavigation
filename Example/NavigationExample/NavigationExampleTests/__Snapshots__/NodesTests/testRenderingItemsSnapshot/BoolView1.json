@@ -1,0 +1,44 @@
+{
+  "id" : "BoolView",
+  "transitions" : [
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "none",
+      "id" : "FirstView",
+      "params" : [
+        {
+          "defaultValue" : "",
+          "name" : "firstString",
+          "type" : "String"
+        }
+      ]
+    },
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "none",
+      "id" : "MainView",
+      "params" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        "deeplink"
+      ],
+      "available" : "none",
+      "id" : "ModalFirstView",
+      "params" : [
+        {
+          "defaultValue" : "",
+          "name" : "modalFirst",
+          "type" : "String"
+        }
+      ]
+    }
+  ],
+  "viewType" : "BoolView"
+}

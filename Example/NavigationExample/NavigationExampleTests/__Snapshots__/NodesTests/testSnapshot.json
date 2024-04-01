@@ -66,7 +66,7 @@
                   "id" : "ObjectView",
                   "params" : [
                     {
-                      "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+                      "defaultValue" : "Object: id:0; name:; date:2020-02-20",
                       "name" : "object",
                       "type" : "ObjectDTO"
                     }
@@ -170,6 +170,260 @@
 
               ],
               "viewType" : "MainTabView"
+            },
+            {
+              "attributes" : [
+
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "SecondView",
+                  "params" : [
+                    {
+                      "defaultValue" : "0",
+                      "name" : "SecondView",
+                      "type" : "Int"
+                    }
+                  ],
+                  "viewType" : "SecondView"
+                },
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "BoolView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "BoolView"
+                },
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink",
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "SecondView",
+                      "params" : [
+                        {
+                          "defaultValue" : "0",
+                          "name" : "secondNumber",
+                          "type" : "Int"
+                        }
+                      ],
+                      "viewType" : "SecondView"
+                    },
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "none",
+                      "children" : [
+
+                      ],
+                      "id" : "ObjectView",
+                      "params" : [
+                        {
+                          "defaultValue" : "Object: id:0; name:; date:2020-02-20",
+                          "name" : "object",
+                          "type" : "ObjectDTO"
+                        }
+                      ]
+                    },
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "none",
+                      "children" : [
+
+                      ],
+                      "id" : "object",
+                      "params" : [
+                        {
+                          "defaultValue" : "0",
+                          "name" : "object.id",
+                          "type" : "Int"
+                        },
+                        {
+                          "defaultValue" : "",
+                          "name" : "object.name",
+                          "type" : "String"
+                        },
+                        {
+                          "defaultValue" : "",
+                          "name" : "object.date",
+                          "type" : "String"
+                        }
+                      ]
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "BoolView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "BoolView"
+                    }
+                  ],
+                  "id" : "FirstView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "FirstView"
+                },
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+
+                      ],
+                      "available" : "mock",
+                      "children" : [
+                        {
+                          "attributes" : [
+                            "deeplink",
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "SecondView",
+                          "params" : [
+                            {
+                              "defaultValue" : "0",
+                              "name" : "secondNumber",
+                              "type" : "Int"
+                            }
+                          ],
+                          "viewType" : "SecondView"
+                        },
+                        {
+                          "attributes" : [
+                            "deeplink"
+                          ],
+                          "available" : "none",
+                          "children" : [
+
+                          ],
+                          "id" : "ObjectView",
+                          "params" : [
+                            {
+                              "defaultValue" : "Object: id:0; name:; date:2020-02-20",
+                              "name" : "object",
+                              "type" : "ObjectDTO"
+                            }
+                          ]
+                        },
+                        {
+                          "attributes" : [
+                            "deeplink"
+                          ],
+                          "available" : "none",
+                          "children" : [
+
+                          ],
+                          "id" : "object",
+                          "params" : [
+                            {
+                              "defaultValue" : "0",
+                              "name" : "object.id",
+                              "type" : "Int"
+                            },
+                            {
+                              "defaultValue" : "",
+                              "name" : "object.name",
+                              "type" : "String"
+                            },
+                            {
+                              "defaultValue" : "",
+                              "name" : "object.date",
+                              "type" : "String"
+                            }
+                          ]
+                        },
+                        {
+                          "attributes" : [
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "BoolView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "BoolView"
+                        }
+                      ],
+                      "id" : "FirstView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "FirstView"
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "PerformView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "PerformView"
+                    }
+                  ],
+                  "id" : "PerformView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "PerformView"
+                }
+              ],
+              "id" : "Root",
+              "params" : [
+
+              ],
+              "viewType" : "RootView<RootViewModel>"
             }
           ],
           "id" : "BoolView",
@@ -258,7 +512,7 @@
               "id" : "ObjectView",
               "params" : [
                 {
-                  "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+                  "defaultValue" : "Object: id:0; name:; date:2020-02-20",
                   "name" : "object",
                   "type" : "ObjectDTO"
                 }
@@ -362,6 +616,299 @@
 
           ],
           "viewType" : "MainTabView"
+        },
+        {
+          "attributes" : [
+
+          ],
+          "available" : "mock",
+          "children" : [
+            {
+              "attributes" : [
+                "deeplink"
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "BoolView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "BoolView"
+                }
+              ],
+              "id" : "SecondView",
+              "params" : [
+                {
+                  "defaultValue" : "0",
+                  "name" : "SecondView",
+                  "type" : "Int"
+                }
+              ],
+              "viewType" : "SecondView"
+            },
+            {
+              "attributes" : [
+                "deeplink",
+                "recursiveLoopDetected"
+              ],
+              "available" : "mock",
+              "children" : [
+
+              ],
+              "id" : "BoolView",
+              "params" : [
+
+              ],
+              "viewType" : "BoolView"
+            },
+            {
+              "attributes" : [
+
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink",
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "BoolView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "BoolView"
+                    }
+                  ],
+                  "id" : "SecondView",
+                  "params" : [
+                    {
+                      "defaultValue" : "0",
+                      "name" : "secondNumber",
+                      "type" : "Int"
+                    }
+                  ],
+                  "viewType" : "SecondView"
+                },
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "ObjectView",
+                  "params" : [
+                    {
+                      "defaultValue" : "Object: id:0; name:; date:2020-02-20",
+                      "name" : "object",
+                      "type" : "ObjectDTO"
+                    }
+                  ]
+                },
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "none",
+                  "children" : [
+
+                  ],
+                  "id" : "object",
+                  "params" : [
+                    {
+                      "defaultValue" : "0",
+                      "name" : "object.id",
+                      "type" : "Int"
+                    },
+                    {
+                      "defaultValue" : "",
+                      "name" : "object.name",
+                      "type" : "String"
+                    },
+                    {
+                      "defaultValue" : "",
+                      "name" : "object.date",
+                      "type" : "String"
+                    }
+                  ]
+                },
+                {
+                  "attributes" : [
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "BoolView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "BoolView"
+                }
+              ],
+              "id" : "FirstView",
+              "params" : [
+
+              ],
+              "viewType" : "FirstView"
+            },
+            {
+              "attributes" : [
+
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+                        {
+                          "attributes" : [
+                            "deeplink",
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "BoolView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "BoolView"
+                        }
+                      ],
+                      "id" : "SecondView",
+                      "params" : [
+                        {
+                          "defaultValue" : "0",
+                          "name" : "secondNumber",
+                          "type" : "Int"
+                        }
+                      ],
+                      "viewType" : "SecondView"
+                    },
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "none",
+                      "children" : [
+
+                      ],
+                      "id" : "ObjectView",
+                      "params" : [
+                        {
+                          "defaultValue" : "Object: id:0; name:; date:2020-02-20",
+                          "name" : "object",
+                          "type" : "ObjectDTO"
+                        }
+                      ]
+                    },
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "none",
+                      "children" : [
+
+                      ],
+                      "id" : "object",
+                      "params" : [
+                        {
+                          "defaultValue" : "0",
+                          "name" : "object.id",
+                          "type" : "Int"
+                        },
+                        {
+                          "defaultValue" : "",
+                          "name" : "object.name",
+                          "type" : "String"
+                        },
+                        {
+                          "defaultValue" : "",
+                          "name" : "object.date",
+                          "type" : "String"
+                        }
+                      ]
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "BoolView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "BoolView"
+                    }
+                  ],
+                  "id" : "FirstView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "FirstView"
+                },
+                {
+                  "attributes" : [
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "PerformView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "PerformView"
+                }
+              ],
+              "id" : "PerformView",
+              "params" : [
+
+              ],
+              "viewType" : "PerformView"
+            }
+          ],
+          "id" : "Root",
+          "params" : [
+
+          ],
+          "viewType" : "RootView<RootViewModel>"
         }
       ],
       "id" : "BoolView",
@@ -467,6 +1014,108 @@
 
                   ],
                   "viewType" : "MainTabView"
+                },
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink",
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "SecondView",
+                      "params" : [
+                        {
+                          "defaultValue" : "0",
+                          "name" : "SecondView",
+                          "type" : "Int"
+                        }
+                      ],
+                      "viewType" : "SecondView"
+                    },
+                    {
+                      "attributes" : [
+                        "deeplink",
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "BoolView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "BoolView"
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "FirstView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "FirstView"
+                    },
+                    {
+                      "attributes" : [
+
+                      ],
+                      "available" : "mock",
+                      "children" : [
+                        {
+                          "attributes" : [
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "FirstView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "FirstView"
+                        },
+                        {
+                          "attributes" : [
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "PerformView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "PerformView"
+                        }
+                      ],
+                      "id" : "PerformView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "PerformView"
+                    }
+                  ],
+                  "id" : "Root",
+                  "params" : [
+
+                  ],
+                  "viewType" : "RootView<RootViewModel>"
                 }
               ],
               "id" : "BoolView",
@@ -497,7 +1146,7 @@
           "id" : "ObjectView",
           "params" : [
             {
-              "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+              "defaultValue" : "Object: id:0; name:; date:2020-02-20",
               "name" : "object",
               "type" : "ObjectDTO"
             }
@@ -615,6 +1264,121 @@
 
               ],
               "viewType" : "MainTabView"
+            },
+            {
+              "attributes" : [
+
+              ],
+              "available" : "mock",
+              "children" : [
+                {
+                  "attributes" : [
+                    "deeplink"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink",
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "BoolView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "BoolView"
+                    }
+                  ],
+                  "id" : "SecondView",
+                  "params" : [
+                    {
+                      "defaultValue" : "0",
+                      "name" : "SecondView",
+                      "type" : "Int"
+                    }
+                  ],
+                  "viewType" : "SecondView"
+                },
+                {
+                  "attributes" : [
+                    "deeplink",
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "BoolView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "BoolView"
+                },
+                {
+                  "attributes" : [
+                    "recursiveLoopDetected"
+                  ],
+                  "available" : "mock",
+                  "children" : [
+
+                  ],
+                  "id" : "FirstView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "FirstView"
+                },
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "FirstView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "FirstView"
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "PerformView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "PerformView"
+                    }
+                  ],
+                  "id" : "PerformView",
+                  "params" : [
+
+                  ],
+                  "viewType" : "PerformView"
+                }
+              ],
+              "id" : "Root",
+              "params" : [
+
+              ],
+              "viewType" : "RootView<RootViewModel>"
             }
           ],
           "id" : "BoolView",
@@ -733,6 +1497,81 @@
 
                       ],
                       "viewType" : "MainTabView"
+                    },
+                    {
+                      "attributes" : [
+
+                      ],
+                      "available" : "mock",
+                      "children" : [
+                        {
+                          "attributes" : [
+                            "deeplink",
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "SecondView",
+                          "params" : [
+                            {
+                              "defaultValue" : "0",
+                              "name" : "SecondView",
+                              "type" : "Int"
+                            }
+                          ],
+                          "viewType" : "SecondView"
+                        },
+                        {
+                          "attributes" : [
+                            "deeplink",
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "BoolView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "BoolView"
+                        },
+                        {
+                          "attributes" : [
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "FirstView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "FirstView"
+                        },
+                        {
+                          "attributes" : [
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "PerformView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "PerformView"
+                        }
+                      ],
+                      "id" : "Root",
+                      "params" : [
+
+                      ],
+                      "viewType" : "RootView<RootViewModel>"
                     }
                   ],
                   "id" : "BoolView",
@@ -763,7 +1602,7 @@
               "id" : "ObjectView",
               "params" : [
                 {
-                  "defaultValue" : "Object: id:0; name:; date:2024-02-16",
+                  "defaultValue" : "Object: id:0; name:; date:2020-02-20",
                   "name" : "object",
                   "type" : "ObjectDTO"
                 }
@@ -881,6 +1720,94 @@
 
                   ],
                   "viewType" : "MainTabView"
+                },
+                {
+                  "attributes" : [
+
+                  ],
+                  "available" : "mock",
+                  "children" : [
+                    {
+                      "attributes" : [
+                        "deeplink"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+                        {
+                          "attributes" : [
+                            "deeplink",
+                            "recursiveLoopDetected"
+                          ],
+                          "available" : "mock",
+                          "children" : [
+
+                          ],
+                          "id" : "BoolView",
+                          "params" : [
+
+                          ],
+                          "viewType" : "BoolView"
+                        }
+                      ],
+                      "id" : "SecondView",
+                      "params" : [
+                        {
+                          "defaultValue" : "0",
+                          "name" : "SecondView",
+                          "type" : "Int"
+                        }
+                      ],
+                      "viewType" : "SecondView"
+                    },
+                    {
+                      "attributes" : [
+                        "deeplink",
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "BoolView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "BoolView"
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "FirstView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "FirstView"
+                    },
+                    {
+                      "attributes" : [
+                        "recursiveLoopDetected"
+                      ],
+                      "available" : "mock",
+                      "children" : [
+
+                      ],
+                      "id" : "PerformView",
+                      "params" : [
+
+                      ],
+                      "viewType" : "PerformView"
+                    }
+                  ],
+                  "id" : "Root",
+                  "params" : [
+
+                  ],
+                  "viewType" : "RootView<RootViewModel>"
                 }
               ],
               "id" : "BoolView",
