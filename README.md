@@ -2,7 +2,7 @@
 
 # Overview
 
-Simple Navigation framework for SwiftUI. Alternate `NavigationStack` with supporting from iOS 14 and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests. We care about quality and performance what why we have UI tests.
+Simple navigation framework for SwiftUI. Alternative `NavigationStack` with support for iOS 14, Apple bug fixes and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests. We care about quality and performance what why we have UI tests.
 
 ## Motivation
 
