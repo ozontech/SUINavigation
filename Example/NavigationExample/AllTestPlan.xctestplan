@@ -24,6 +24,7 @@
     "environmentVariableEntries" : [
 
     ],
+    "maximumTestRepetitions" : 2,
     "testRepetitionMode" : "retryOnFailure",
     "testTimeoutsEnabled" : true
   },

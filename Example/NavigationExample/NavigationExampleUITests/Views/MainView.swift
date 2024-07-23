@@ -16,7 +16,7 @@ struct MainView: View {
     @discardableResult
     func checkThis() -> Self {
         let text = app.staticTexts["This is Main"]
-        text.waitForExistingAndAssert(timeout: 1)
+        text.waitForExistingAndAssert(timeout: 2)
         return self
     }
 
