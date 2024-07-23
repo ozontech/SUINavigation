@@ -292,6 +292,13 @@ struct ModularFirstView: View {
 
 We did [performance research](Docs/Performance.md) and found weaknesses in the component and tried to fix them. This is covered in a separate article in the documentation: [Performance Research](Docs/Performance.md).
 
+## Apple bugs: NavigationView vs NavigationStorage
+
+Ohh, you know my friend what the hell in use SwiftUI navigation?
+But yes, we try to fixed bugs on SwiftUI navigation as soon as we can.
+All test who demonstration they you can found on NavigationExample project with tests on class [BugUITests](Example/NavigationExample/NavigationExampleUITests/BugUITests.swift).
+From iOS 16.0 Apple deprecated NavigationView and it really stopped working stably but to iOS 17 NavigationStorage working unstably too. It forced me introduce `NavigationStorageStrategy` for chousing to you way: wath do you use with iOS 16.x: `NavigationView` or `NavigationStorage`. More details [in the description](Sources/Core/NavigationStorage.swift).
+
 ## Common Functions
 
 ### NavigationStorage
