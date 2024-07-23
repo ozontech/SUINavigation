@@ -239,4 +239,41 @@ final class BugUITests: XCTestCase {
             .checkVM(initCount: 3, deinitCount: 2)
     }
 
+    // Bug on iOS [16.4.. 16.6]: reset state of navigation on TabView when application closed.
+    // Actions: Go to page on TabView, go to next Screen on navigation, tap to Home button, return to App,
+    // Actual: Next page closed and shown the root screen on TabView
+    func testBugWithBackToRootOnTabView() throws {
+        let app = XCUIApplication.app(isTab: true)
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .swipeTopToBottom(.right)
+            .checkThis(string: "Hi")
+            .swipeBottomToTop(.right)
+            .checkThis(string: "Hi")
+        XCUIDevice.shared.press(.home)
+        XCUIApplication().activate()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+        XCUIDevice.shared.press(.home)
+        XCUIApplication().activate()
+        BoolView(app: app)
+            .checkThis()
+            .swipeTopToBottom(.right)
+            .checkThis()
+            .swipeBottomToTop(.right)
+            .tapBack()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+    }
+
 }
