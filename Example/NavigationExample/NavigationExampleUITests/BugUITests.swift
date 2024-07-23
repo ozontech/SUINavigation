@@ -205,7 +205,7 @@ final class BugUITests: XCTestCase {
             .checkThis()
     }
 
-    /// From iOS 16 to iOS 16.9 NavigationStack init StateObject twice.
+    /// On iOS 16.x NavigationStack init StateObject twice.
     /// This Apple bug illustrated on https://openradar.appspot.com/radar?id=5578366417633280
     func testBugWithDoubleStateObjectInit() throws {
         let app = XCUIApplication.launchEn
@@ -239,7 +239,7 @@ final class BugUITests: XCTestCase {
             .checkVM(initCount: 3, deinitCount: 2)
     }
 
-    // Bug on iOS [16.4.. 16.6]: reset state of navigation on TabView when application closed.
+    // Bug on iOS 16.x: reset state of navigation on TabView when application closed.
     // Actions: Go to page on TabView, go to next Screen on navigation, tap to Home button, return to App,
     // Actual: Next page closed and shown the root screen on TabView
     func testBugWithBackToRootOnTabView() throws {

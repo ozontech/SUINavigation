@@ -15,7 +15,8 @@
           {
             "argument" : "-Modular"
           }
-        ]
+        ],
+        "testRepetitionMode" : "none"
       }
     }
   ],
