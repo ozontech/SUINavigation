@@ -37,7 +37,7 @@ struct MainTabView: View {
     private var selectedTab: MainTab = .main
 
     var body: some View {
-        NavigationViewStorage{
+        NavigationViewStorage(strategy: .useStackFromiOS16_0) {
             ZStack(alignment: .bottom) {
                 TabView(selection: $selectedTab) {
                     RootView()

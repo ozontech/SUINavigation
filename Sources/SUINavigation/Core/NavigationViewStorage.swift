@@ -16,8 +16,10 @@ public struct NavigationViewStorage<Content: View>: View {
     @StateObject
     private var navigationStorage: NavigationStorage
 
-    public init(@ViewBuilder content: () -> Content) {
-        _navigationStorage = StateObject(wrappedValue: NavigationStorage())
+    /// - param strategy used only first way for init NavigationStorage
+    /// See NavigationStorageStrategy
+    public init(strategy: NavigationStorageStrategy = .useStackFromiOS17_0, @ViewBuilder content: () -> Content) {
+        _navigationStorage = StateObject(wrappedValue: NavigationStorage(strategy: strategy))
         self.content = content()
     }
 
@@ -37,13 +39,7 @@ public struct NavigationViewStorage<Content: View>: View {
 
     @ViewBuilder
     private var navigation: some View {
-        /// Why NavigationStack using from 17.4 and not 16.x:
-        ///
-        /// I found bug with trigger Binding from iOS with versions [16.0...16.3]
-        /// I found bug with double init StateObject as ViewModel from NavigationState with version [16.4...16.9].
-        /// Issue: https://openradar.appspot.com/radar?id=5578366417633280
-        /// Just ignore message: NavigationLink presenting a value must appear inside a NavigationContent-based NavigationView. Link will be disabled.
-        if #available(iOS 17.0, *) {
+        if #available(iOS 16.0, *), navigationStorage.isNavigationStackUsed {
             NavigationStack {
                 content
             }

@@ -25,6 +25,9 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
     @State
     private var oldItem: Item?
 
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
     init(item: Binding<Item?>, value: Binding<Value?>?, identifier: String, paramName: String?, @ViewBuilder destination: @escaping (Item) -> Destination) {
         self.item = item
         _oldItem = State(initialValue: item.wrappedValue)
@@ -37,7 +40,7 @@ struct NavigationItemModifier<Item: Equatable, Value: Equatable, Destination: Vi
     func body(content: Content) -> some View {
         ZStack {
             // #available version should be equal version whith using from NavigationViewStorage for trigger using NavigationStack
-            if #available(iOS 17.0, *) {
+            if #available(iOS 16.0, *), navigationStorage?.isNavigationStackUsed ?? true {
                 // We can't use from iOS 17 .navigationDestination with item param because that has an issue with navigation
                 content
                     .navigationDestination(isPresented: $isActive, destination: {

@@ -12,6 +12,9 @@ struct NavigationModifier<Destination: View>: ViewModifier {
     let identifier: String
     let destination: Destination?
 
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
     init(isActive: Binding<Bool>, identifier: String, destination: Destination?) {
         self.isActive = isActive
         self.identifier = identifier
@@ -21,7 +24,7 @@ struct NavigationModifier<Destination: View>: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             // #available version should be equal version whith using from NavigationViewStorage for trigger using NavigationStack
-            if #available(iOS 17.0, *) {
+            if #available(iOS 16.0, *), navigationStorage?.isNavigationStackUsed ?? true {
                 content
                     .navigationDestination(isPresented: isActive, destination: {viewDestination(destination)})
             } else {
