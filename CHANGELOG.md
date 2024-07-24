@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 
 #### Added
 
-- NavigationStorageStrategy for chousing use NavigationView or NavigationStack on iOS 16.x.
-- Test of Navigation with closing Application.
-- Description about bugs of NavigationView and NavigationStack.
+- `NavigationStorageStrategy` for chousing use `NavigationView` or `NavigationStack` on iOS 16.x.
+- Test of navigation with closing Application.
+- Description about bugs of `NavigationView` and `NavigationStack`.
 
 ## [1.9.4] - 2024-04-01
 
