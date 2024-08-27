@@ -67,18 +67,8 @@ public final class NavigationStorage: ObservableObject {
         }
     }
 
-    public init(strategy: NavigationStorageStrategy = .useStackFromiOS17_0) {
-        self.isNavigationStackUsed = Self.isNavigationStackUsed(from: strategy)
-    }
-
-    private static func isNavigationStackUsed(from strategy: NavigationStorageStrategy) -> Bool{
-        if #available(iOS 17.0, *), strategy == .useStackFromiOS17_0 {
-            return true
-        } else if #available(iOS 16.0, *), strategy == .useStackFromiOS16_0 {
-            return true
-        } else {
-            return false
-        }
+    public init(strategy: NavigationStorageStrategy = .default) {
+        self.isNavigationStackUsed = NavigationStorageStrategy.isNavigationStackUsed(from: strategy)
     }
 
     // To add View Info to Stack at navigation transition. It return id if has duplicates.

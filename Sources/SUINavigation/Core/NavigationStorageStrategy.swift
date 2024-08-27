@@ -25,4 +25,22 @@ public enum NavigationStorageStrategy {
     /// NavigationStack will used only from iOS 17.0.
     /// You can reproduce bug from BugUITests.testBugWithBackToRootOnTabView on iOS 16.x.
     case useStackFromiOS17_0
+
+    public static var `default`: NavigationStorageStrategy = .useStackFromiOS17_0
+}
+
+extension NavigationStorageStrategy {
+
+    internal static func isNavigationStackUsed(from strategy: NavigationStorageStrategy) -> Bool{
+        if #available(iOS 17.0, *), strategy == .useStackFromiOS17_0 {
+            return true
+        } else if #available(iOS 16.0, *), strategy == .useStackFromiOS16_0 {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    internal static let isNavigationStackUsedDefault: Bool = isNavigationStackUsed(from: .default)
+
 }
