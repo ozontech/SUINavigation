@@ -3,6 +3,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.10.1] - 2024-08-28
+
+#### Added
+
+- Default property of Strategy and deprecation of Strategy change from navigation's init.
+- To UI tests option to change default Strategy.
+
+#### Fixed
+
+- #1 Issue where application freezes when opening the second screen in MVVM+Coordinator example on iOS 17: Issue was with cyclic update of environment object from navigation item modifier.
+- Unsynchronised updates of the Strategy using from init.
+
 ## [1.10.0] - 2024-07-23
 
 #### Added
