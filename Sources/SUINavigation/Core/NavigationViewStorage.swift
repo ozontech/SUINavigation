@@ -18,7 +18,7 @@ public struct NavigationViewStorage<Content: View>: View {
 
     /// - param strategy used only first way for init NavigationStorage
     /// See NavigationStorageStrategy
-    public init(strategy: NavigationStorageStrategy = .useStackFromiOS17_0, @ViewBuilder content: () -> Content) {
+    public init(strategy: NavigationStorageStrategy = .default, @ViewBuilder content: () -> Content) {
         _navigationStorage = StateObject(wrappedValue: NavigationStorage(strategy: strategy))
         self.content = content()
     }

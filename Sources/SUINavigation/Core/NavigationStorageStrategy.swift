@@ -26,6 +26,8 @@ public enum NavigationStorageStrategy {
     /// You can reproduce bug from BugUITests.testBugWithBackToRootOnTabView on iOS 16.x.
     case useStackFromiOS17_0
 
+    /// Better change on start Application before any using of a NavigationStorageView.
+    /// This global strategy for all Application.
     public static var `default`: NavigationStorageStrategy = .useStackFromiOS17_0
 }
 
@@ -41,6 +43,7 @@ extension NavigationStorageStrategy {
         }
     }
 
+    /// lazy init on first using by a NavigationStorageView.
     internal static let isNavigationStackUsedDefault: Bool = isNavigationStackUsed(from: .default)
 
 }
