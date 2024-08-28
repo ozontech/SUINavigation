@@ -18,8 +18,14 @@ public struct NavigationViewStorage<Content: View>: View {
 
     /// - param strategy used only first way for init NavigationStorage
     /// See NavigationStorageStrategy
-    public init(strategy: NavigationStorageStrategy = .default, @ViewBuilder content: () -> Content) {
+    @available(*, deprecated, message: "Using the strategy from init can cause problems with unsynchronised navigation updates. Please change the Navigation Storage Strategy.default value once during a first init.")
+    public init(strategy: NavigationStorageStrategy, @ViewBuilder content: () -> Content) {
         _navigationStorage = StateObject(wrappedValue: NavigationStorage(strategy: strategy))
+        self.content = content()
+    }
+
+    public init(@ViewBuilder content: () -> Content) {
+        _navigationStorage = StateObject(wrappedValue: NavigationStorage())
         self.content = content()
     }
 

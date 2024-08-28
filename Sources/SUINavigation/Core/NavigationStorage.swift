@@ -67,8 +67,13 @@ public final class NavigationStorage: ObservableObject {
         }
     }
 
-    public init(strategy: NavigationStorageStrategy = .default) {
+    @available(*, deprecated, message: "Using the strategy from init can cause problems with unsynchronised navigation updates. Please change the Navigation Storage Strategy.default value once during a first init.")
+    public init(strategy: NavigationStorageStrategy) {
         self.isNavigationStackUsed = NavigationStorageStrategy.isNavigationStackUsed(from: strategy)
+    }
+
+    public init() {
+        self.isNavigationStackUsed = NavigationStorageStrategy.isNavigationStackUsedDefault
     }
 
     // To add View Info to Stack at navigation transition. It return id if has duplicates.
