@@ -6,9 +6,20 @@
 //
 
 import SwiftUI
+import SUINavigation
 
 @main
 struct NavigationExampleApp: App {
+
+    init() {
+        switch StrategyMode.defaultValue {
+        case StrategyMode.stackOn17:
+            NavigationStorageStrategy.default = .useStackFromiOS17_0
+        case .stackOn16:
+            NavigationStorageStrategy.default = .useStackFromiOS16_0
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             StartView()

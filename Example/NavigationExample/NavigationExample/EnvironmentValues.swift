@@ -36,8 +36,10 @@ enum ViewMode: String, CaseIterable {
     case tabBar
 
     static var defaultValue: ViewMode {
-        ProcessInfo.processInfo.arguments.contains("-Tab") ? .tabBar : .navigation
+        ProcessInfo.processInfo.arguments.contains(argumentName) ? .tabBar : .navigation
     }
+
+    static let argumentName = "-Tab"
 }
 
 private struct ViewModeKey: EnvironmentKey {
@@ -56,8 +58,10 @@ enum ModelMode: String, CaseIterable {
     case modular
 
     static var defaultValue: ModelMode {
-        ProcessInfo.processInfo.arguments.contains("-Modular") ? .modular : .standard
+        ProcessInfo.processInfo.arguments.contains(argumentName) ? .modular : .standard
     }
+
+    static let argumentName = "-Modular"
 }
 
 private struct ModelModeKey: EnvironmentKey {
@@ -69,4 +73,15 @@ extension EnvironmentValues {
         get { self[ModelModeKey.self] }
         set { self[ModelModeKey.self] = newValue }
     }
+}
+
+enum StrategyMode: String, CaseIterable {
+    case stackOn16
+    case stackOn17
+
+    static var defaultValue: StrategyMode {
+        ProcessInfo.processInfo.arguments.contains(argumentName) ? .stackOn16 : .stackOn17
+    }
+
+    static let argumentName = "-stackOn16"
 }

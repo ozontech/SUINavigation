@@ -16,6 +16,7 @@
 		C30E34752AC5787500D3DA51 /* SimpleBoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E34742AC5787500D3DA51 /* SimpleBoolUITests.swift */; };
 		C30E34772AC5787500D3DA51 /* SimpleFirstUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E34762AC5787500D3DA51 /* SimpleFirstUITests.swift */; };
 		C30E348F2AC5D02700D3DA51 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C30E348E2AC5D02700D3DA51 /* SUINavigation */; };
+		C30FA4282C7F0C08004831CF /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385B32B70C456008958CF /* EnvironmentValues.swift */; };
 		C31AFD3E2B62B22B00F454E7 /* PerformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31AFD3D2B62B22B00F454E7 /* PerformView.swift */; };
 		C335502F2B8C80AE00B6FFC6 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C335502E2B8C80AE00B6FFC6 /* SUINavigation */; };
 		C33550312B8C80AE00B6FFC6 /* SUINavigationTest in Frameworks */ = {isa = PBXBuildFile; productRef = C33550302B8C80AE00B6FFC6 /* SUINavigationTest */; };
@@ -450,6 +451,7 @@
 				C3966A7F2ACF56C200F12FEA /* SecondView.swift in Sources */,
 				C3966A812ACFDC0600F12FEA /* BugUITests.swift in Sources */,
 				C3940B452AD8940400EEE3FC /* PopToUITests.swift in Sources */,
+				C30FA4282C7F0C08004831CF /* EnvironmentValues.swift in Sources */,
 				C3966A792ACF50D200F12FEA /* XCUIApplication.swift in Sources */,
 				C30E34752AC5787500D3DA51 /* SimpleBoolUITests.swift in Sources */,
 				C38D024A2B2C4FB000C6DB13 /* ModalUITests.swift in Sources */,

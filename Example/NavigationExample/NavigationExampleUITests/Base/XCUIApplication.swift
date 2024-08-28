@@ -14,18 +14,20 @@ extension XCUIApplication {
         return app(isEnglish: true)
     }
 
-    static func app(isEnglish: Bool = true, isTab: Bool = false) -> XCUIApplication {
+    static func app(isEnglish: Bool = true, isTab: Bool = false, isStackOn16: Bool = false) -> XCUIApplication {
         let result = XCUIApplication()
-        //result.launchArguments = []
         
         if isEnglish {
             result.launchArguments.append(contentsOf: ["-AppleLanguages", "(en)", "-AppleLocale", "en_EN"])
         }
         if isTab {
-            result.launchArguments.append("-Tab")
+            result.launchArguments.append(ViewMode.argumentName)
         }
         if ProcessInfo.processInfo.arguments.contains("-Modular") {
-            result.launchArguments.append("-Modular")
+            result.launchArguments.append(ModelMode.argumentName)
+        }
+        if isStackOn16 {
+            result.launchArguments.append(StrategyMode.argumentName)
         }
         result.launch()
         return result

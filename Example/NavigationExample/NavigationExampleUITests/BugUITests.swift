@@ -243,7 +243,7 @@ final class BugUITests: XCTestCase {
     // Actions: Go to page on TabView, go to next Screen on navigation, tap to Home button, return to App,
     // Actual: Next page closed and shown the root screen on TabView
     func testBugWithBackToRootOnTabView() throws {
-        let app = XCUIApplication.app(isTab: true)
+        let app = XCUIApplication.app(isTab: true, isStackOn16: true)
         MainView(app: app)
             .checkThis()
             .checkChanging(false)
