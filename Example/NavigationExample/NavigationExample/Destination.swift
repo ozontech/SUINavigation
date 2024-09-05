@@ -16,6 +16,7 @@ enum Destination: Equatable {
     case main
     case tab
     case object(ObjectDTO)
+    case root(vm: RootViewModel)
 
     static func == (lhs: Destination, rhs: Destination) -> Bool {
         switch lhs {
@@ -55,7 +56,14 @@ enum Destination: Equatable {
             } else {
                 return false
             }
+        case .root(let vm):
+            if case .root(let value) = rhs {
+                return value === vm
+            } else {
+                return false
+            }
         }
+        
     }
 }
 
@@ -74,7 +82,10 @@ extension Destination: NavigationID {
             return false
         case .object(_):
             return false
+        case .root(_):
+            return false
         }
+        
     }
 
     var stringValue: String {
@@ -91,6 +102,8 @@ extension Destination: NavigationID {
             return "TabMainView"
         case .object(_):
             return "ObjectView"
+        case .root(_):
+            return "RootView"
         }
     }
 }
@@ -117,6 +130,8 @@ extension Destination {
             MainTabView()
         case .object(let object):
             ObjectView(object: object)
+        case .root(let vm):
+            ModularRootView(viewModel: vm)
         }
     }
 }

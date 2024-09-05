@@ -11,6 +11,7 @@ import SUINavigation
 protocol RootViewModelProtocol: ObservableObject {
     var stringForFirst: String? {set get}
     var numberForSecond: Int? {set get}
+    var rootVM: RootViewModel? {set get}
     var performStartDate: Date? {set get}
     var performLoad: PerformLoad {set get}
 
@@ -25,6 +26,9 @@ final class RootViewModel: RootViewModelProtocol {
 
     @Published
     var numberForSecond: Int? = nil
+
+    @Published
+    var rootVM: RootViewModel? = nil
 
     @Published
     var performStartDate: Date? = nil
@@ -42,6 +46,12 @@ final class RootViewModel: RootViewModelProtocol {
     deinit {
         print("deinit RootViewModel")
         Self.deinitCount += 1
+    }
+}
+
+extension RootViewModel: Equatable {
+    static func == (lhs: RootViewModel, rhs: RootViewModel) -> Bool {
+        lhs === rhs
     }
 }
 
@@ -72,6 +82,9 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
                 }
                 Button("to Bool") {
                     isBoolShowed = true
+                }
+                Button("to Circular") {
+                    viewModel.rootVM = RootViewModel()
                 }
                 HStack {
                     Button("to Perform") {
@@ -117,6 +130,9 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
         .navigation(item: $viewModel.performStartDate){ startDate in
             PerformView(startDate: startDate, performLoad: $viewModel.performLoad)
         }
+        .navigation(item: $viewModel.rootVM){ rootVM in
+            RootView(viewModel: rootVM as! ViewModel)
+        }
         .onAppear {
             print("show RootView")
         }
@@ -131,6 +147,9 @@ final class RootViewModelMock: RootViewModelProtocol {
 
     @Published
     var numberForSecond: Int?
+
+    @Published
+    var rootVM: RootViewModel? = nil
 
     @Published
     var performStartDate: Date? = nil
