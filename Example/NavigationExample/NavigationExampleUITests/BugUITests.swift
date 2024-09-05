@@ -288,8 +288,9 @@ final class BugUITests: XCTestCase {
     // SwiftUI circular recreate View when catch Self from navigation modifier
     // If delete Environments values this effect go out.
     // If delete use Self from using a navigation modifier with item this effect go out.
-    // Links: 
-    func testFrozenWithCircularRoot() throws {
+    // Links: https://forums.developer.apple.com/forums/thread/720096?answerId=793663022#793663022
+    // https://hachyderm.io/@teissler/112533860374716961
+    func testBugWithFrozenOfCircularRoot() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
