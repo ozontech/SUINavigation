@@ -284,4 +284,39 @@ final class BugUITests: XCTestCase {
             .checkThis()
     }
 
+    // Reproduced if you use Environments values in navigation with item
+    // SwiftUI circular recreate View when catch Self from navigation modifier
+    // If delete Environments values this effect go out.
+    // If delete use Self from using a navigation modifier with item this effect go out.
+    // Links: 
+    func testFrozenWithCircularRoot() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .checkVM(initCount: 1, deinitCount: 0)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .tapRootView()
+        MainView(app: app)
+            .checkThis()
+            .checkVM(initCount: 2, deinitCount: 0)
+            .tapCircular()
+        MainView(app: app)
+            .checkThis()
+            .checkVM(initCount: 3, deinitCount: 0)
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+            .tapChange()
+            .checkVM(initCount: 3, deinitCount: 2)
+    }
+
 }

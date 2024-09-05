@@ -35,6 +35,9 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
                 Button("to Bool") {
                     isBoolShowed = true
                 }
+                Button("to Circular") {
+                    viewModel.rootVM = RootViewModel()
+                }
                 HStack {
                     Text("VM init count: \(ViewModel.initCount), VM deinit count: \(ViewModel.deinitCount)")
                 }
@@ -49,6 +52,9 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
         }
         .navigationAction(isActive: $isBoolShowed) {
             Destination.bool
+        }
+        .navigation(item: $viewModel.rootVM) { vm in
+            Destination.root(vm: vm)
         }
     }
 }

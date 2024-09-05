@@ -63,6 +63,15 @@ struct MainView: View {
         return self
     }
 
+
+    @discardableResult
+    func tapCircular() -> Self {
+        let button = app.buttons["to Circular"]
+        button.waitForExistingAndAssert()
+        button.tap()
+        return self
+    }
+
     @discardableResult
     func tapRoot() -> Self {
         let button = app.buttons["to Root"]
