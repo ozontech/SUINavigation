@@ -118,11 +118,7 @@ public final class NavigationStorage: ObservableObject {
             let index: Int? = pathItems.lastIndex { $0.isSkipped == false }
             if let index {
                 if index != pathItems.count - 1 {
-                    let lastOfItems = pathItems.suffix(from: index + 1)
-                    lastOfItems.forEach { pathItem in
-                        pathItem.isPresented.wrappedValue = false
-                    }
-                    pathItems = Array(pathItems[0...index])
+                    popTo(index: index)
                 }
             } else {
                 popToRoot()
@@ -141,11 +137,7 @@ public final class NavigationStorage: ObservableObject {
         return result
     }
 
-    /// You can use with the Type of View or the NavigationID case
-    public func popTo(_ id: NavigationID) {
-        guard let foundIndex = pathItems.lastIndex(where: { $0.id == id.stringValue }) else {
-            return
-        }
+    private func popTo(index foundIndex: Int) {
         // with NavigationStack need support iOS 16
         if #available(iOS 15.0, *) {
             // Work better that original aproach but in iOS 14 not stable
@@ -157,6 +149,14 @@ public final class NavigationStorage: ObservableObject {
             NavigationUtils.popTo(index: foundIndex + 1)
         }
         pathItems = Array(pathItems[0...foundIndex])
+    }
+
+    /// You can use with the Type of View or the NavigationID case
+    public func popTo(_ id: NavigationID) {
+        guard let foundIndex = pathItems.lastIndex(where: { $0.id == id.stringValue }) else {
+            return
+        }
+        popTo(index: foundIndex)
     }
 
     public func popToRoot() {
