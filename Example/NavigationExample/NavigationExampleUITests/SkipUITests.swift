@@ -35,6 +35,25 @@ final class SkipUITests: XCTestCase {
             .checkRootMessage(tapOK: true)
     }
 
+    func testSimpleWithoutRootMessage() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .tapChange()
+            .checkChanging(true)
+            .tapSecond()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterSkipTextField("Second")
+            .tapSkip()
+            .tapDismiss()
+        MainView(app: app)
+            .checkThis()
+    }
+
     func testDoubleSkipAfterRepeat() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
@@ -94,6 +113,31 @@ final class SkipUITests: XCTestCase {
         MainView(app: app)
             .checkThis()
             .checkRootMessage(tapOK: true)
+    }
+
+    func testSkipToRootWihoutRootMessage() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .tapChange()
+            .checkChanging(true)
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapSecond22()
+        SecondView(app: app)
+            .checkThis(number: 22)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterSkipTextField("First")
+            .tapSkip()
+            .tapClearSkip()
+            .enterSkipTextField("Second")
+            .tapSkip()
+            .tapDismiss()
+        MainView(app: app)
+            .checkThis()
     }
 
     func testNotFound() throws {
