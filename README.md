@@ -2,22 +2,22 @@
 
 # Overview
 
-Simple navigation framework for SwiftUI. Alternative `NavigationStack` with support for iOS 14, Apple bug fixes and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests. We care about quality and performance what why we have UI tests.
+Simple navigation framework for SwiftUI. Alternative `NavigationStack` with support for iOS 14, Apple bug fixes and better features. Compatible with Routing, Coordinator and each other architecture patterms. This navigation framework has functions of getting and applying the URL which allows you to organize deep links without special costs. In addition, the package contains a separate public test framework `SUINavigationTest` for testing navigation with unit tests and snapshot tests. We care about quality and performance what why we have UI and Unit tests.
 
 ## Motivation
 
-Now Developers have standard framework SwiftUI. Correct navigation features were introduced since iOS 16 as [NavigationStack](https://developer.apple.com/documentation/swiftui/navigationstack), but developers can not use that becase should support a iOS 14.x as target commonly. Now we have solutions to backport NavigationStack: [NavigationBackport](https://github.com/johnpatrickmorgan/NavigationBackport) but it's too bold and different from the declarative approach. We want a simpler interface. In addition, the NavigationStack and NavigationBackport havn't many functions such as `skip` and each others. Functions `append` from URL and `replace` with URL allows store and backup navigation state without special costs. Also allows you to use deep links as an additional feature. If you want to use microapp-architecture you can inject views to your modules closed by value object.
+Now Developers have standard framework SwiftUI. "Correct" navigation features were introduced since iOS 16 as [NavigationStack](https://developer.apple.com/documentation/swiftui/navigationstack), but developers can not use that becase should support a iOS 14.x as target commonly. Now we have solutions to backport NavigationStack: [NavigationBackport](https://github.com/johnpatrickmorgan/NavigationBackport) but it's too bold and different from the declarative approach. We want a simpler interface. In addition, the `NavigationStack` and `NavigationBackport` havn't many functions such as `skip` and each others. Functions `append` and `replace` from `SUINavigation` with URL allows store and backup navigation state without special costs. Also allows you to use deep links as an additional feature in this SwiftUI navigation component. If you want to use microfeature-architecture you can inject views to your modules closed by value object type.
 
 ## Features
 
 - [x] Full support SwiftUI, has declarative style.
-- [x] Supporting iOS 14, iOS 15, iOS 16, iOS 17.
+- [x] Supporting iOS 14, iOS 15, iOS 16, iOS 17, iOS 18.
 - [x] Target switching between NavigationView and NavigationStack.
-- [x] Fixing known Apple bugs.
-- [x] Has popTo, skip, isRoot and each other functions.
+- [x] Fixing known Apple bugs of standart SwiftUI navigation components.
+- [x] Has pop, popTo, skip, isRoot and each other functions.
 - [x] Works with URL: simple supporting the deep links.
-- [x] Multy-module supporting (views injecting)
-- [x] Contains unit and snapshot tests framework
+- [x] Multy-module supporting (views injecting).
+- [x] Contains unit and snapshot tests framework.
 - [x] UI tests full coverage.
 - [x] Performance concern.
 
@@ -159,7 +159,7 @@ struct SomeView: View {
 
 ## Test of Navigation
 
-`SUINavigation` includes `SUINavigationTest` framework, which allows you to cover your views with Unit and Snapshot tests. 
+`SUINavigation` is a SwiftUI navigation component that includes `SUINavigationTest` test library, which allows you to cover your views navigation rooting with Unit and Snapshot tests without use Router or Coordinator architecture approach. 
 More details about why this is needed and how to implement it are written in a separate article [SUINavigationTest](Docs/SUINavigationTest.md).
 The Next example just shows how to write tests:
 
@@ -298,6 +298,8 @@ Ohh, you know my friend what the hell in use SwiftUI navigation?
 But yes, we try to fixed bugs on SwiftUI navigation as soon as we can.
 All test who demonstration they you can found on NavigationExample project with tests on class [BugUITests](Example/NavigationExample/NavigationExampleUITests/BugUITests.swift).
 From iOS 16.0 Apple deprecated NavigationView and it really stopped working stably but to iOS 17 NavigationStorage working unstably too. It forced me introduce `NavigationStorageStrategy` for chousing to you way: wath do you use with iOS 16.x: `NavigationView` or `NavigationStorage`. More details [in the description](Sources/SUINavigation/Core/NavigationStorageStrategy.swift).
+
+This SwiftUI navigation library include many fixes of any I know bugs with standart Apple SwiftUI navigation component, but interface of using `SUINavigation` have saved native way to use SwiftUI navigation.
 
 ## Common Functions
 

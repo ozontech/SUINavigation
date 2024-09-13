@@ -3,6 +3,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.10.2] - 2024-09-13 (Friday)
+
+#### Added
+
+- New tests to Skip functions + Root message, Pop to back view.
+
+#### Fixed
+
+- One point to func popTo.
+- Broken tests after update to iOS 18.
+
 ## [1.10.1] - 2024-08-28
 
 #### Added
