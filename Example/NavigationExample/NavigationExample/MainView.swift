@@ -80,6 +80,7 @@ struct MainView: View {
         }
         .environment(\.isChange, $isChange)
         .onChange(of: isRoot) { value in
+#warning("So it's hack for test success. Needs research way navigation can broken without that. Any times this reproduced by Skip tests or Replase tets with iOS 18")
             if isChange == false {
                 Task {
                     // Delay the task by 0.01 second:
