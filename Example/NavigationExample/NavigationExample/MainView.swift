@@ -84,7 +84,9 @@ struct MainView: View {
                 Task {
                     // Delay the task by 0.01 second:
                     try await Task.sleep(nanoseconds: 1_0_000_000)
-                    isRootMessageShowed = value
+                    Task { @MainActor in
+                        isRootMessageShowed = value
+                    }
                 }
             }
         }
