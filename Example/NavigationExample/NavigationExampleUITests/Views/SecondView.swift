@@ -45,6 +45,14 @@ struct SecondView: View {
     }
 
     @discardableResult
+    func tapPop() -> Self {
+        let button = app.buttons["popBack"].firstMatch
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
     func tapChange() -> Self {
         let button = app.buttons["to change"]
         _ = button.waitForExistence(timeout: 2)

@@ -48,8 +48,13 @@ struct SecondView: View {
             Button("to change") {
                 isChange.wrappedValue.toggle()
             }
-            Button("dismiss") {
-                presentationMode.wrappedValue.dismiss()
+            HStack {
+                Button("dismiss") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                Button("popBack") {
+                    navigationStorage?.pop()
+                }
             }
             Button("trigger to nil") {
                 numberFromParent = nil

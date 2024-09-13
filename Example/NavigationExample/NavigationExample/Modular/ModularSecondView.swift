@@ -48,8 +48,13 @@ struct ModularSecondView: View {
             Button("to change") {
                 isChange.wrappedValue.toggle()
             }
-            Button("dismiss") {
-                presentationMode.wrappedValue.dismiss()
+            HStack {
+                Button("dismiss") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                Button("popBack") {
+                    navigationStorage?.pop()
+                }
             }
             Button("trigger to nil") {
                 // Yes, it is not working, because Modular use AnyView: technical imposible use Binding

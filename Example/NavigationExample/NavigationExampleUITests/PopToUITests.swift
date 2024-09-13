@@ -324,4 +324,38 @@ final class PopToUITests: XCTestCase {
         MainView(app: app)
             .checkThis()
     }
+
+    func testPop() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapSecond()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .tapPop()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+            .tapFirst()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapSecond22()
+        SecondView(app: app)
+            .checkThis(number: 22)
+            .tapPop()
+        FirstView(app: app)
+            .checkThis(string: "Hi")
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+            .tapSecond()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .tapPop()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+    }
 }
