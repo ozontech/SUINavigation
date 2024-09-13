@@ -269,6 +269,7 @@ final class BugUITests: XCTestCase {
         XCUIDevice.shared.press(.home)
         app.activate()
         FirstView(app: app)
+            .checkThis(string: "Bool")
             .tapBack()
         BoolView(app: app)
             .checkThis()
