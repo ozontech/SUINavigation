@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.10.3] - 2024-11-01
+
+#### Added
+
+- Added tests for iOS 18.1 on build server.
+
 ## [1.10.2] - 2024-09-13 (Friday)
 
 #### Added
