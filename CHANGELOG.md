@@ -3,6 +3,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.10.4] - 2024-12-04
+
+#### Added
+
+- New simple example with list and details.
+- Description of using .navigation's modifiers.
+
 ## [1.10.3] - 2024-11-01
 
 #### Added
