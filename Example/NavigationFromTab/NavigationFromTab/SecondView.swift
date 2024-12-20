@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SUINavigation
 
 struct SecondView: View {
 
@@ -25,7 +26,7 @@ struct SecondView: View {
         }
         .padding()
         .navigationTitle("Second")
-        .navigationDestination(isPresented: $isLastShowing) {
+        .navigation(isActive: $isLastShowing) {
             LastView()
         }
     }

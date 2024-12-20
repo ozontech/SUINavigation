@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C3315D082D15679700540268 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = C3315D072D15679700540268 /* SUINavigation */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C3315CDD2D1563B200540268 /* NavigationFromTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationFromTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3315D082D15679700540268 /* SUINavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = NavigationFromTab;
 			packageProductDependencies = (
+				C3315D072D15679700540268 /* SUINavigation */,
 			);
 			productName = NavigationFromTab;
 			productReference = C3315CDD2D1563B200540268 /* NavigationFromTab.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = C3315CD42D1563B200540268;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C3315D062D15679700540268 /* XCLocalSwiftPackageReference "../../../SUINavigation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C3315CDE2D1563B200540268 /* Products */;
 			projectDirPath = "";
@@ -322,6 +331,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C3315D062D15679700540268 /* XCLocalSwiftPackageReference "../../../SUINavigation" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../../SUINavigation;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C3315D072D15679700540268 /* SUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SUINavigation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C3315CD52D1563B200540268 /* Project object */;
 }

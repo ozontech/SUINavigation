@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SUINavigation
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
+        NavigationViewStorage {
             TabView {
                 FirstView()
                     .tabItem {
