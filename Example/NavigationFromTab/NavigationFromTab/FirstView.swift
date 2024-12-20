@@ -13,19 +13,19 @@ struct FirstView: View {
     @State
     var isSecondShowing = false
 
+    @OptionalEnvironmentObject
+    var navigationStorage: NavigationStorage?
+
     var body: some View {
         VStack {
             Text("First")
             Button {
-                isSecondShowing = true
+                navigationStorage?.changeDestination(with: TabNavigation.second)
             } label: {
                 Text("to Second")
             }
         }
         .padding()
         .navigationTitle("First")
-        .navigation(isActive: $isSecondShowing) {
-            SecondView()
-        }
     }
 }

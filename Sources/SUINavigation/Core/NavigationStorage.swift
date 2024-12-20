@@ -57,6 +57,7 @@ public final class NavigationStorage: ObservableObject {
     weak var parentStorge: NavigationStorage? = nil
 
     var bindings: [String: NavigationBindingHandler] = [:]
+    var destinations: [String: NavigationDestinationHandler] = [:]
 
     public private(set) var isNavigationStackUsed: Bool
 
@@ -135,6 +136,26 @@ public final class NavigationStorage: ObservableObject {
             }
         }
         return result
+    }
+
+    func searchDestination<T: Equatable>(for value: T.Type) -> NavigationDestinationHandler? {
+        guard let result = destinations[String(describing: T.self)] else {
+            if let parentStorge = self.parentStorge {
+                return parentStorge.searchDestination(for: value)
+            } else {
+                return nil
+            }
+        }
+        return result
+    }
+
+    /// This function needs for action push or replace View from .navigationStorageDestination
+    @discardableResult
+    public func changeDestination<T: Equatable>(with value: T) -> Bool {
+        if let handle = searchDestination(for: T.self) {
+            return handle(value)
+        }
+        return false
     }
 
     private func popTo(index foundIndex: Int) {

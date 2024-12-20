@@ -8,6 +8,11 @@
 import SwiftUI
 import SUINavigation
 
+enum TabNavigation {
+    case first
+    case second
+}
+
 struct ContentView: View {
     var body: some View {
         NavigationViewStorage {
@@ -20,6 +25,14 @@ struct ContentView: View {
                     .tabItem {
                         Text("second")
                     }
+            }
+            .navigationStorageDestination { (item: TabNavigation) in
+                switch item {
+                case .first:
+                    FirstView()
+                case .second:
+                    SecondView()
+                }
             }
         }
     }
