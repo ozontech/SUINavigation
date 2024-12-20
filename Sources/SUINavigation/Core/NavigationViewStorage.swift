@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Synonym (needs change with NavigationViewStorage in a future)
+typealias NavigationStorageView = NavigationViewStorage
+
 public struct NavigationViewStorage<Content: View>: View {
     let content: Content
 

@@ -26,6 +26,7 @@ struct SecondView: View {
         }
         .padding()
         .navigationTitle("Second")
+        // False! It's can generate warning to console because used by TabView. Please see the FirstView to how to make navigate from the Root view at NavigationStorageView
         .navigation(isActive: $isLastShowing) {
             LastView()
         }

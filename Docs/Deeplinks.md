@@ -128,7 +128,7 @@ struct TargetView: View {
 
 ```
 
-That's it. In a clousers of `navigateUrlParams` you can use `NavigationActionPathProtocol` and `NavigationActionSavePathProtocol` path objects. Who can parse (getIntParam, getIntParam, getParam) and serialise (pushIntParam, pushStringParam, pushParam) your trigger object.
+That's it. In a closures of `navigateUrlParams` you can use `NavigationActionPathProtocol` and `NavigationActionSavePathProtocol` path objects. Who can parse (getIntParam, getIntParam, getParam) and serialise (pushIntParam, pushStringParam, pushParam) your trigger object.
 
 ## Deeplinks supporting at custom navigation
 

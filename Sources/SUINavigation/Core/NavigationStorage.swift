@@ -149,7 +149,7 @@ public final class NavigationStorage: ObservableObject {
         return result
     }
 
-    /// This function needs for action push or replace View from .navigationStorageDestination
+    /// This function needs for active to push or replace View from .navigationStorageDestination who get `value` from this method
     @discardableResult
     public func changeDestination<T: Equatable>(with value: T) -> Bool {
         if let handle = searchDestination(for: T.self) {

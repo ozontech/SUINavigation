@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 
 ## [1.11.0] - 2024-12-20
 
+#### Added
+
+- Synonym NavigationStorageView as NavigationViewStorage.
+- .navigationStorageDestination view modifiers, method changeDestination to NavigationStorage for change navigation state.
+- Example 'NavigationFromTab' with mixing using TabView with NavigationStorageView.
+
 #### Fixed
 
 - Corrected 'storge' to 'storage' in all.
