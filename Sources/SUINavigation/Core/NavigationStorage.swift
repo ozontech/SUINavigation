@@ -52,9 +52,9 @@ public final class NavigationStorage: ObservableObject {
     @NavigationPublished
     public internal(set) var rootChildren: [String: Child] = [:]
 
-    // `childStorge` and `parentStorge` need for support nested NavigationStorage.
-    public internal(set) weak var childStorge: NavigationStorage? = nil
-    weak var parentStorge: NavigationStorage? = nil
+    // `childStorage` and `parentStorage` need for support nested NavigationStorage.
+    public internal(set) weak var childStorage: NavigationStorage? = nil
+    weak var parentStorage: NavigationStorage? = nil
 
     var bindings: [String: NavigationBindingHandler] = [:]
     var destinations: [String: NavigationDestinationHandler] = [:]
@@ -129,8 +129,8 @@ public final class NavigationStorage: ObservableObject {
 
     func searchBinding<T: Equatable>(for value: T.Type) -> NavigationBindingHandler {
         guard let result = bindings[String(describing: T.self)] else {
-            if let parentStorge = self.parentStorge {
-                return parentStorge.searchBinding(for: value)
+            if let parentStorage = self.parentStorage {
+                return parentStorage.searchBinding(for: value)
             } else {
                 return {_ in EmptyView()}
             }
@@ -140,8 +140,8 @@ public final class NavigationStorage: ObservableObject {
 
     func searchDestination<T: Equatable>(for value: T.Type) -> NavigationDestinationHandler? {
         guard let result = destinations[String(describing: T.self)] else {
-            if let parentStorge = self.parentStorge {
-                return parentStorge.searchDestination(for: value)
+            if let parentStorage = self.parentStorage {
+                return parentStorage.searchDestination(for: value)
             } else {
                 return nil
             }

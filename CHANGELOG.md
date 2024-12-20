@@ -3,6 +3,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.11.0] - 2024-12-20
+
+#### Fixed
+
+- Corrected 'storge' to 'storage' in all.
+
 ## [1.10.4] - 2024-12-04
 
 #### Added

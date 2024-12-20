@@ -33,12 +33,12 @@ public struct NavigationViewStorage<Content: View>: View {
         navigation
             .onAppear{
                 if let parentNavigationStorage = parentNavigationStorage {
-                    parentNavigationStorage.childStorge = navigationStorage
-                    navigationStorage.parentStorge = parentNavigationStorage
+                    parentNavigationStorage.childStorage = navigationStorage
+                    navigationStorage.parentStorage = parentNavigationStorage
                 }
             }
             .onDisappear(){
-                parentNavigationStorage?.childStorge = nil
+                parentNavigationStorage?.childStorage = nil
             }
             .optionalEnvironmentObject(navigationStorage)
     }

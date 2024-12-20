@@ -110,7 +110,7 @@ public func renderingTest<SourceView: View, DestinationView: View>(
 @inline(__always)
 public func renderingTest<SourceView: View>(
     _ view: SourceView,
-    hasStorge: Bool = false,
+    hasStorage: Bool = false,
     evalution: () -> Void = { },
     destination: @escaping (_ view: any View) -> Void,
     file: StaticString = #file,
@@ -133,7 +133,7 @@ public func renderingTest<SourceView: View>(
 
     evalution()
 
-    if hasStorge {
+    if hasStorage {
         view.render()
     } else {
         NavigationViewStorage{

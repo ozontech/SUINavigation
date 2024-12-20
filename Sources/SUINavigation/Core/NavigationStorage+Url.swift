@@ -29,8 +29,8 @@ extension NavigationStorage {
     }
 
     public func replace(with url: String) {
-        if let parentStorge = self.parentStorge {
-            parentStorge.replace(with: url)
+        if let parentStorage = self.parentStorage {
+            parentStorage.replace(with: url)
             return
         }
         popToRoot()
@@ -103,8 +103,8 @@ extension NavigationStorage {
             return
         }
 
-        // If childStorge not nil We founed in anotner navigation storage. We should switch actionPath respond to
-        if let childStorage = childStorge {
+        // If childStorage not nil We founed in anotner navigation storage. We should switch actionPath respond to
+        if let childStorage = childStorage {
             self.actionPath = nil
             childStorage.actionPath = actionPath
             return

@@ -135,7 +135,7 @@ public func test<SourceView: View, DestinationView: View>(
 @inline(__always)
 public func test<SourceView: View>(
     _ view: SourceView,
-    hasStorge: Bool = false,
+    hasStorage: Bool = false,
     evalution: () -> Void = { },
     destination: @escaping (_ view: any View) -> Void,
     file: StaticString = #file,
@@ -144,7 +144,7 @@ public func test<SourceView: View>(
 ){
     renderingTest(
         view,
-        hasStorge: hasStorge,
+        hasStorage: hasStorage,
         evalution: evalution,
         destination: destination,
         file: file,
