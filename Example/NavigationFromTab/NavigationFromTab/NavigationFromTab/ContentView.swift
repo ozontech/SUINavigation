@@ -15,7 +15,7 @@ struct ContentView: View {
                     .tabItem {
                         Text("first")
                     }
-                LastView()
+                SecondView()
                     .tabItem {
                         Text("second")
                     }
