@@ -21,7 +21,7 @@ struct FirstView: View {
             Text("First")
             Button {
                 // True! It's can fix warning to console because .navigationStorageDestination is called outside of the TabView.
-                navigationStorage?.changeDestination(with: TabNavigation.second)
+                navigationStorage?.replaceDestination(with: TabNavigation.second)
             } label: {
                 Text("to Second")
             }

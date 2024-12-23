@@ -23,7 +23,7 @@ struct NavigationStorageDestinationModifier<Item: Equatable>: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onAppear {
-                navigationStorage?.destinations[String(describing: Item.self)] = { item in
+                navigationStorage?.registryDestination(value: Item.self, id: id) { item in
                     if let item = item as? Item {
                         destination = item
                         return true

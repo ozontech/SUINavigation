@@ -23,7 +23,7 @@ struct LastView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
             Button {
-                navigationStorage?.changeDestination(with: TabNavigation.first)
+                navigationStorage?.replaceDestination(with: TabNavigation.first)
             } label: {
                 Text("to First")
             }

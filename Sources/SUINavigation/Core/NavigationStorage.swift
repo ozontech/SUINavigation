@@ -20,6 +20,8 @@ public final class NavigationStorage: ObservableObject {
         var isSkipped = false
         // This use for duplicated id
         var uid: String?
+        // This use for pop, change or replace functions, when use to push other View
+        var destinations: [String: NavigationDestinationHandler] = [:]
 
         @NavigationPublished
         public internal(set) var children: [String: Child] = [:]
@@ -42,6 +44,13 @@ public final class NavigationStorage: ObservableObject {
             hasher.combine(id)
             hasher.combine(uid)
         }
+
+        func searchDestination<T: Equatable>(for value: T.Type) -> NavigationDestinationHandler? {
+            guard let result = destinations[String(describing: T.self)] else {
+                return nil
+            }
+            return result
+        }
     }
 
     // Stack of navigation without root
@@ -51,13 +60,14 @@ public final class NavigationStorage: ObservableObject {
     // We don't have root from pathItems, so children of this item used by activate some navigation.
     @NavigationPublished
     public internal(set) var rootChildren: [String: Child] = [:]
+    // This use for pop, change or replace functions, when use to push other View
+    var rootDestinations: [String: NavigationDestinationHandler] = [:]
 
     // `childStorage` and `parentStorage` need for support nested NavigationStorage.
     public internal(set) weak var childStorage: NavigationStorage? = nil
     weak var parentStorage: NavigationStorage? = nil
 
     var bindings: [String: NavigationBindingHandler] = [:]
-    var destinations: [String: NavigationDestinationHandler] = [:]
 
     public private(set) var isNavigationStackUsed: Bool
 
@@ -138,22 +148,74 @@ public final class NavigationStorage: ObservableObject {
         return result
     }
 
+    func registryDestination<T: Equatable>(value: T.Type, id: NavigationID?, handler: @escaping NavigationDestinationHandler) {
+        if pathItems.count > 0 {
+            if let id {
+                for item in pathItems.reversed() {
+                    if item.id == id.stringValue {
+                        item.destinations[String(describing: T.self)] = handler
+                        return
+                    }
+                }
+                rootDestinations[String(describing: T.self)] = handler
+            } else {
+                pathItems.last?.destinations[String(describing: T.self)] = handler
+            }
+        } else {
+            rootDestinations[String(describing: T.self)] = handler
+        }
+    }
+
+    func searchDestination<T: Equatable>(value: T.Type) -> Int? {
+        return pathItems.lastIndex(where: { $0.destinations[String(describing: T.self)] != nil })
+    }
+
     func searchDestination<T: Equatable>(for value: T.Type) -> NavigationDestinationHandler? {
-        guard let result = destinations[String(describing: T.self)] else {
+        guard let index = searchDestination(value: value) else {
             if let parentStorage = self.parentStorage {
                 return parentStorage.searchDestination(for: value)
             } else {
-                return nil
+                return rootDestinations[String(describing: T.self)]
             }
         }
-        return result
+        return pathItems[index].destinations[String(describing: T.self)]
     }
 
-    /// This function needs for active to push or replace View from .navigationStorageDestination who get `value` from this method&
+    /// This function needs for active to push or replace View from .navigationStorageDestination who get `value` from this method.
     /// If you call this from next screen behouver will different: iOS 14-16 pop to  view of this navigation node and push new View, iOS 17-18 replace view of this navigation node and didn't pop to this.
     @discardableResult
     public func changeDestination<T: Equatable>(with value: T) -> Bool {
         if let handle = searchDestination(for: T.self) {
+            return handle(value)
+        }
+        return false
+    }
+
+    func popTo<T: Equatable>(destination value: T.Type) -> NavigationDestinationHandler? {
+        guard let index = searchDestination(value: value) else {
+            if let parentStorage = self.parentStorage {
+                return parentStorage.popTo(destination: value)
+            } else {
+                if let rootDestination = rootDestinations[String(describing: T.self)] {
+                    popToRoot()
+                    return rootDestination
+                }
+                return nil
+            }
+        }
+        popTo(index: index)
+        return pathItems[index].destinations[String(describing: T.self)]
+    }
+
+    public func popTo<T: Equatable>(destination value: T.Type) -> Bool {
+        return popTo(destination: value) != nil
+    }
+
+    /// This function needs for replace View from .navigationStorageDestination who get `value` from this method.
+    /// If you call this from next screen you always to  pop to view of this navigation node, without depends on iOS 15-18.
+    @discardableResult
+    public func replaceDestination<T: Equatable>(with value: T) -> Bool {
+        if let handle = popTo(destination: T.self) {
             return handle(value)
         }
         return false

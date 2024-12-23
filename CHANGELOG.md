@@ -8,12 +8,15 @@ All notable changes to this project will be documented in this file.
 #### Added
 
 - Synonym NavigationStorageView as NavigationViewStorage.
-- .navigationStorageDestination view modifiers, method changeDestination to NavigationStorage for change navigation state.
+- `.navigationStorageDestination` view modifiers, method `changeDestination` and `replaceDestination` to NavigationStorage for change navigation state.
+- `.navigationStorageDestinationAction` view modifiers for deeplinks.
 - Example 'NavigationFromTab' with mixing using TabView with NavigationStorageView.
 
 #### Fixed
 
 - Corrected 'storge' to 'storage' in all.
+- All extensions from Navigation+UrlParam.swift to separate files.
+
 
 ## [1.10.4] - 2024-12-04
 
