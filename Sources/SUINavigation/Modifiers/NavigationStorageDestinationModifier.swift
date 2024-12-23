@@ -62,7 +62,7 @@ public extension View {
             .navigationStorageDestination(for: data, id: id, paramName: paramName)
     }
 
-    /// This modifier analogy to `.navigationStorageDestination` with `Destination` closure and use with `.navigationStorageBinding` calling before.
+    /// This modifier analogy to `.navigationStorageDestination` with `Destination` closure and use with `.navigationStorageBinding` called before.
     func navigationStorageDestination<Item: Equatable>(
         for data: Item.Type,
         id: NavigationID? = nil,

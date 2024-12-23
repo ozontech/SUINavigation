@@ -8,7 +8,13 @@
 import SwiftUI
 import SUINavigation
 
-enum TabNavigation {
+enum TabNavigation: String, NavigationParameterValue {
+    init?(_ description: String) {
+        self.init(rawValue: description)
+    }
+
+    static var defaultValue: TabNavigation = .first
+
     case first
     case second
 }
@@ -26,7 +32,7 @@ struct ContentView: View {
                         Text("second")
                     }
             }
-            .navigationStorageDestination { (item: TabNavigation) in
+            .navigationStorageDestinationAction(id: "root") { (item: TabNavigation) in
                 switch item {
                 case .first:
                     FirstView()

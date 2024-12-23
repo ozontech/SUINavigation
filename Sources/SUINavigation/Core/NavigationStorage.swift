@@ -149,7 +149,8 @@ public final class NavigationStorage: ObservableObject {
         return result
     }
 
-    /// This function needs for active to push or replace View from .navigationStorageDestination who get `value` from this method
+    /// This function needs for active to push or replace View from .navigationStorageDestination who get `value` from this method&
+    /// If you call this from next screen behouver will different: iOS 14-16 pop to  view of this navigation node and push new View, iOS 17-18 replace view of this navigation node and didn't pop to this.
     @discardableResult
     public func changeDestination<T: Equatable>(with value: T) -> Bool {
         if let handle = searchDestination(for: T.self) {
