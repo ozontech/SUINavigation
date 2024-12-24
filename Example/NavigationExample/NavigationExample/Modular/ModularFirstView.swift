@@ -29,6 +29,9 @@ struct ModularFirstView: View {
     @Environment(\.presentationMode)
     private var presentationMode
 
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
     var body: some View {
         ZStack {
             if isChange.wrappedValue {
@@ -44,6 +47,9 @@ struct ModularFirstView: View {
                 }
                 Button("to Second with 22") {
                     numberForSecond = 22
+                }
+                Button("to Replace") {
+                    navigationStorage?.replaceDestination(with: ReplaceValue.replace("www"))
                 }
                 Button("dismiss") {
                     presentationMode.wrappedValue.dismiss()

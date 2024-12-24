@@ -20,9 +20,15 @@ struct NavigationStorageDestinationModifier<Item: Equatable>: ViewModifier {
     @OptionalEnvironmentObject
     var navigationStorage: NavigationStorage?
 
+    @State
+    var isAppear: Bool = false
+
     func body(content: Content) -> some View {
         content
             .onAppear {
+                if isAppear {
+                    return
+                }
                 navigationStorage?.registryDestination(value: Item.self, id: id) { item in
                     if let item = item as? Item {
                         destination = item
@@ -30,6 +36,7 @@ struct NavigationStorageDestinationModifier<Item: Equatable>: ViewModifier {
                     }
                     return false
                 }
+                isAppear = true
             }
             .navigation(item: $destination, id: id, paramName: paramName)
     }

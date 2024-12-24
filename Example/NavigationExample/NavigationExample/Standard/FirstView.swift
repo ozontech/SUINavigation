@@ -29,6 +29,9 @@ struct FirstView: View {
     @Environment(\.presentationMode)
     private var presentationMode
 
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
     var body: some View {
         ZStack {
             if isChange.wrappedValue {
@@ -47,6 +50,9 @@ struct FirstView: View {
                 }
                 Button("to Object") {
                     object = .testValue1
+                }
+                Button("to Replace") {
+                    navigationStorage?.replaceDestination(with: ReplaceValue.replace("www"))
                 }
                 Button("dismiss") {
                     presentationMode.wrappedValue.dismiss()

@@ -45,6 +45,14 @@ struct FirstView: View {
     }
 
     @discardableResult
+    func tapReplace() -> Self {
+        let button = app.buttons["to Replace"]
+        _ = button.waitForExistence(timeout: 2)
+        button.tap()
+        return self
+    }
+
+    @discardableResult
     func tapDismiss() -> Self {
         let buttons = app.buttons.matching(identifier: "dismiss")
         for i in 0..<buttons.count{

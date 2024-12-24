@@ -149,18 +149,8 @@ public final class NavigationStorage: ObservableObject {
     }
 
     func registryDestination<T: Equatable>(value: T.Type, id: NavigationID?, handler: @escaping NavigationDestinationHandler) {
-        if pathItems.count > 0 {
-            if let id {
-                for item in pathItems.reversed() {
-                    if item.id == id.stringValue {
-                        item.destinations[String(describing: T.self)] = handler
-                        return
-                    }
-                }
-                rootDestinations[String(describing: T.self)] = handler
-            } else {
-                pathItems.last?.destinations[String(describing: T.self)] = handler
-            }
+        if let lastItem = pathItems.last {
+            lastItem.destinations[String(describing: T.self)] = handler
         } else {
             rootDestinations[String(describing: T.self)] = handler
         }
