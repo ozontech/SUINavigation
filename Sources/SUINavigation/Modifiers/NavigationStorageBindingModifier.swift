@@ -34,7 +34,7 @@ struct NavigationStorageBindingModifier<Destination: View, Item: Equatable>: Vie
 
 public extension View {
     func navigationStorageBinding<Item: Equatable, Destination: View>(
-        for data: Item.Type,
+        for data: Item.Type = Item.self,
         @ViewBuilder destination: @escaping (Item) -> Destination
     ) -> some View {
         navigationModifier(NavigationStorageBindingModifier(data: data, destination: destination))

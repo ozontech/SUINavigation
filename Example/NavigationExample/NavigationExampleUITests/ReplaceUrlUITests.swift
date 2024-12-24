@@ -95,6 +95,33 @@ final class ReplaceUrlUITests: XCTestCase {
             .checkThis()
     }
 
+    func testReplaceUrl() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .enterActionUrlTextField("BoolView/FirstView/SecondView/Replace?firstString=first&secondNumber=1&replace=url")
+            .tapReplaceUrl()
+        ReplaceView(app: app)
+            .checkThis(string: "url")
+            .tapBack()
+        SecondView(app: app)
+            .checkThis(number: 1)
+            .tapBack()
+        FirstView(app: app)
+            .checkThis(string: "first")
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .checkPath("BoolView")
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+    }
+
     func testErrorWithLastElementUrl() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)

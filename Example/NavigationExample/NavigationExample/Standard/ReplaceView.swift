@@ -1,20 +1,34 @@
 //
-//  ModularSecondView.swift
+//  ReplaceView.swift
 //  NavigationExample
 //
-//  Created by Sergey Balalaev on 04.12.2023.
+//  Created by Sergey Balalaev on 24.12.2024.
 //
 
 import SwiftUI
 import SUINavigation
 
-struct ModularSecondView: View {
+enum ReplaceValue: NavigationParameterValue, Equatable {
 
-    var number: Int
+    init?(_ description: String) {
+        self = .replace(description)
+    }
+    
+    static var defaultValue = replace("")
 
-    // Don't use this approach, just for testing
-    @Binding
-    var numberFromParent: Int?
+    var stringValue: String {
+        switch self {
+        case .replace(let value):
+            return value
+        }
+    }
+
+    case replace(_ string: String)
+}
+
+struct ReplaceView: View {
+
+    var string: String
 
     @State
     private var isBoolShowed: Bool = false
@@ -31,14 +45,14 @@ struct ModularSecondView: View {
     var body: some View {
         VStack {
             HStack{
-                Text("This is Second")
+                Text("This is Replace")
                 if isChange.wrappedValue {
                     Text("changed")
                 } else {
                     Text("wait change")
                 }
             }
-            Text("with: \(number)")
+            Text("with: \(string)")
             Button("to Bool") {
                 isBoolShowed = true
             }
@@ -56,23 +70,12 @@ struct ModularSecondView: View {
                     navigationStorage?.pop()
                 }
             }
-            Button("trigger to nil") {
-                // Yes, it is not working, because Modular use AnyView: technical imposible use Binding
-                //numberFromParent = nil
-                presentationMode.wrappedValue.dismiss()
-            }
-            Button("to URL: BoolView/FirstView/SecondView?firstString=??&secondNumber=88") {
-                navigationStorage?.append(from: "BoolView/FirstView/SecondView?firstString=??&secondNumber=88")
-            }
         }
         .padding()
-        .navigationAction(isActive: $isBoolShowed, destinationValue: Destination.bool){ _ in
+        .navigationAction(isActive: $isBoolShowed){
+            BoolView()
+        } action: { _ in
             isBoolShowed = true
         }
-        .navigationStorageDestinationAction(for: ReplaceValue.self, id: "Replace", paramName: "replace")
     }
-}
-
-#Preview {
-    ModularSecondView(number: 777, numberFromParent: .constant(0))
 }

@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Synonym NavigationStorageView as NavigationViewStorage.
 - `.navigationStorageDestination` view modifiers, method `changeDestination` and `replaceDestination` to NavigationStorage for change navigation state.
 - `.navigationStorageDestinationAction` view modifiers for deeplinks.
+- `.navigationStorageBinding` default Item.Type param.
 - Example 'NavigationFromTab' with mixing using TabView with NavigationStorageView.
 
 #### Fixed

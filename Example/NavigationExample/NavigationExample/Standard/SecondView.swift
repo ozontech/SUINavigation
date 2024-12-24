@@ -69,6 +69,12 @@ struct SecondView: View {
         } action: { _ in
             isBoolShowed = true
         }
+        .navigationStorageDestinationAction(id: "Replace", paramName: "replace"){ (value: ReplaceValue) in
+            switch value {
+            case .replace(let string):
+                ReplaceView(string: string)
+            }
+        }
     }
 }
 

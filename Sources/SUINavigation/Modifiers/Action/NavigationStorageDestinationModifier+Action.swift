@@ -22,7 +22,10 @@ struct NavigationStorageDestinationActionModifier<Item: Equatable>: ViewModifier
             .navigateUrlParams(id.stringValue){ path in
                 let paramName = paramName ?? id.stringValue
                 let item: Item? = isRemovingParam ? path.popParam(paramName) : path.getParam(paramName)
-                navigationStorage?.changeDestination(with: item)
+                guard let resultItem = item else {
+                    return
+                }
+                navigationStorage?.changeDestination(with: resultItem)
             }
 
     }

@@ -73,6 +73,11 @@ struct MainView: View {
                 }
             }.navigationStorageBinding(for: Destination.self) { destination in
                 destination.view
+            }.navigationStorageBinding{ (value: ReplaceValue) in
+                switch value {
+                case .replace(let string):
+                    ReplaceView(string: string)
+                }
             }
         }
         .alert(isPresented: $isRootMessageShowed) {

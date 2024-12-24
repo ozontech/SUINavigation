@@ -41,6 +41,34 @@ final class ActionUrlUITests: XCTestCase {
             .checkThis()
     }
 
+    func testReplaceUrl() throws {
+        let app = XCUIApplication.launchEn
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapBool()
+        BoolView(app: app)
+            .checkThis()
+            .checkPath("BoolView")
+            .enterActionUrlTextField("FirstView/SecondView/Replace?firstString=fromURL&secondNumber=155&replace=append")
+            .tapAppendUrl()
+        ReplaceView(app: app)
+            .checkThis(string: "append")
+            .tapDismiss()
+        SecondView(app: app)
+            .checkThis(number: 155)
+            .tapDismiss()
+        FirstView(app: app)
+            .checkThis(string: "fromURL")
+            .tapBack()
+        BoolView(app: app)
+            .checkThis()
+            .checkPath("BoolView")
+            .tapBack()
+        MainView(app: app)
+            .checkThis()
+    }
+
     func testLongUrl() throws {
         let app = XCUIApplication.launchEn
         MainView(app: app)
