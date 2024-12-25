@@ -160,24 +160,18 @@ public final class NavigationStorage: ObservableObject {
         return pathItems.lastIndex(where: { $0.destinations[String(describing: T.self)] != nil })
     }
 
-    func searchDestination<T: Equatable>(for value: T.Type, isNeedPop: Bool) -> NavigationDestinationHandler? {
+    func searchDestination<T: Equatable>(for value: T.Type) -> (handle: NavigationDestinationHandler?, index: Int?) {
         guard let index = searchDestination(value: value) else {
             if let parentStorage = self.parentStorage {
-                return parentStorage.searchDestination(for: value, isNeedPop: isNeedPop)
+                return parentStorage.searchDestination(for: value)
             } else {
                 if let rootDestination = rootDestinations[String(describing: T.self)] {
-                    if isNeedPop {
-                        popToRoot()
-                    }
-                    return rootDestination
+                    return (rootDestination, nil)
                 }
-                return nil
+                return (nil, nil)
             }
         }
-        if isNeedPop {
-            popTo(index: index)
-        }
-        return pathItems[index].destinations[String(describing: T.self)]
+        return (pathItems[index].destinations[String(describing: T.self)], index)
     }
 
     /// This function needs for active to push or replace View from .navigationStorageDestination who get `value` from this method.
@@ -185,14 +179,23 @@ public final class NavigationStorage: ObservableObject {
     /// For stable behauver please use `replaceDestination` func.
     @discardableResult
     public func changeDestination<T: Equatable>(with value: T) -> Bool {
-        if let handle = searchDestination(for: T.self, isNeedPop: false) {
+        if let handle = searchDestination(for: T.self).handle {
             return handle(value)
         }
         return false
     }
 
     public func popTo<T: Equatable>(destination value: T.Type) -> Bool {
-        return searchDestination(for: value, isNeedPop: true) != nil
+        let result = searchDestination(for: value)
+        if result.handle != nil {
+            if let index = result.index {
+                popTo(index: index)
+            } else {
+                popToRoot()
+            }
+            return true
+        }
+        return false
     }
 
     /// This function needs for replace View from .navigationStorageDestination who get `value` from this method.
@@ -200,7 +203,13 @@ public final class NavigationStorage: ObservableObject {
     /// If you call this from next screen you always to  pop to view of this navigation node, without depends on iOS 15-18.
     @discardableResult
     public func replaceDestination<T: Equatable>(with value: T) -> Bool {
-        if let handle = searchDestination(for: T.self, isNeedPop: true) {
+        let result = searchDestination(for: T.self)
+        if let handle = result.handle {
+            if let index = result.index {
+                popTo(index: index)
+            } else {
+                popToRoot()
+            }
             Task {
                 if #available(iOS 18.0, *) {
                     // Delay not needed
