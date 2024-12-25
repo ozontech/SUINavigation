@@ -42,11 +42,16 @@ struct SecondView: View {
             Button("to Bool") {
                 isBoolShowed = true
             }
-            Button("to Root") {
-                navigationStorage?.popToRoot()
+            Button("to Replace") {
+                navigationStorage?.replaceDestination(with: ReplaceValue.replace("from Second"))
             }
-            Button("to change") {
-                isChange.wrappedValue.toggle()
+            HStack {
+                Button("to Root") {
+                    navigationStorage?.popToRoot()
+                }
+                Button("to change") {
+                    isChange.wrappedValue.toggle()
+                }
             }
             HStack {
                 Button("dismiss") {
@@ -55,9 +60,9 @@ struct SecondView: View {
                 Button("popBack") {
                     navigationStorage?.pop()
                 }
-            }
-            Button("trigger to nil") {
-                numberFromParent = nil
+                Button("trigger to nil") {
+                    numberFromParent = nil
+                }
             }
             Button("to URL: BoolView/FirstView/SecondView?firstString=??&secondNumber=88") {
                 navigationStorage?.append(from: "BoolView/FirstView/SecondView?firstString=??&secondNumber=88")

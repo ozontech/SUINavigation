@@ -16,6 +16,27 @@ final class ReplaceViewUITests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
+    func testNext() throws {
+        let app = XCUIApplication.launchEn
+
+        MainView(app: app)
+            .checkThis()
+            .checkChanging(false)
+            .tapSecond()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .tapReplace()
+        ReplaceView(app: app)
+            .checkThis(string: "from Second")
+            .tapDismiss()
+        SecondView(app: app)
+            .checkThis(number: 11)
+            .tapDismiss()
+        MainView(app: app)
+            .checkThis()
+            .checkRootMessage(tapOK: true)
+    }
+
     func testSimple() throws {
         let app = XCUIApplication.launchEn
 

@@ -42,11 +42,16 @@ struct ModularSecondView: View {
             Button("to Bool") {
                 isBoolShowed = true
             }
-            Button("to Root") {
-                navigationStorage?.popToRoot()
+            Button("to Replace") {
+                navigationStorage?.replaceDestination(with: ReplaceValue.replace("from Second"))
             }
-            Button("to change") {
-                isChange.wrappedValue.toggle()
+            HStack {
+                Button("to Root") {
+                    navigationStorage?.popToRoot()
+                }
+                Button("to change") {
+                    isChange.wrappedValue.toggle()
+                }
             }
             HStack {
                 Button("dismiss") {
@@ -55,11 +60,11 @@ struct ModularSecondView: View {
                 Button("popBack") {
                     navigationStorage?.pop()
                 }
-            }
-            Button("trigger to nil") {
-                // Yes, it is not working, because Modular use AnyView: technical imposible use Binding
-                //numberFromParent = nil
-                presentationMode.wrappedValue.dismiss()
+                Button("trigger to nil") {
+                    // Yes, it is not working, because Modular use AnyView: technical imposible use Binding
+                    //numberFromParent = nil
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
             Button("to URL: BoolView/FirstView/SecondView?firstString=??&secondNumber=88") {
                 navigationStorage?.append(from: "BoolView/FirstView/SecondView?firstString=??&secondNumber=88")
