@@ -205,21 +205,32 @@ public final class NavigationStorage: ObservableObject {
     public func replaceDestination<T: Equatable>(with value: T) -> Bool {
         let result = searchDestination(for: T.self)
         if let handle = result.handle {
+            var isNeedPop = false
             if let index = result.index {
-                popTo(index: index)
+                isNeedPop = index < pathItems.count + 1
+                if isNeedPop{
+                    popTo(index: index)
+                }
             } else {
-                popToRoot()
+                isNeedPop = pathItems.count > 0
+                if isNeedPop{
+                    popToRoot()
+                }
             }
-            Task {
-                if #available(iOS 18.0, *) {
-                    // Delay not needed
-                } else if #available(iOS 15.0, *) {
-                    // Delay the task by 0.75 second:
-                    try await Task.sleep(nanoseconds: 75_0_000_000)
+            if isNeedPop {
+                Task {
+                    if #available(iOS 18.0, *) {
+                        // Delay not needed
+                    } else if #available(iOS 15.0, *) {
+                        // Delay the task by 0.75 second:
+                        try await Task.sleep(nanoseconds: 75_0_000_000)
+                    }
+                    Task { @MainActor in
+                        return handle(value)
+                    }
                 }
-                Task { @MainActor in
-                    return handle(value)
-                }
+            } else {
+                return handle(value)
             }
         }
         return false
