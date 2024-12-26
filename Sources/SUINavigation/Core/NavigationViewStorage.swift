@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-/// Synonym (needs change with NavigationViewStorage in a future)
-typealias NavigationStorageView = NavigationViewStorage
+/// Synonym for supporting 1.x versions. in 2.x may deprecated.
+typealias NavigationViewStorage = NavigationStorageView
 
-public struct NavigationViewStorage<Content: View>: View {
+public struct NavigationStorageView<Content: View>: View {
     let content: Content
 
     @OptionalEnvironmentObject
@@ -19,8 +19,8 @@ public struct NavigationViewStorage<Content: View>: View {
     @StateObject
     private var navigationStorage: NavigationStorage
 
-    /// - param strategy used only first way for init NavigationStorage
-    /// See NavigationStorageStrategy
+    /// - Parameter strategy: used only first way for init `NavigationStorage`.
+    /// - Parameter content: root View of navigation.
     @available(*, deprecated, message: "Using the strategy from init can cause problems with unsynchronised navigation updates. Please change the Navigation Storage Strategy.default value once during a first init.")
     public init(strategy: NavigationStorageStrategy, @ViewBuilder content: () -> Content) {
         _navigationStorage = StateObject(wrappedValue: NavigationStorage(strategy: strategy))
