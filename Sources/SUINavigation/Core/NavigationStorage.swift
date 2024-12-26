@@ -220,12 +220,7 @@ public final class NavigationStorage: ObservableObject {
             }
             if isNeedPop {
                 Task {
-                    if #available(iOS 18.0, *) {
-                        // Delay not needed
-                    } else if #available(iOS 15.0, *) {
-                        // Delay the task by 0.75 second:
-                        try await Task.sleep(nanoseconds: 75_0_000_000)
-                    }
+                    try await Task.sleep(nanoseconds: 75_0_000_000)
                     Task { @MainActor in
                         return handle(value)
                     }
