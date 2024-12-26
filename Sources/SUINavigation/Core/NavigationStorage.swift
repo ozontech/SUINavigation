@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// ViewModel of base navigation. Used with `NavigationStorageView`
 public final class NavigationStorage: ObservableObject {
     public struct Child {
         public internal(set) var uid: String = UUID().uuidString

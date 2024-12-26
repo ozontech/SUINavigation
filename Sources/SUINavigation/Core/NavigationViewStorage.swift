@@ -8,8 +8,9 @@
 import SwiftUI
 
 /// Synonym for supporting 1.x versions. in 2.x may deprecated.
-typealias NavigationViewStorage = NavigationStorageView
+public typealias NavigationViewStorage = NavigationStorageView
 
+/// Base view of navigation. Analogy for NavigationStack from SwiftUI
 public struct NavigationStorageView<Content: View>: View {
     let content: Content
 
