@@ -56,6 +56,7 @@ public extension View {
     /// - Parameter data: Type of value data, can implement Equatable protocol. Default equal to declared from `Destination` closure.
     /// - Parameter id: Identifier of this navigation node for change after this node,  for deeplink binding, or each others. Default value equal to `Destination` structure name.
     /// - Parameter paramName: name of value who trigger this navigation node for storage or change from `NavigationStorage` observer or deeplinks. Default value equal to `Destination` structure name.
+    /// - Parameter destination: binding `Item` value to view `Destination`.
     ///
     /// - Returns: self view.
     func navigationStorageDestination<Item: Equatable, Destination: View>(
@@ -69,7 +70,8 @@ public extension View {
             .navigationStorageDestination(for: data, id: id, paramName: paramName)
     }
 
-    /// This modifier analogy to `.navigationStorageDestination` with `Destination` closure and use with `.navigationStorageBinding` called before.
+    /// This modifier analogy to `.navigationStorageDestination` without `Destination` closure and use with `.navigationStorageBinding` called before.
+    /// Use this approach if you want to make Modular project with abstract by `View` and describe destination and View binding separated.
     func navigationStorageDestination<Item: Equatable>(
         for data: Item.Type,
         id: NavigationID? = nil,
