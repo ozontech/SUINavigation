@@ -150,7 +150,7 @@ final class BugUITests: XCTestCase {
 
     /// This Apple bug can be reproduced only on iOS 17
     /// When on Navigation has TabView and a User go to next View on Navigation, change screen or show system top panel he show how get to the root View
-    /// Apple bug: when NavigationViewStorage content the NavigationView instead of the NavigationStack.
+    /// Apple bug: when NavigationStorageView content the NavigationView instead of the NavigationStack.
     /// Can't reproduce on iOS 16 and earlier.
     func testBugWithTabBarInNavigationiOS17() throws {
         let app = XCUIApplication.app(isTab: true)

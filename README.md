@@ -64,7 +64,7 @@ Just open `Example/NavigationExample/NavigationExample.xcodeproj` from Xcode and
 
 ## Using
 
- Use `NavigationViewStorage` instead of `NavigationView` or `NavigationStack`.
+ Use `NavigationStorageView` instead of `NavigationView` or `NavigationStack`.
  In parent view use modifiers `.navigation(..)` with string `id` param or without (for using struct name) in addition features as in the code below.
  
  - Note that `.navigation(..)` applies to all content in the view being navigated from. This modifier should not be allowed to apply to child elements of that view, such as childs of ListView, LazyView and each others. Better use `.navigation(..)` below of all content of that view as in the code below.
@@ -81,7 +81,7 @@ struct RootView: View {
     private var isShowingFirst: Bool = false
 
     var body: some View {
-        NavigationViewStorage{
+         NavigationStorageView{
             VStack {
                 Text("Root")
                 Button("to First"){
@@ -230,9 +230,9 @@ struct SomeView: View {
 
 ## Features of Nested Navigation
 
-Since `NavigationStack` don't support nested `NavigationStack` it affected to `NavigationViewStorage` too. But it reproduced on iOS 16 and leter. On iOS 15.x and lower it work fine because `NavigationView` haven't this problem.
+Since `NavigationStack` don't support nested `NavigationStack` it affected to `NavigationStorageView` too. But it reproduced on iOS 16 and leter. On iOS 15.x and lower it work fine because `NavigationView` haven't this problem.
 
-You can also seporate nested `NavigationViewStorage` with help another navigation for example .fullScreenCover or TabBar then you can use fearlessly nested `NavigationViewStorage` even with iOS 16 and leter. For this case, we even provided support for deep links of nested navigation.
+You can also seporate nested `NavigationStorageView` with help another navigation for example .fullScreenCover or TabBar then you can use fearlessly nested `NavigationStorageView` even with iOS 16 and leter. For this case, we even provided support for deep links of nested navigation.
 
 ## Multi-module supporting (coordinator pattern)
 
@@ -252,7 +252,7 @@ enum Destination: Equatable {
 
 struct RootView: View {
     var body: some View {
-        NavigationViewStorage{
+         NavigationStorageView{
             ZStack{
                 mainView
             }.navigationStorageBinding(for: Destination.self) { destination in

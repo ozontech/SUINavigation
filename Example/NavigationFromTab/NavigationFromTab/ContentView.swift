@@ -21,7 +21,7 @@ enum TabNavigation: String, NavigationParameterValue {
 
 struct ContentView: View {
     var body: some View {
-        NavigationViewStorage {
+        NavigationStorageView {
             TabView {
                 FirstView()
                     .tabItem {

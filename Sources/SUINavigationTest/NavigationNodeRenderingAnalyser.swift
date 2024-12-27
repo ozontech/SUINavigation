@@ -109,7 +109,7 @@ public final class NavigationNodeRenderingAnalyser : NavigationNodeAnalyserProto
         }
 
         let destinationView =
-            NavigationViewStorage(navigationStorage: navStorage) {
+            NavigationStorageView(navigationStorage: navStorage) {
                 view
             }
 

@@ -133,7 +133,7 @@ struct ModularBoolView: View {
             Destination.tab
         }
         .fullScreenCover(item: $firstModalData) { value in
-            NavigationViewStorage{
+            NavigationStorageView{
                 ModularFirstView(string: value.string)
             }
         }

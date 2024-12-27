@@ -12,7 +12,7 @@ import SUINavigation
 struct ListDetailsApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationViewStorage {
+            NavigationStorageView {
                 ListView()
             }
         }

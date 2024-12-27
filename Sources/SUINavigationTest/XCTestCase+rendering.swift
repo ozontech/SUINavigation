@@ -54,7 +54,7 @@ public func renderingTest<SourceView: View>(
     if hasStorage {
         result = view.render()
     } else {
-        result = NavigationViewStorage{
+        result = NavigationStorageView{
             view
         }.render()
     }
@@ -97,7 +97,7 @@ public func renderingTest<SourceView: View, DestinationView: View>(
     if hasStorage {
         view.render()
     } else {
-        NavigationViewStorage{
+        NavigationStorageView{
             view
         }.render()
     }
@@ -136,7 +136,7 @@ public func renderingTest<SourceView: View>(
     if hasStorage {
         view.render()
     } else {
-        NavigationViewStorage{
+        NavigationStorageView{
             view
         }.render()
     }

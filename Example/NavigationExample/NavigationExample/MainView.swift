@@ -38,7 +38,7 @@ struct MainView: View {
     }
 
     var body: some View {
-        NavigationViewStorage{
+        NavigationStorageView{
             ZStack{
                 if isChange {
                     Color.green.ignoresSafeArea()

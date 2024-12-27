@@ -172,7 +172,7 @@ struct MyTabView: View {
     private var selectedTab: MyTab = .first
 
     var body: some View {
-        NavigationViewStorage{
+         NavigationStorageView{
             TabView(selection: $selectedTab) {
                 FirstView()
                     .tag(MyTab.first)

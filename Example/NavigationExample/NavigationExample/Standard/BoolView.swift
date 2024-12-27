@@ -142,7 +142,7 @@ struct BoolView: View {
             MainTabView()
         }
         .fullScreenCover(item: $firstModalData) { value in
-            NavigationViewStorage{
+            NavigationStorageView{
                 FirstView(string: value.string)
             }
         }

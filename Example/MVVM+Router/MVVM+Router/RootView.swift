@@ -14,7 +14,7 @@ struct RootView: View {
     private var isShowingFirst: Bool = false
 
     var body: some View {
-        NavigationViewStorage{
+        NavigationStorageView{
             VStack {
                 Text("Root")
                 Button("to First"){

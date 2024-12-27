@@ -1,6 +1,6 @@
 //
-//  NavigationViewStorage.swift
-//  
+//  NavigationStorageView.swift
+//
 //
 //  Created by Sergey Balalaev on 20.11.2023.
 //
@@ -66,7 +66,7 @@ public struct NavigationStorageView<Content: View>: View {
 }
 
 #if DEBUG
-    extension NavigationViewStorage {
+    extension NavigationStorageView {
         public init(navigationStorage: NavigationStorage, @ViewBuilder content: () -> Content) {
             _navigationStorage = StateObject(wrappedValue: navigationStorage)
             self.content = content()
