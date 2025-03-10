@@ -3,11 +3,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.11.1] - 2025-01-13
+
+#### Fixed
+
+- `NavigationViewStorage` rewrite to `NavigationStorageView` in all.
+- Documentation for `.navigationStorageDestination` modifiers.
+
 ## [1.11.0] - 2024-12-26
 
 #### Added
 
-- Synonym NavigationStorageView as NavigationViewStorage.
+- Synonym `NavigationStorageView` as `NavigationViewStorage`.
 - `.navigationStorageDestination` view modifiers, method `changeDestination` and `replaceDestination` to NavigationStorage for change navigation state.
 - `.navigationStorageDestinationAction` view modifiers for deeplinks.
 - `.navigationStorageBinding` default Item.Type param.
