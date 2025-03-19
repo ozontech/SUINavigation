@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 - `NavigationViewStorage` rewrite to `NavigationStorageView` in all.
 - Documentation for `.navigationStorageDestination` modifiers.
+- Installation notes from [ReadMe](README.md)
 
 ## [1.11.0] - 2024-12-26
 

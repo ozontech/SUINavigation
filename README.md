@@ -23,21 +23,37 @@ Now Developers have standard navigation framework SwiftUI. "Correct" navigation 
 
 ## Installation
 
+Note that the framework consists of several libraries. The `SUINavigation` library is needed to use navigation in the application, and `SUINavigationTest` is needed to cover unit tests, if you try to use `SUINavigationTest` to compile the application, you will most likely encounter linking errors.
+
 ### Swift Package Manager (SPM)
 
-The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but `SUINavigation` does support its use on supported platforms. 
-
-Once you have your Swift package set up, adding `SUINavigation` as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+Once you have your Swift package set up, adding `SUINavigation` as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`. And next step: add library to targets. For the application target you should use `SUINavigation` library and for tests target you should use `SUINavigationTest` library.
 
 ```swift
 dependencies: [
     .Package(url: "https://github.com/ozontech/SUINavigation.git", majorVersion: 1)
-]
+],
+targets: [
+    .target(
+        name: "YourApp",
+        dependencies: [
+            .product(name: "SUINavigation", package: "SUINavigation"),
+        ],
+    ),
+    .testTarget(
+        name: "YourTests",
+         dependencies: [
+            .product(name: "SUINavigationTest", package: "SUINavigation"),
+        ],
+    ),
 ```
 
-### Manually
+### From XCode
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate `SUINavigation` into your project manually.
+You can integrate `SUINavigation` into your project from Xcode.
+To do this you need to go to `Project` of the root of Project Navigator, then choose tab `Package Dependencies` and when you click add enter the path to this repository. You will then be prompted to add certain libraries to the targets, it is important to choose the right targets based on your usage goals, as mentioned at the beginning of the installation article. Note that the example below shows adding to the application target and test target. If you specify the wrong targets, you may experience linking errors.
+
+![Install](/Docs/Install.png "Install")
 
 ## Build & test
 
