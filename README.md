@@ -46,6 +46,7 @@ targets: [
             .product(name: "SUINavigationTest", package: "SUINavigation"),
         ],
     ),
+],
 ```
 
 ### From XCode
@@ -54,6 +55,8 @@ You can integrate `SUINavigation` into your project from Xcode.
 To do this you need to go to `Project` of the root of Project Navigator, then choose tab `Package Dependencies` and when you click add enter the path to this repository. You will then be prompted to add certain libraries to the targets, it is important to choose the right targets based on your usage goals, as mentioned at the beginning of the installation article. Note that the example below shows adding to the application target and test target. If you specify the wrong targets, you may experience linking errors.
 
 ![Install](/Docs/Install.png "Install")
+
+If you didn't use tests, then for `SUINavigationTest` in screen above you need setup `Add to Target` to `None`.
 
 ## Build & test
 
