@@ -85,13 +85,10 @@ extension View {
 
     @discardableResult
     func swipeTopToBottom(_ position: SwipeTopPosition) -> Self {
-        let navigationBar = app.windows.firstMatch
-        navigationBar.waitForExistingAndAssert()
-
         let startOffset = CGVector(dx: position.rawValue, dy: -0.01)
         let endOffset = CGVector(dx: position.rawValue, dy: 1)
-        let startPoint = navigationBar.coordinate(withNormalizedOffset: startOffset)
-        let endPoint = navigationBar.coordinate(withNormalizedOffset: endOffset)
+        let startPoint = app.coordinate(withNormalizedOffset: startOffset)
+        let endPoint = app.coordinate(withNormalizedOffset: endOffset)
         startPoint
             .press(forDuration: 0.1, thenDragTo: endPoint, withVelocity: .fast, thenHoldForDuration: 0.1)
 
@@ -100,13 +97,10 @@ extension View {
 
     @discardableResult
     func swipeBottomToTop(_ position: SwipeTopPosition) -> Self {
-        let navigationBar = app.windows.firstMatch
-        navigationBar.waitForExistingAndAssert()
-
         let startOffset = CGVector(dx: position.rawValue, dy: 1)
         let endOffset = CGVector(dx: position.rawValue, dy: 0)
-        let startPoint = navigationBar.coordinate(withNormalizedOffset: startOffset)
-        let endPoint = navigationBar.coordinate(withNormalizedOffset: endOffset)
+        let startPoint = app.coordinate(withNormalizedOffset: startOffset)
+        let endPoint = app.coordinate(withNormalizedOffset: endOffset)
         startPoint
             .press(forDuration: 0.1, thenDragTo: endPoint, withVelocity: .fast, thenHoldForDuration: 0.1)
 

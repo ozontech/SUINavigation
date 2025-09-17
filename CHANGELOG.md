@@ -1,15 +1,16 @@
- 
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
-## [1.11.1] - 2025-01-13
+## [1.11.1] - 2025-09-19
 
 #### Fixed
 
 - `NavigationViewStorage` rewrite to `NavigationStorageView` in all.
 - Documentation for `.navigationStorageDestination` modifiers.
-- Installation notes from [ReadMe](README.md)
+- Installation notes from [ReadMe](README.md).
+- Fixed lock screen showing for tests on iOS 26.
 
 ## [1.11.0] - 2024-12-26
 
