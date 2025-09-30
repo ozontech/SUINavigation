@@ -18,6 +18,9 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
     @Environment(\.isChange)
     private var isChange
 
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
     init() where ViewModel == RootViewModel {
         _viewModel = StateObject(wrappedValue: RootViewModel())
     }
@@ -56,6 +59,10 @@ struct ModularRootView<ViewModel: RootViewModelProtocol>: View {
         .navigation(item: $viewModel.rootVM) { vm in
             Destination.root(vm: vm)
         }
+        .onOpenURL(perform: { url in
+            let targetURL = url.absoluteString.replacingOccurrences(of: "suintest://", with: "")
+            navigationStorage?.append(from: targetURL)
+        })
     }
 }
 

@@ -32,6 +32,7 @@
 		C34FA8A62B1E012D00069374 /* ModularFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8A52B1E012D00069374 /* ModularFirstView.swift */; };
 		C34FA8A82B1E014000069374 /* ModularBoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8A72B1E014000069374 /* ModularBoolView.swift */; };
 		C34FA8AB2B1F696D00069374 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FA8AA2B1F696D00069374 /* Destination.swift */; };
+		C3842FA02E8BC80900B05B1E /* DeeplinkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3842F9F2E8BC7F000B05B1E /* DeeplinkUITests.swift */; };
 		C38D024A2B2C4FB000C6DB13 /* ModalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D02492B2C4FB000C6DB13 /* ModalUITests.swift */; };
 		C3940B452AD8940400EEE3FC /* PopToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3940B442AD8940400EEE3FC /* PopToUITests.swift */; };
 		C3966A722ACF3BAE00F12FEA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3966A712ACF3BAE00F12FEA /* MainView.swift */; };
@@ -99,6 +100,8 @@
 		C34FA8A72B1E014000069374 /* ModularBoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularBoolView.swift; sourceTree = "<group>"; };
 		C34FA8A92B1F0FAA00069374 /* AllTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTestPlan.xctestplan; sourceTree = "<group>"; };
 		C34FA8AA2B1F696D00069374 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		C3842F9F2E8BC7F000B05B1E /* DeeplinkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkUITests.swift; sourceTree = "<group>"; };
+		C3842FA12E8BD09F00B05B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C38D02492B2C4FB000C6DB13 /* ModalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUITests.swift; sourceTree = "<group>"; };
 		C3940B442AD8940400EEE3FC /* PopToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopToUITests.swift; sourceTree = "<group>"; };
 		C3966A712ACF3BAE00F12FEA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 		C30E34582AC5787300D3DA51 /* NavigationExample */ = {
 			isa = PBXGroup;
 			children = (
+				C3842FA12E8BD09F00B05B1E /* Info.plist */,
 				C30E34592AC5787300D3DA51 /* NavigationExampleApp.swift */,
 				C3D88BBD2B060A2D007E6B2C /* MainTabView.swift */,
 				C30E345B2AC5787300D3DA51 /* MainView.swift */,
@@ -210,6 +214,7 @@
 		C30E34732AC5787500D3DA51 /* NavigationExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
+				C3842F9F2E8BC7F000B05B1E /* DeeplinkUITests.swift */,
 				C3315D4B2D1AFF4200540268 /* ReplaceViewUITests.swift */,
 				C38D02492B2C4FB000C6DB13 /* ModalUITests.swift */,
 				C30E34742AC5787500D3DA51 /* SimpleBoolUITests.swift */,
@@ -468,6 +473,7 @@
 				C38D024A2B2C4FB000C6DB13 /* ModalUITests.swift in Sources */,
 				C3966A772ACF4FC300F12FEA /* XCUIElement.swift in Sources */,
 				C3315D4C2D1AFF5100540268 /* ReplaceViewUITests.swift in Sources */,
+				C3842FA02E8BC80900B05B1E /* DeeplinkUITests.swift in Sources */,
 				C3F5E0262AF24306003540E4 /* TabUITests.swift in Sources */,
 				C3966A722ACF3BAE00F12FEA /* MainView.swift in Sources */,
 				C30E34772AC5787500D3DA51 /* SimpleFirstUITests.swift in Sources */,
@@ -620,6 +626,7 @@
 				DEVELOPMENT_TEAM = FDK83T8QNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NavigationExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -650,6 +657,7 @@
 				DEVELOPMENT_TEAM = FDK83T8QNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NavigationExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

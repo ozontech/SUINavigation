@@ -65,6 +65,9 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
     @Environment(\.isChange)
     private var isChange
 
+    @OptionalEnvironmentObject
+    private var navigationStorage: NavigationStorage?
+
     init() where ViewModel == RootViewModel {
         print("init RootView")
         _viewModel = StateObject(wrappedValue: RootViewModel())
@@ -136,6 +139,10 @@ struct RootView<ViewModel: RootViewModelProtocol>: View {
         .onAppear {
             print("show RootView")
         }
+        .onOpenURL(perform: { url in
+            let targetURL = url.absoluteString.replacingOccurrences(of: "suintest://", with: "")
+            navigationStorage?.append(from: targetURL)
+        })
     }
 }
 

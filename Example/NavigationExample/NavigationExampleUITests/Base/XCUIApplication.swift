@@ -15,8 +15,14 @@ extension XCUIApplication {
     }
 
     static func app(isEnglish: Bool = true, isTab: Bool = false, isStackOn16: Bool = false) -> XCUIApplication {
+        let result = appWithoutStart(isEnglish: isEnglish, isTab: isTab, isStackOn16: isStackOn16)
+        result.launch()
+        return result
+    }
+
+    static func appWithoutStart(isEnglish: Bool = true, isTab: Bool = false, isStackOn16: Bool = false) -> XCUIApplication {
         let result = XCUIApplication()
-        
+
         if isEnglish {
             result.launchArguments.append(contentsOf: ["-AppleLanguages", "(en)", "-AppleLocale", "en_EN"])
         }
@@ -29,7 +35,6 @@ extension XCUIApplication {
         if isStackOn16 {
             result.launchArguments.append(StrategyMode.argumentName)
         }
-        result.launch()
         return result
     }
 }
