@@ -11,7 +11,7 @@ Now Developers have standard navigation framework SwiftUI. "Correct" navigation 
 ## Features
 
 - [x] Full support SwiftUI, has declarative style.
-- [x] Supporting iOS 14, iOS 15, iOS 16, iOS 17, iOS 18.
+- [x] Supporting iOS 14, iOS 15, iOS 16, iOS 17, iOS 18, iOS 26.
 - [x] Target switching between NavigationView and NavigationStack.
 - [x] Fixing known Apple bugs of standart SwiftUI navigation components.
 - [x] Has pop, popTo, skip, isRoot and each other functions.

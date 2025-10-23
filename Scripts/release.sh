@@ -23,20 +23,20 @@ cd Example/NavigationExample
 checkExit "Start Tests"
 
 xcrun simctl shutdown all
-sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 16,OS=18.1'
-checkExit "Tests on iOS 18.1"
+sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 17,OS=26.0'
+checkExit "Tests on iOS 26.0"
 
 xcrun simctl shutdown all
-sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 15,OS=17.2'
-checkExit "Tests on iOS 17.2"
+sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 16,OS=18.6'
+checkExit "Tests on iOS 18.6"
+
+xcrun simctl shutdown all
+sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone 15,OS=17.5'
+checkExit "Tests on iOS 17.5"
 
 xcrun simctl shutdown all
 sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=16.4'
 checkExit "Tests on iOS 16.4"
-
-# xcrun simctl shutdown all
-# sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=16.0'
-# checkExit "Tests on iOS 16.0"
 
 xcrun simctl shutdown all
 sh ../../Scripts/build.sh -c Debug -p NavigationExample -test 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=15.5'

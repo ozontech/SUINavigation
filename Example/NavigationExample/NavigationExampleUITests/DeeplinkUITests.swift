@@ -18,7 +18,8 @@ final class DeeplinkUITests: XCTestCase {
 
     @available(iOS 16.4, *)
     func testHotStart() throws {
-        let app = XCUIApplication.appWithoutStart(isEnglish: true)
+        let app = XCUIApplication()
+        app.launch()
         app.open(URL(string: "suintest://SecondView/BoolView?SecondView=454")!)
 
         BoolView(app: app)

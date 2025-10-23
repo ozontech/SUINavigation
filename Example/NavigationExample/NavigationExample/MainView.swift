@@ -85,11 +85,11 @@ struct MainView: View {
         }
         .environment(\.isChange, $isChange)
         .onChange(of: isRoot) { value in
-#warning("So it's hack for test success. Needs research way navigation can broken without that. Any times this reproduced by Skip tests or Replase tets with iOS 18")
             if isChange == false {
+#warning("So it's hack for test success. Needs research way navigation can broken without that. Any times this reproduced by Skip tests or Replase tests with iOS 18")
                 Task {
-                    // Delay the task by 0.01 second:
-                    try await Task.sleep(nanoseconds: 1_0_000_000)
+                    // Delay the task by 0.5 second
+                    try await Task.sleep(nanoseconds: 500_000_000)
                     Task { @MainActor in
                         isRootMessageShowed = value
                     }

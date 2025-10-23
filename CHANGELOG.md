@@ -3,7 +3,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.11.1] - 2025-09-19
+## [1.11.1] - 2025-10-23
 
 #### Fixed
 
@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Documentation for `.navigationStorageDestination` modifiers.
 - Installation notes from [ReadMe](README.md).
 - Fixed lock screen showing for tests on iOS 26.
+- Fixed tests for iOS 16-18
 
 ## [1.11.0] - 2024-12-26
 

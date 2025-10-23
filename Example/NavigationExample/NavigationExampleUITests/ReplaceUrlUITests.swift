@@ -20,7 +20,8 @@ final class ReplaceUrlUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
+            .tapChange()
+            .checkChanging(true)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -38,7 +39,8 @@ final class ReplaceUrlUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
+            .tapChange()
+            .checkChanging(true)
             .tapFirst()
         FirstView(app: app)
             .checkThis(string: "Hi")
@@ -75,7 +77,8 @@ final class ReplaceUrlUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
+            .tapChange()
+            .checkChanging(true)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -99,7 +102,8 @@ final class ReplaceUrlUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
+            .tapChange()
+            .checkChanging(true)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -126,7 +130,8 @@ final class ReplaceUrlUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
+            .tapChange()
+            .checkChanging(true)
             .tapBool()
         BoolView(app: app)
             .checkThis()
@@ -152,7 +157,8 @@ final class ReplaceUrlUITests: XCTestCase {
         let app = XCUIApplication.launchEn
         MainView(app: app)
             .checkThis()
-            .checkChanging(false)
+            .tapChange()
+            .checkChanging(true)
             .tapBool()
         BoolView(app: app)
             .checkThis()

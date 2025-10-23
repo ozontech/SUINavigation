@@ -9,8 +9,6 @@ import XCTest
 @testable import NavigationExample
 import SwiftUI
 import SUINavigationTest
-import SUINavigation
-import Combine
 
 final class NodesTests: XCTestCase {
 

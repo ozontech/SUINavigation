@@ -232,18 +232,21 @@ public final class NavigationStorage: ObservableObject {
         return false
     }
 
+    // probably needs for more changes pathItems.
+    private func updatePathItems(_ pathItems: Array<Item>) {
+        self.pathItems = pathItems
+    }
+
     private func popTo(index foundIndex: Int) {
         // with NavigationStack need support iOS 16
         if #available(iOS 15.0, *) {
             // Work better that original aproach but in iOS 14 not stable
             let lastOfItems = pathItems.suffix(from: foundIndex + 1)
-            lastOfItems.forEach { pathItem in
-                pathItem.isPresented.wrappedValue = false
-            }
+            lastOfItems.first?.isPresented.wrappedValue = false
         } else {
             NavigationUtils.popTo(index: foundIndex + 1)
         }
-        pathItems = Array(pathItems[0...foundIndex])
+        updatePathItems(Array(pathItems[0...foundIndex]))
     }
 
     /// You can use with the Type of View or the NavigationID case
@@ -259,12 +262,11 @@ public final class NavigationStorage: ObservableObject {
             pathItems.forEach { pathItem in
                 pathItem.isPresented.wrappedValue = false
             }
-            pathItems = []
         } else {
             // becase we have troubles with iOS 14.5 when stack is big
             NavigationUtils.popToRootView()
-            pathItems = []
         }
+        updatePathItems([])
     }
 
     public func pop() {
@@ -278,7 +280,7 @@ public final class NavigationStorage: ObservableObject {
         } else {
             NavigationUtils.popTo(index: pathItems.count - 1)
         }
-        pathItems = pathItems.dropLast()
+        updatePathItems(pathItems.dropLast())
     }
 
     /// see skip(_ type)

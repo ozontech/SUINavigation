@@ -30,7 +30,7 @@ struct MainView: View {
     @discardableResult
     func checkRootMessage(tapOK: Bool) -> Self {
         let text = app.staticTexts["This is Root View"]
-        text.waitForExistingAndAssert()
+        text.waitForExistingAndAssert(timeout: 1.0)
         let button = app.buttons["OK"]
         button.waitForExistingAndAssert()
         if tapOK {
