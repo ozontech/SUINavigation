@@ -239,6 +239,15 @@ final class BugUITests: XCTestCase {
             .checkVM(initCount: 3, deinitCount: 2)
     }
 
+    private func exitAndActivate(app: XCUIApplication) {
+        guard #available(iOS 16, *) else {
+            // Below 16.0 the activation Simulator just break inputs elements.
+            return
+        }
+        XCUIDevice.shared.press(.home)
+        app.activate()
+    }
+
     // Bug on iOS 16.x: reset state of navigation on TabView when application closed.
     // Actions: Go to page on TabView, go to next Screen on navigation, tap to Home button, return to App,
     // Actual: Next page closed and shown the root screen on TabView
@@ -254,25 +263,17 @@ final class BugUITests: XCTestCase {
             .checkThis(string: "Hi")
             .swipeBottomToTop(.right)
             .checkThis(string: "Hi")
-        XCUIDevice.shared.press(.home)
-        app.activate()
+        exitAndActivate(app: app)
         FirstView(app: app)
             .checkThis(string: "Hi")
-        guard #available(iOS 16, *) else {
-            // Below 16.0 the activation Simulator just break inputs elements.
-            return
-        }
-        FirstView(app: app)
             .tapBool()
         BoolView(app: app)
             .checkThis()
-        XCUIDevice.shared.press(.home)
-        app.activate()
+        exitAndActivate(app: app)
         BoolView(app: app)
             .checkThis()
             .tapFirst()
-        XCUIDevice.shared.press(.home)
-        app.activate()
+        exitAndActivate(app: app)
         FirstView(app: app)
             .checkThis(string: "Bool")
             .tapBack()
