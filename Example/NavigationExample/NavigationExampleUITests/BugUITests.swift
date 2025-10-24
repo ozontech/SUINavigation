@@ -258,6 +258,11 @@ final class BugUITests: XCTestCase {
         app.activate()
         FirstView(app: app)
             .checkThis(string: "Hi")
+        guard #available(iOS 16, *) else {
+            // Below 16.0 the activation Simulator just break inputs elements.
+            return
+        }
+        FirstView(app: app)
             .tapBool()
         BoolView(app: app)
             .checkThis()
